@@ -20,8 +20,5 @@ public class FileContent implements IterableText{
         public Iterator<String> wordIterator() {
                 return null;
         }
-
-        public String getFilename() {
-                return this.filename;
-        }
+        
 }

@@ -11,17 +11,17 @@ public class WordIterator implements Iterator{
 
         public WordIterator(FileContent fileContent) {
                 this.fileContent = fileContent;
-                this.int = 0
+                this.index = 0;
         }
 
 
         @Override
         public boolean hasNext() {
-                return this.index < this.fileContent.getWordCollection().size();
+                return this.index < this.fileContent.getWordsCollection().size();
         }
 
         @Override
         public Object next() {
-                return this.fileContent.getWordCollection().get(this.index++);
+                return this.fileContent.getWordsCollection().get(this.index++);
         }
 }

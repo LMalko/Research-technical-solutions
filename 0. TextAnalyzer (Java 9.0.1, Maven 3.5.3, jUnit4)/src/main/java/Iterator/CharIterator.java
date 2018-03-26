@@ -16,11 +16,11 @@ public class CharIterator implements Iterator{
 
         @Override
         public boolean hasNext() {
-                return this.index < fileContent.getCharsCollection().size();
+                return this.index < this.fileContent.getCharsCollection().size();
         }
 
         @Override
         public Object next() {
-                return getCharsCollection().get(this.index++);
+                return this.fileContent.getCharsCollection().get(this.index++);
         }
 }

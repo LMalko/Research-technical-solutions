@@ -7,19 +7,21 @@ import java.util.Iterator;
 public class WordIterator implements Iterator{
 
         private FileContent fileContent;
+        private int index;
 
         public WordIterator(FileContent fileContent) {
                 this.fileContent = fileContent;
+                this.int = 0
         }
 
 
         @Override
         public boolean hasNext() {
-                return false;
+                return this.index < this.fileContent.getWordCollection().size();
         }
 
         @Override
         public Object next() {
-                return null;
+                return this.fileContent.getWordCollection().get(this.index++);
         }
 }

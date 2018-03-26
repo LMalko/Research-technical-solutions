@@ -9,16 +9,16 @@ public class FileContent implements IterableText{
         private String filename;
 
         public FileContent(String filename){
-                this.filename = filename;
+                return new Iterator.WordIterator(this);
         }
         @Override
         public Iterator<String> charIterator() {
-                return null;
+                return new Iterator.CharIterator(this);
         }
 
         @Override
         public Iterator<String> wordIterator() {
                 return null;
         }
-        
+
 }

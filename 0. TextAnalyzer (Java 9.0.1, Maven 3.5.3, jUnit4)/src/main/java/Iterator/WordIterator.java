@@ -1,20 +1,24 @@
 package Iterator;
 
 import Model.FileContent;
-
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String>{
 
-        private FileContent fileContent;
         private int index;
+        private String textContent;
+        private ArrayList<String> words;
 
-        public WordIterator(FileContent fileContent){
-                this.fileContent = fileContent;
+        public WordIterator(String textContent){
                 this.index = 0;
+                this.textContent = textContent;
+                this.stringToWordsArray(this.textContent);
         }
 
+        private ArrayList<String> stringToWordsArray(String textContent){
+
+        }
 
         @Override
         public boolean hasNext() {

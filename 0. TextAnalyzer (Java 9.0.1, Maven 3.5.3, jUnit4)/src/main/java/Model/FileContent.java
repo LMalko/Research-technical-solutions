@@ -19,7 +19,7 @@ public class FileContent implements IterableText{
                 this.fileName = fileName;
         }
         @Override
-        public Iterator<String> charIterator() {
+        public Iterator charIterator() {
                 return new CharIterator(this.textContent());
         }
 

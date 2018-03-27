@@ -40,14 +40,6 @@ public class StatisticalAnalysis {
                 return result.size();
         }
 
-        public int size(){
-                int result = 0;
-                while(iterator.hasNext()){
-                        result ++;
-                }
-                return result;
-        }
-
         public Set<String> occurMoreThan(Integer number){
                 Map<String, Integer> dictionary = getMapStatistics();
                 HashSet result = new HashSet<>();

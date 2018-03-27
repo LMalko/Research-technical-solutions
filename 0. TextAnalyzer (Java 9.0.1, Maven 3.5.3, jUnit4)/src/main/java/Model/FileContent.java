@@ -4,15 +4,15 @@ import Interface.IterableText;
 import Iterator.CharIterator;
 import Iterator.WordIterator;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class FileContent implements IterableText{
 
         private String fileName;
-        private BufferedReader br;
 
 
         public FileContent(String fileName){
@@ -32,15 +32,36 @@ public class FileContent implements IterableText{
                 return fileName;
         }
 
-        public BufferedReader textContent(){
+        public String textContent(){
+
+                String data;
+                FileReader fileReader = null;
+                BufferedReader bufferedReader = null;
+                String line;
+                String nextLine = "\n";
+                StringBuilder sb = new StringBuilder();
+
                 try {
-                        br = new BufferedReader(new FileReader(this.fileName));
-                } catch (FileNotFoundException exceptionFile) {
-                        exceptionFile.printStackTrace();
-                } catch (IOException exceptionIO){
-                        exceptionIO.printStackTrace();
+
+                        fileReader = new FileReader(new File(this.getFilename()));
+                        bufferedReader = new BufferedReader(fileReader);
+
+                        while((line = bufferedReader.readLine()) != null) {
+
+                                if(line.length() > 0) {
+                                        sb.append(line.trim());
+                                        sb.append(nextLine);
+                                }
+                        }
+                        data = sb.toString();
+                        if(data.length() == 0) {
+                                throw new NoSuchElementException("No data.");
+                        }
+                } catch (IOException e) {
+                        data = null;
                 }
-                return br;
+
+                return data;
         }
 
 }

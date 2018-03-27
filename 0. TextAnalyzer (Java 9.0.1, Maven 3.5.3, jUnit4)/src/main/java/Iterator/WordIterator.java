@@ -2,14 +2,15 @@ package Iterator;
 
 import Model.FileContent;
 
+import java.io.IOException;
 import java.util.Iterator;
 
-public class WordIterator implements Iterator{
+public class WordIterator implements Iterator<String>{
 
         private FileContent fileContent;
         private int index;
 
-        public WordIterator(FileContent fileContent) {
+        public WordIterator(FileContent fileContent){
                 this.fileContent = fileContent;
                 this.index = 0;
         }
@@ -17,11 +18,12 @@ public class WordIterator implements Iterator{
 
         @Override
         public boolean hasNext() {
-                return this.index < this.fileContent.getWordsCollection().size();
+                return false;
         }
 
         @Override
-        public Object next() {
-                return this.fileContent.getWordsCollection().get(this.index++);
+        public String next() {
+                return "test";
+
         }
 }

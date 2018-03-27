@@ -4,7 +4,7 @@ import Model.FileContent;
 
 import java.util.Iterator;
 
-public class CharIterator implements Iterator{
+public class CharIterator implements Iterator<String>{
 
         private FileContent fileContent;
         private int index;
@@ -16,11 +16,11 @@ public class CharIterator implements Iterator{
 
         @Override
         public boolean hasNext() {
-                return this.index < this.fileContent.getCharsCollection().size();
+                return false;
         }
 
         @Override
-        public Object next() {
-                return this.fileContent.getCharsCollection().get(this.index++);
+        public String next() {
+                return "test";
         }
 }

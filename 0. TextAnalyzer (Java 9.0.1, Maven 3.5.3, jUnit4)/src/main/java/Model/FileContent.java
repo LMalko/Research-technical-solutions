@@ -20,12 +20,12 @@ public class FileContent implements IterableText{
         }
         @Override
         public Iterator<String> charIterator() {
-                return new CharIterator(this);
+                return new CharIterator(this.textContent());
         }
 
         @Override
         public Iterator<String> wordIterator() {
-                return new WordIterator(this);
+                return new WordIterator(this.textContent());
         }
 
         public String getFilename() {

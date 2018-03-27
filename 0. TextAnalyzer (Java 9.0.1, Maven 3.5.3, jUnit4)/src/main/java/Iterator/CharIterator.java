@@ -2,16 +2,19 @@ package Iterator;
 
 import Model.FileContent;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class CharIterator implements Iterator<String>{
 
-        private FileContent fileContent;
         private int index;
+        private String textContent;
+        private ArrayList<String> chars;
 
-        public CharIterator(FileContent fileContent) {
-                this.fileContent = fileContent;
+        public CharIterator(String textContent) {
                 this.index = 0;
+                this.textContent = textContent;
+                this.stringToCharsArray(this.textContent);
         }
 
         @Override

@@ -13,8 +13,8 @@ public class CharIterator implements Iterator{
         }
 
         private void stringToCharsCollection(String textContent) {
+                chars = textContent.toCharArray();
         }
-
 
         @Override
         public boolean hasNext() {
@@ -23,6 +23,15 @@ public class CharIterator implements Iterator{
 
         @Override
         public String next() {
-                return String.valueOf(chars[index++]);
+                try {
+                        char temp = chars[index++];
+                        if (Character.isLetterOrDigit(temp)) {
+                                return String.valueOf(temp);
+                        } else {
+                                return next();
+                        }
+                }catch(ArrayIndexOutOfBoundsException exception){
+                        return "";
+                }
         }
 }

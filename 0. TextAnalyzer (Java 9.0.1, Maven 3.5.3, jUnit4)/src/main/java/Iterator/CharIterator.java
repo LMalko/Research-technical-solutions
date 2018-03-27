@@ -31,7 +31,7 @@ public class CharIterator implements Iterator{
                                 return next();
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        return "";
+                        return null;
                 }
         }
 }

@@ -1,6 +1,8 @@
 package Controller;
 
+import Iterator.CharIterator;
 import Model.FileContent;
+import Iterator.WordIterator;
 
 public class ApplicationController {
 
@@ -12,7 +14,14 @@ public class ApplicationController {
 
         public void print(){
                 FileContent fileContent = new FileContent(this.filename);
-                System.out.println(fileContent.textContent());
+                WordIterator wordIterator = new WordIterator(fileContent.textContent());
+                while(wordIterator.hasNext()){
+                        System.out.println(wordIterator.next());
+                }
+                CharIterator charIterator = new CharIterator(fileContent.textContent());
+                while(charIterator.hasNext()){
+                        System.out.println(charIterator.next());
+                }
         }
 
 }

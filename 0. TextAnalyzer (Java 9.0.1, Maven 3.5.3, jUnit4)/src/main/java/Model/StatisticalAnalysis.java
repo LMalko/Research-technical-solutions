@@ -6,14 +6,26 @@ public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
 
+
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
+        }
+
+        public int getCount(){
+                int result = 0;
+                while(iterator.hasNext()){
+                        if(iterator.next() != null) {
+                                result++;
+                        }
+                }
+                return result;
         }
 
         public int getCountOf(String element){
                 int result = 0;
                 while(iterator.hasNext()){
-                        if(iterator.next() == element){
+                        if(iterator.next().equalsIgnoreCase(element)){
+                                System.out.println(element);
                                 result ++;
                         }
                 }
@@ -23,7 +35,7 @@ public class StatisticalAnalysis {
         public int dictionarySize(){
                 Set<String> result = new HashSet<>();
                 while(iterator.hasNext()){
-                        result.add(iterator.next());
+                        result.add(iterator.next().toLowerCase());
                 }
                 return result.size();
         }

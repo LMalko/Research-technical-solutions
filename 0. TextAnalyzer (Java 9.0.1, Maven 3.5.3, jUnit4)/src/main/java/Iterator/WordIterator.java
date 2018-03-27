@@ -11,10 +11,10 @@ public class WordIterator implements Iterator<String>{
         public WordIterator(String textContent){
                 this.index = 0;
                 this.textContent = textContent;
-                this.stringToWordsArray(this.textContent);
+                this.stringToWordsCollection(this.textContent);
         }
 
-        private void stringToWordsArray(String textContent){
+        private void stringToWordsCollection(String textContent){
                 words = textContent.split("\\s+");
                 for (int i = 0; i < words.length; i++) {
                         words[i] = words[i].replaceAll("[^\\w]", "");

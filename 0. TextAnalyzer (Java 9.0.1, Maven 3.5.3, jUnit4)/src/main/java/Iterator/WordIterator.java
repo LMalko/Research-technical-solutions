@@ -27,12 +27,12 @@ public class WordIterator implements Iterator<String>{
 
         @Override
         public boolean hasNext() {
-                return false;
+                return index < words.length;
         }
 
         @Override
         public String next() {
-                return "test";
+                return words[index++];
 
         }
 }

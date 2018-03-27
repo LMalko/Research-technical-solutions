@@ -11,10 +11,10 @@ public class CharIterator implements Iterator{
         public CharIterator(String textContent) {
                 this.index = 0;
                 this.textContent = textContent;
-                this.stringToCharsArray(this.textContent);
+                this.stringToCharsCollection(this.textContent);
         }
 
-        private void stringToCharsArray(String textContent) {
+        private void stringToCharsCollection(String textContent) {
         }
 
 

@@ -26,7 +26,7 @@ public class CharIterator implements Iterator{
                 try {
                         char temp = chars[index++];
                         if (Character.isLetterOrDigit(temp)) {
-                                return String.valueOf(temp).toUpperCase();
+                                return String.valueOf(temp);
                         } else {
                                 return next();
                         }

@@ -35,8 +35,8 @@ public class FileContent implements IterableText{
         public String textContent(){
 
                 String data;
-                FileReader fileReader = null;
-                BufferedReader bufferedReader = null;
+                FileReader fileReader;
+                BufferedReader bufferedReader;
                 String line;
                 String nextLine = "\n";
                 StringBuilder sb = new StringBuilder();

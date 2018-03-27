@@ -5,13 +5,11 @@ import java.util.Iterator;
 public class WordIterator implements Iterator<String>{
 
         private int index;
-        private String textContent;
         private String[] words;
 
         public WordIterator(String textContent){
                 this.index = 0;
-                this.textContent = textContent;
-                this.stringToWordsCollection(this.textContent);
+                this.stringToWordsCollection(textContent);
         }
 
         private void stringToWordsCollection(String textContent){

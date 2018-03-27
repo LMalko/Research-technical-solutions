@@ -1,14 +1,12 @@
 package Iterator;
 
-import Model.FileContent;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String>{
 
         private int index;
         private String textContent;
-        private ArrayList<String> words;
+        private String[] words;
 
         public WordIterator(String textContent){
                 this.index = 0;
@@ -16,8 +14,15 @@ public class WordIterator implements Iterator<String>{
                 this.stringToWordsArray(this.textContent);
         }
 
-        private ArrayList<String> stringToWordsArray(String textContent){
+        private void stringToWordsArray(String textContent){
+                words = textContent.split("\\s+");
+                for (int i = 0; i < words.length; i++) {
+                        words[i] = words[i].replaceAll("[^\\w]", "");
+                }
+        }
 
+        public String[] getWords() {
+                return words;
         }
 
         @Override

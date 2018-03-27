@@ -30,7 +30,7 @@ public class WordIterator implements Iterator<String>{
 
         @Override
         public String next() {
-                return words[index++];
+                return words[index++].toUpperCase();
 
         }
 }

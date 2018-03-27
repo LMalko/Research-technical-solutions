@@ -1,1 +1,8 @@
 Main.class
+Controller\ApplicationController.class
+View\View.class
+Model\FileContent.class
+Model\StatisticalAnalysis.class
+Iterator\WordIterator.class
+Interface\IterableText.class
+Iterator\CharIterator.class

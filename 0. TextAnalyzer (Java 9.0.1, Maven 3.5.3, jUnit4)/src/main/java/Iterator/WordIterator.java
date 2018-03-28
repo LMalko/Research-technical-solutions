@@ -19,10 +19,6 @@ public class WordIterator implements Iterator<String>{
                 }
         }
 
-        public String[] getWords() {
-                return words;
-        }
-
         @Override
         public boolean hasNext() {
                 return index < words.length;

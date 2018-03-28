@@ -28,10 +28,6 @@ public class FileContent implements IterableText{
                 return new WordIterator(this.textContent());
         }
 
-        private String getFilename() {
-                return fileName;
-        }
-
         public String textContent(){
 
                 String data;
@@ -43,7 +39,7 @@ public class FileContent implements IterableText{
 
                 try {
 
-                        fileReader = new FileReader(new File(this.getFilename()));
+                        fileReader = new FileReader(new File(this.fileName));
                         bufferedReader = new BufferedReader(fileReader);
 
                         while((line = bufferedReader.readLine()) != null) {

@@ -42,7 +42,7 @@ public class ApplicationController {
         private void displayTop30Words(){
                 StatisticalAnalysis analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 System.out.println("\t04. TOP30 words occuring more than once:\n");
-                Object[] topWords = analysisWord.occurMoreThan(1).toArray();
+                String[] topWords = analysisWord.occurMoreThan(1).toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 9; i++) {

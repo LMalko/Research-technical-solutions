@@ -8,6 +8,6 @@ public class Main {
 
                 ApplicationController appController = new ApplicationController(filename);
 
-                appController.results();
+                appController.displayResults();
         }
 }

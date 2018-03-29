@@ -35,7 +35,7 @@ public class ApplicationController {
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 20; i++) {
-                                System.out.println(String.format("\t\t%d. %s", i, topWords[i]));
+                                System.out.println(String.format("\t\t%d. %s", i + 1, topWords[i]));
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){

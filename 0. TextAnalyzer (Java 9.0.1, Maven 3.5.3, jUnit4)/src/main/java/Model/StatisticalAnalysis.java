@@ -41,11 +41,14 @@ public class StatisticalAnalysis {
         }
 
         public Set<String> occurMoreThan(Integer number){
+                if(number <= 1){
+                        number = 1;
+                }
                 Map<String, Integer> dictionary = getMapStatistics();
                 HashSet result = new HashSet<>();
                 for(String key: dictionary.keySet()){
                         if(dictionary.get(key) > number){
-                                result.add(dictionary.get(key));
+                                result.add(String.format("%s - %d times", key, dictionary.get(key)));
                         }
                 }
                 return result;
@@ -58,7 +61,7 @@ public class StatisticalAnalysis {
                         if(dictionary.get(tempString) == null){
                                 dictionary.put(tempString, 1);
                         }else{
-                                int tempInt = dictionary.get(tempString);
+                                int tempInt = dictionary.get(tempString) + 1;
                                 dictionary.put(tempString, tempInt);
                         }
                 }

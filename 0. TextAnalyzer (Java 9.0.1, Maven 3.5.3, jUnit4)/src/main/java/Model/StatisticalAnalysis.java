@@ -41,9 +41,6 @@ public class StatisticalAnalysis {
         }
 
         public Set<String> occurMoreThan(Integer number){
-                if(number <= 1){
-                        number = 1;
-                }
                 Map<String, Integer> dictionary = getMapStatistics();
                 Set result = new LinkedHashSet();
                 for(String key: dictionary.keySet()){
@@ -65,13 +62,13 @@ public class StatisticalAnalysis {
                                 dictionary.put(tempString, tempInt);
                         }
                 }
-                return sortHashMapByValues(dictionary);
+                return sortMapByValues(dictionary);
         }
 
-        private LinkedHashMap<String, Integer> sortHashMapByValues(Map<String, Integer> passedMap) {
+        private LinkedHashMap<String, Integer> sortMapByValues(Map<String, Integer> passedMap) {
                 List<String> mapKeys = new ArrayList<>(passedMap.keySet());
                 List<Integer> mapValues = new ArrayList<>(passedMap.values());
-                Collections.sort(mapValues);
+                Collections.sort(mapValues, Collections.reverseOrder());
                 Collections.sort(mapKeys);
 
                 LinkedHashMap<String, Integer> sortedMap =

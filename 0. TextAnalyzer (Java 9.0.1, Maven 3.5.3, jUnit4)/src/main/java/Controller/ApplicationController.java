@@ -65,7 +65,7 @@ public class ApplicationController {
         private void displayTop30WordsLongerThan4(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
-                String[] topWordsMoreThan4 = analysisWord.wordsLenThan4().toArray(new String[0]);
+                String[] topWordsMoreThan4 = analysisWord.wordsLenMoreThan4().toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {

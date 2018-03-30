@@ -50,7 +50,16 @@ public class StatisticalAnalysis {
                 return result;
         }
 
-
+        public Set<String> wordsLenThan4(){
+                Map<String, Integer> dictionary = getMapStatistics();
+                Set result = new LinkedHashSet();
+                for(String key: dictionary.keySet()){
+                        if(key.length() > 4){
+                                result.add(String.format("%s - %d times", key, dictionary.get(key)));
+                        }
+                }
+                return result;
+        }
 
         private Map<String, Integer> getMapStatistics(){
                 Map<String, Integer> dictionary = new HashMap<>();

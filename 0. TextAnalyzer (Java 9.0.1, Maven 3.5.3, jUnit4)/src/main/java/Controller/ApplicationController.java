@@ -47,12 +47,8 @@ public class ApplicationController {
                 String[] topWords = analysisWord.occurMoreThan(1).toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
-                        for (int i = 0; i < 9; i++) {
-                                view.print("\t\t*%d.  %s", i + 1, topWords[i]);
-                                amountOfTopWords ++;
-                        }
-                        for (int i = 9; i < 30; i++) {
-                                view.print("\t\t*%d. %s", i + 1, topWords[i]);
+                        for (int i = 0; i < 30; i++) {
+                                view.print("\t\t*%02d.  %s", i + 1, topWords[i]);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){

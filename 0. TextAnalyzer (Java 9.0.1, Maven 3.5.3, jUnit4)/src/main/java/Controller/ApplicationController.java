@@ -18,7 +18,7 @@ public class ApplicationController {
         }
 
         public void displayResults() {
-                view.print(String.format("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename));
+                view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                 displayAllChars();
                 displayAllWords();
                 displayDictionarySize();
@@ -27,18 +27,18 @@ public class ApplicationController {
         }
         private void displayAllChars(){
                 StatisticalAnalysis analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
-                view.print(String.format("\t01. Alphanumeric character count: %d", analysisChar.getCount()));
+                view.print("\t01. Alphanumeric character count: %d", analysisChar.getCount());
         }
 
         private void displayAllWords(){
                 StatisticalAnalysis analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
-                view.print(String.format("\t02. Words count: %d", analysisWord.getCount()));
+                view.print("\t02. Words count: %d", analysisWord.getCount());
         }
 
         private void displayDictionarySize(){
                 StatisticalAnalysis analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 int dictionarySize = analysisWord.dictionarySize();
-                view.print(String.format("\t03. Author's Dictionary (distinct words count): %d", dictionarySize));
+                view.print("\t03. Author's Dictionary (distinct words count): %d", dictionarySize);
         }
 
         private void displayTop30Words(){
@@ -48,15 +48,15 @@ public class ApplicationController {
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 9; i++) {
-                                view.print(String.format("\t\t*%d.  %s", i + 1, topWords[i]));
+                                view.print("\t\t*%d.  %s", i + 1, topWords[i]);
                                 amountOfTopWords ++;
                         }
                         for (int i = 9; i < 30; i++) {
-                                view.print(String.format("\t\t*%d. %s", i + 1, topWords[i]));
+                                view.print("\t\t*%d. %s", i + 1, topWords[i]);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print(String.format("\n\t\tOnly %s word(s) occur more than once.", String.valueOf(amountOfTopWords)));
+                        view.print("\n\t\tOnly %s word(s) occur more than once.", String.valueOf(amountOfTopWords));
                 }
         }
 }

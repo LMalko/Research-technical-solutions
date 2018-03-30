@@ -62,7 +62,20 @@ public class ApplicationController {
                 }
         }
 
-
+        private void displayTop30WordsLongerThan4(){
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+                view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
+                String[] topWordsMoreThan4 = analysisWord.wordsLenThan4().toArray(new String[0]);
+                int amountOfTopWords = 0;
+                try {
+                        for (int i = 0; i < 30; i++) {
+                                view.print("\t\t*%02d.  %s", i + 1, topWordsMoreThan4[i]);
+                                amountOfTopWords ++;
+                        }
+                }catch(ArrayIndexOutOfBoundsException exception){
+                        view.print("\n\t\tOnly %s word(s) meet the requirements.", String.valueOf(amountOfTopWords));
+                }
+        }
 }
 
 

@@ -41,7 +41,7 @@ public class StatisticalAnalysis {
 
         public Set<String> occurMoreThan(Integer number){
                 Map<String, Integer> dictionary = getMapStatistics();
-                Set result = new LinkedHashSet();
+                Set<String> result = new LinkedHashSet<>();
                 for(String key: dictionary.keySet()){
                         if(dictionary.get(key) > number){
                                 result.add(String.format("%s - %d times", key, dictionary.get(key)));
@@ -52,7 +52,7 @@ public class StatisticalAnalysis {
 
         public Set<String> wordsLenMoreThan4(){
                 Map<String, Integer> dictionary = getMapStatistics();
-                Set result = new LinkedHashSet();
+                Set<String> result = new LinkedHashSet<>();
                 for(String key: dictionary.keySet()){
                         if(key.length() > 4){
                                 result.add(String.format("%s - %d times", key, dictionary.get(key)));

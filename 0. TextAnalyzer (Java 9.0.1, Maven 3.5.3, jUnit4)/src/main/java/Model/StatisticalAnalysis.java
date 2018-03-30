@@ -6,7 +6,6 @@ public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
 
-
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
         }
@@ -51,10 +50,12 @@ public class StatisticalAnalysis {
                 return result;
         }
 
+
+
         private Map<String, Integer> getMapStatistics(){
                 Map<String, Integer> dictionary = new HashMap<>();
                 while(iterator.hasNext()){
-                        String tempString = iterator.next();
+                        String tempString = iterator.next().toLowerCase();
                         if(dictionary.get(tempString) == null){
                                 dictionary.put(tempString, 1);
                         }else{
@@ -68,23 +69,20 @@ public class StatisticalAnalysis {
         private LinkedHashMap<String, Integer> sortMapByValues(Map<String, Integer> passedMap) {
                 List<String> mapKeys = new ArrayList<>(passedMap.keySet());
                 List<Integer> mapValues = new ArrayList<>(passedMap.values());
-                Collections.sort(mapValues, Collections.reverseOrder());
+                mapValues.sort(Collections.reverseOrder());
                 Collections.sort(mapKeys);
 
                 LinkedHashMap<String, Integer> sortedMap =
                         new LinkedHashMap<>();
 
-                Iterator<Integer> valueIt = mapValues.iterator();
-                while (valueIt.hasNext()) {
-                        Integer val = valueIt.next();
+                for (Integer val : mapValues) {
                         Iterator<String> keyIt = mapKeys.iterator();
 
                         while (keyIt.hasNext()) {
                                 String key = keyIt.next();
                                 Integer comp1 = passedMap.get(key);
-                                Integer comp2 = val;
 
-                                if (comp1.equals(comp2)) {
+                                if (comp1.equals(val)) {
                                         keyIt.remove();
                                         sortedMap.put(key, val);
                                         break;

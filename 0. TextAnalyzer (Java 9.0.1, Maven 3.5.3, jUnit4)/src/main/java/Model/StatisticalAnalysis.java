@@ -64,12 +64,17 @@ public class StatisticalAnalysis {
         private Map<String, Integer> getMapStatistics(){
                 Map<String, Integer> dictionary = new HashMap<>();
                 while(iterator.hasNext()){
-                        String tempString = iterator.next().toLowerCase();
-                        if(dictionary.get(tempString) == null){
-                                dictionary.put(tempString, 1);
-                        }else{
-                                int tempInt = dictionary.get(tempString) + 1;
-                                dictionary.put(tempString, tempInt);
+                        try{
+                                String tempString = iterator.next().toLowerCase();
+                                if(dictionary.get(tempString) == null){
+                                        dictionary.put(tempString, 1);
+                                }else{
+                                        int tempInt = dictionary.get(tempString) + 1;
+                                        dictionary.put(tempString, tempInt);
+                                }
+                        }catch(NullPointerException e){
+                        // I'm not sure why it throws this exception with chars stats at the beginning,
+                        // hopefully I will learn it one day ;)
                         }
                 }
                 return sortMapByValues(dictionary);

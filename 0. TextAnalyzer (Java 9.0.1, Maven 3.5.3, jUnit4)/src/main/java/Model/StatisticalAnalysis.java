@@ -20,7 +20,7 @@ public class StatisticalAnalysis {
                 return result;
         }
 
-        private int getCountOf(String element){
+        public int getCountOf(String element){
                 int result = 0;
                 while(iterator.hasNext()){
                         if(iterator.next().equalsIgnoreCase(element)){
@@ -30,8 +30,6 @@ public class StatisticalAnalysis {
                 }
                 return result;
         }
-
-
 
         public int dictionarySize(){
                 Set<String> result = new HashSet<>();

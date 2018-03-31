@@ -2,7 +2,7 @@ package Iterator;
 
 import java.util.Iterator;
 
-public class CharIterator implements Iterator{
+public class CharIterator implements Iterator<String>{
 
         private int index;
         private char[] chars;

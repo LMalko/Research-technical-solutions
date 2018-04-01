@@ -20,17 +20,6 @@ public class StatisticalAnalysis {
                 return result;
         }
 
-        public int getCountOf(String element){
-                int result = 0;
-                while(iterator.hasNext()){
-                        if(iterator.next().equalsIgnoreCase(element)){
-                                System.out.println(element);
-                                result ++;
-                        }
-                }
-                return result;
-        }
-
         public int dictionarySize(){
                 Set<String> result = new HashSet<>();
                 while(iterator.hasNext()){

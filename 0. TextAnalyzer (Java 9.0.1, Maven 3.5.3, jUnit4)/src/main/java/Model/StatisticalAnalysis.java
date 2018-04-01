@@ -22,10 +22,16 @@ public class StatisticalAnalysis {
 
         public int dictionarySize(){
                 Set<String> result = new HashSet<>();
-                while(iterator.hasNext()){
-                        result.add(iterator.next().toLowerCase());
+                try{
+                        while(iterator.hasNext()){
+                                result.add(iterator.next().toLowerCase());
+                        }
+                        
+                }catch(NullPointerException e){
+                // I'm not sure why it throws this exception with chars stats at the beginning,
+                // hopefully I will learn it one day ;)
                 }
-                return result.size();
+                return result.size();   
         }
 
         public Set<String> occurMoreThan(Integer number){
@@ -43,7 +49,7 @@ public class StatisticalAnalysis {
                 Map<String, Integer> dictionary = getMapStatistics();
                 Set<String> result = new LinkedHashSet<>();
                 for(String key: dictionary.keySet()){
-                        if(key.length() > 4){
+                        if(key.length() > 4 && dictionary.get(key) > 1){
                                 result.add(String.format("%s - %d times", key, dictionary.get(key)));
                         }
                 }

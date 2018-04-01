@@ -80,7 +80,7 @@ public class ApplicationController {
 
         private void displayCharsInOrder(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
-                view.print("\n\t06. Letters in order of occurence count: \n");
+                view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
                 for (int i = 0; i < orderedChars.length; i++) {
                         view.print("\t\t*%02d.  %s", i + 1, orderedChars[i]);
@@ -89,3 +89,4 @@ public class ApplicationController {
 }
 
 
+ 

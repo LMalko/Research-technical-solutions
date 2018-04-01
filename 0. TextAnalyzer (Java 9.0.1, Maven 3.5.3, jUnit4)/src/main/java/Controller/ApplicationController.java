@@ -2,6 +2,8 @@ package Controller;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedWriter;
 
 import Iterator.CharIterator;
 import Iterator.WordIterator;
@@ -25,10 +27,26 @@ public class ApplicationController {
 
         }
 
+        private void saveRecordToFile(File file, String text, Object ... args){
+                try {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+                        writer.write(String.format(text, args));
+                        writer.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+        }
+
         public void displayResults() {
                 long timeStart = System.currentTimeMillis();
 
+                File file = new File(String.format("%s lex analysis.txt", this.filename));
+
+
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                
                 displayAllChars();
                 displayAllWords();
                 displayDictionarySize();

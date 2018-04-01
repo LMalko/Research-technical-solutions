@@ -27,15 +27,8 @@ public class CharIterator implements Iterator<String>{
 
         @Override
         public String next() {
-                try {
-                        char temp = chars[index++];
-                        if (Character.isLetterOrDigit(temp)) {
-                                return String.valueOf(temp);
-                        } else {
-                                return next();
-                        }
-                }catch(ArrayIndexOutOfBoundsException exception){
-                        return null;
-                }
+                char temp = chars[index++];
+                return String.valueOf(temp);
+                     
         }
 }

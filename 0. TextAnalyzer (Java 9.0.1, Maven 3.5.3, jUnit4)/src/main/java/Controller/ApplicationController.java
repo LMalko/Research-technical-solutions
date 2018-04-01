@@ -89,8 +89,11 @@ public class ApplicationController {
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
+                int rankingNUmber = 1;
                 for (int i = 0; i < orderedChars.length; i++) {
-                        view.print("\t\t*%02d.  %s", i + 1, orderedChars[i]);
+                        if(orderedChars[i].matches("[a-z0-9]{1} - [0-9]{1,} times")){
+                                view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
+                        }
                 }
         }
 }

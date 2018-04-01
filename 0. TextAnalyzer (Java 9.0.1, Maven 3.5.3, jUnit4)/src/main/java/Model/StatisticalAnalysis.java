@@ -22,15 +22,10 @@ public class StatisticalAnalysis {
 
         public int dictionarySize(){
                 Set<String> result = new HashSet<>();
-                try{
                         while(iterator.hasNext()){
                                 result.add(iterator.next().toLowerCase());
                         }
                         
-                }catch(NullPointerException e){
-                // I'm not sure why it throws this exception with chars stats at the beginning,
-                // hopefully I will learn it one day ;)
-                }
                 return result.size();   
         }
 
@@ -39,7 +34,7 @@ public class StatisticalAnalysis {
                 Set<String> result = new LinkedHashSet<>();
                 for(String key: dictionary.keySet()){
                         if(dictionary.get(key) > number){
-                                result.add(String.format("%s - %d times", key, dictionary.get(key)));
+                        result.add(String.format("%s - %d times", key, dictionary.get(key)));
                         }
                 }
                 return result;
@@ -59,17 +54,12 @@ public class StatisticalAnalysis {
         private Map<String, Integer> getMapStatistics(){
                 Map<String, Integer> dictionary = new HashMap<>();
                 while(iterator.hasNext()){
-                        try{
-                                String tempString = iterator.next().toLowerCase();
-                                if(dictionary.get(tempString) == null){
-                                        dictionary.put(tempString, 1);
-                                }else{
-                                        int tempInt = dictionary.get(tempString) + 1;
-                                        dictionary.put(tempString, tempInt);
-                                }
-                        }catch(NullPointerException e){
-                        // I'm not sure why it throws this exception with chars stats at the beginning,
-                        // hopefully I will learn it one day ;)
+                        String tempString = iterator.next().toLowerCase();
+                        if(dictionary.get(tempString) == null){
+                                dictionary.put(tempString, 1);
+                        }else{
+                                int tempInt = dictionary.get(tempString) + 1;
+                                dictionary.put(tempString, tempInt);
                         }
                 }
                 return sortMapByValues(dictionary);

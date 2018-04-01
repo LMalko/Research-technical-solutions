@@ -26,7 +26,16 @@ public class WordIterator implements Iterator<String>{
 
         @Override
         public String next() {
-                return words[index++];
+                try {
+                        String temp = words[index++];
+                        if (!temp.isEmpty()) {
+                                return String.valueOf(temp);
+                        } else {
+                                return next();
+                        }
+                }catch(ArrayIndexOutOfBoundsException exception){
+                        return null;
+                }
 
         }
 }

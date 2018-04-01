@@ -1,5 +1,8 @@
 package Controller;
 
+import java.io.File;
+import java.io.FileWriter;
+
 import Iterator.CharIterator;
 import Iterator.WordIterator;
 import Model.FileContent;

@@ -18,10 +18,12 @@ public class ApplicationController {
         private View view = new View();
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
+        private File file;
 
         public ApplicationController(String filename) {
                 this.filename = filename;
-                fileContent = new FileContent(filename);
+                this.file = new File(String.format("%s lex analysis.txt", this.filename));
+                fileContent = new FileContent(this.filename);
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
 
@@ -40,13 +42,10 @@ public class ApplicationController {
         public void displayResults() {
                 long timeStart = System.currentTimeMillis();
 
-                File file = new File(String.format("%s lex analysis.txt", this.filename));
-
 
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
-
                 saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
-                
+
                 displayAllChars();
                 displayAllWords();
                 displayDictionarySize();
@@ -57,63 +56,83 @@ public class ApplicationController {
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
                 double elapsedSeconds = timeDelta / 1000.0;
-                view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);                
+
+                view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
+                saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }
         private void displayAllChars(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
+
                 view.print("\t01. Alphanumeric character count: %d", analysisChar.getCount());
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
         }
 
         private void displayAllWords(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+
                 view.print("\t02. Words count: %d", analysisWord.getCount());
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
         }
 
         private void displayDictionarySize(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 int dictionarySize = analysisWord.dictionarySize();
+
                 view.print("\t03. Author's Dictionary (distinct words count): %d", dictionarySize);
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
         }
 
         private void displayTop30Words(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+
                 view.print("\t04. TOP30 words occuring more than once:\n");
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+
                 String[] topWords = analysisWord.occurMoreThan(1).toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s", i + 1, topWords[i]);
+                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
                         view.print("\n\t\tOnly %s word(s) occur(s) more than once.", String.valueOf(amountOfTopWords));
+                        saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                 }
         }
 
         private void displayTop30WordsLongerThan4(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+
                 view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+
                 String[] topWordsMoreThan4 = analysisWord.wordsLenMoreThan4().toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s", i + 1, topWordsMoreThan4[i]);
+                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
                         view.print("\n\t\tOnly %s word(s) meet(s) the requirements.", String.valueOf(amountOfTopWords));
+                        saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                 }
         }
 
         private void displayCharsInOrder(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
                 int rankingNUmber = 1;
                 for (int i = 0; i < orderedChars.length; i++) {
                         if(orderedChars[i].matches("[a-z0-9]{1} - [0-9]{1,} times")){
                                 view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
+                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                         }
                 }
         }

@@ -23,6 +23,8 @@ public class ApplicationController {
         }
 
         public void displayResults() {
+                long timeStart = System.currentTimeMillis();
+
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
                 displayAllChars();
                 displayAllWords();
@@ -30,7 +32,12 @@ public class ApplicationController {
                 displayTop30Words();
                 displayTop30WordsLongerThan4();
                 displayCharsInOrder();
-//getcountof()
+
+                long timeEnd = System.currentTimeMillis();
+                long timeDelta = timeEnd - timeStart;
+                double elapsedSeconds = timeDelta / 1000.0;
+                view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);                
+
         }
         private void displayAllChars(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
@@ -59,7 +66,7 @@ public class ApplicationController {
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print("\n\t\tOnly %s word(s) occur more than once.", String.valueOf(amountOfTopWords));
+                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.", String.valueOf(amountOfTopWords));
                 }
         }
 
@@ -74,7 +81,7 @@ public class ApplicationController {
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print("\n\t\tOnly %s word(s) meet the requirements.", String.valueOf(amountOfTopWords));
+                        view.print("\n\t\tOnly %s word(s) meet(s) the requirements.", String.valueOf(amountOfTopWords));
                 }
         }
 

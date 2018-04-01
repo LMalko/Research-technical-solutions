@@ -22,7 +22,11 @@ public class ApplicationController {
 
         public ApplicationController(String filename) {
                 this.filename = filename;
+                // Delete previous records, send new.
                 this.file = new File(String.format("%s lex analysis.txt", this.filename));
+                file.delete();
+                this.file = new File(String.format("%s lex analysis.txt", this.filename));
+
                 fileContent = new FileContent(this.filename);
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));

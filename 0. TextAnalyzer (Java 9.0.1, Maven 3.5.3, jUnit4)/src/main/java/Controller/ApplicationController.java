@@ -64,15 +64,17 @@ public class ApplicationController {
         private void displayAllChars(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
 
-                view.print("\t01. Alphanumeric character count: %d", analysisChar.getCount());
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                int count = analysisChar.getCount();
+                view.print("\t01. Alphanumeric character count: %d", count);
+                saveRecordToFile(file, "\t01. Alphanumeric character count: %d\n", count);
         }
 
         private void displayAllWords(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
 
-                view.print("\t02. Words count: %d", analysisWord.getCount());
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                int count = analysisWord.getCount();
+                view.print("\t02. Words count: %d", count);
+                saveRecordToFile(file,"\t02. Words count: %d\n", count);
         }
 
         private void displayDictionarySize(){
@@ -80,59 +82,63 @@ public class ApplicationController {
                 int dictionarySize = analysisWord.dictionarySize();
 
                 view.print("\t03. Author's Dictionary (distinct words count): %d", dictionarySize);
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                saveRecordToFile(file, "\t03. Author's Dictionary (distinct words count): %d\n", dictionarySize);
         }
 
         private void displayTop30Words(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
 
                 view.print("\t04. TOP30 words occuring more than once:\n");
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                saveRecordToFile(file, "\t04. TOP30 words occuring more than once:\n\n");
 
                 String[] topWords = analysisWord.occurMoreThan(1).toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s", i + 1, topWords[i]);
-                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                                saveRecordToFile(file, "\t\t*%02d.  %s\n", i + 1, topWords[i]);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.", String.valueOf(amountOfTopWords));
-                        saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.", 
+                                   String.valueOf(amountOfTopWords));
+                        saveRecordToFile(file, "\n\t\tOnly %s word(s) occur(s) more than once.\n",
+                                         String.valueOf(amountOfTopWords));
                 }
         }
 
         private void displayTop30WordsLongerThan4(){
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
 
-                view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n\n");
+                saveRecordToFile(file, "\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
 
                 String[] topWordsMoreThan4 = analysisWord.wordsLenMoreThan4().toArray(new String[0]);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s", i + 1, topWordsMoreThan4[i]);
-                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                                saveRecordToFile(file, "\t\t*%02d.  %s\n", i + 1, topWordsMoreThan4[i]);
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print("\n\t\tOnly %s word(s) meet(s) the requirements.", String.valueOf(amountOfTopWords));
-                        saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                        view.print("\n\t\tOnly %s word(s) meet(s) the requirements.",
+                                   String.valueOf(amountOfTopWords));
+                        saveRecordToFile(file, "\n\t\tOnly %s word(s) meet(s) the requirements.\n",
+                                         String.valueOf(amountOfTopWords));
                 }
         }
 
         private void displayCharsInOrder(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                saveRecordToFile(file, "\n\t06. Letters & digits in order of number of occurence count: \n");
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
                 int rankingNUmber = 1;
                 for (int i = 0; i < orderedChars.length; i++) {
                         if(orderedChars[i].matches("[a-z0-9]{1} - [0-9]{1,} times")){
                                 view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
-                                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                                saveRecordToFile(file, "\t\t*%02d.  %s\n", rankingNUmber, orderedChars[i]);
                         }
                 }
         }

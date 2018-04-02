@@ -29,13 +29,13 @@ public class ApplicationController {
                 this.filename = filename;
 
                 fileContent = new FileContent(this.filename);
-                setFile();
+                setOutputFile();
 
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
         }
 
-        private void setFile(){
+        private void setOutputFile(){
                 // Delete previous records, send new.
                 try {
                         Files.deleteIfExists(Paths.get(String.format("%s lex analysis.txt", this.filename)));
@@ -61,7 +61,7 @@ public class ApplicationController {
                 return dateFormat.format(date);
         }
 
-        public void displayResults() {
+        public void runAnalysis() {
                 long timeStart = System.currentTimeMillis();
                 String date = getDate();
 

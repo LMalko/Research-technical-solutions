@@ -16,10 +16,6 @@ public class CharIterator implements Iterator<String>{
                 chars = textContent.toCharArray();
         }
 
-        public char[] getChars(){
-                return chars;
-        }
-
         @Override
         public boolean hasNext() {
                 return index < chars.length;

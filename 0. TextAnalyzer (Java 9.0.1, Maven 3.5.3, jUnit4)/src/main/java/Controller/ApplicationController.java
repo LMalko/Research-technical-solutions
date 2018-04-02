@@ -1,15 +1,15 @@
 package Controller;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.BufferedWriter;
-
 import Iterator.CharIterator;
 import Iterator.WordIterator;
 import Model.FileContent;
 import Model.StatisticalAnalysis;
 import View.View;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class ApplicationController {
 
@@ -62,6 +62,7 @@ public class ApplicationController {
                 double elapsedSeconds = timeDelta / 1000.0;
 
                 view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
+                view.print("\n\tThis lexical analysis has been saved to a file in the same directory.");
                 saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }

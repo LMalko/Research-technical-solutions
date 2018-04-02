@@ -31,8 +31,8 @@ public class ApplicationController {
                 fileContent = new FileContent(this.filename);
                 setOutputFile();
 
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
+                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
         }
 
         private void setOutputFile(){
@@ -85,7 +85,7 @@ public class ApplicationController {
 
         }
         private void displayAllChars(){
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
+                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
 
                 int count = analysisChar.getCount();
                 view.print("\t01. Alphanumeric character count: %d", count);
@@ -93,7 +93,7 @@ public class ApplicationController {
         }
 
         private void displayAllWords(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
 
                 int count = analysisWord.getCount();
                 view.print("\t02. Words count: %d", count);
@@ -101,7 +101,7 @@ public class ApplicationController {
         }
 
         private void displayDictionarySize(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
                 int dictionarySize = analysisWord.dictionarySize();
 
                 view.print("\t03. Author's Dictionary (distinct words count): %d", dictionarySize);
@@ -109,7 +109,7 @@ public class ApplicationController {
         }
 
         private void displayTop30Words(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
 
                 view.print("\t04. TOP30 words occuring more than once:\n");
                 saveRecordToFile(file, "\t04. TOP30 words occuring more than once:\n\n");
@@ -131,7 +131,7 @@ public class ApplicationController {
         }
 
         private void displayTop30WordsLongerThan4(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
+                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
 
                 view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n\n");
                 saveRecordToFile(file, "\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
@@ -153,7 +153,7 @@ public class ApplicationController {
         }
 
         private void displayCharsInOrder(){
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
+                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
                 saveRecordToFile(file, "\n\t06. Letters & digits in order of number of occurence count: \n");
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);

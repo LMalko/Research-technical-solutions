@@ -1,5 +1,7 @@
 package Iterator;
 
+import Model.FileContent;
+
 import java.util.Iterator;
 
 public class CharIterator implements Iterator<String>{
@@ -7,9 +9,9 @@ public class CharIterator implements Iterator<String>{
         private int index;
         private char[] chars;
 
-        public CharIterator(String textContent) {
+        public CharIterator(FileContent filecontent) {
                 this.index = 0;
-                this.stringToCharsCollection(textContent);
+                this.stringToCharsCollection(filecontent.getData());
         }
 
         private void stringToCharsCollection(String textContent) {

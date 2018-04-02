@@ -13,22 +13,29 @@ import java.util.NoSuchElementException;
 public class FileContent implements IterableText{
 
         private String fileName;
+        private String data;
 
 
         public FileContent(String fileName){
                 this.fileName = fileName;
+                this.data = textContent();
         }
+
+        public String getData() {
+                return data;
+        }
+
         @Override
         public Iterator<String> charIterator() {
-                return new CharIterator(this.textContent());
+                return new CharIterator(this);
         }
 
         @Override
         public Iterator<String> wordIterator() {
-                return new WordIterator(this.textContent());
+                return new WordIterator(this);
         }
 
-        public String textContent(){
+        private String textContent(){
 
                 String data;
                 FileReader fileReader;

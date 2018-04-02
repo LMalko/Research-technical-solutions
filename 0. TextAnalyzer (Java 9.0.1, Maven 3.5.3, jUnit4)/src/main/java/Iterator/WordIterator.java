@@ -1,5 +1,7 @@
 package Iterator;
 
+import Model.FileContent;
+
 import java.util.Iterator;
 
 public class WordIterator implements Iterator<String>{
@@ -7,9 +9,9 @@ public class WordIterator implements Iterator<String>{
         private int index;
         private String[] words;
 
-        public WordIterator(String textContent){
+        public WordIterator(FileContent fileContent){
                 this.index = 0;
-                this.stringToWordsCollection(textContent);
+                this.stringToWordsCollection(fileContent.getData());
         }
 
         private void stringToWordsCollection(String textContent){

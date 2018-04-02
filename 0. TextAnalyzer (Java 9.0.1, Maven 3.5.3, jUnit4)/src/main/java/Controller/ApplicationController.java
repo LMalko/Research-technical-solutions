@@ -12,6 +12,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ApplicationController {
 
@@ -52,12 +55,18 @@ public class ApplicationController {
                 }
         }
 
+        private String getDate(){
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                return dateFormat.format(date);
+        }
+
         public void displayResults() {
                 long timeStart = System.currentTimeMillis();
+                String date = getDate();
 
-
-                view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS: \n\n", this.filename);
+                view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
+                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
 
                 displayAllChars();
                 displayAllWords();

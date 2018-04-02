@@ -10,6 +10,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ApplicationController {
 
@@ -22,15 +24,22 @@ public class ApplicationController {
 
         public ApplicationController(String filename) {
                 this.filename = filename;
-                // Delete previous records, send new.
-                this.file = new File(String.format("%s lex analysis.txt", this.filename));
-                file.delete();
-                this.file = new File(String.format("%s lex analysis.txt", this.filename));
 
                 fileContent = new FileContent(this.filename);
+                setFile();
+
                 analysisWord = new StatisticalAnalysis(new WordIterator(fileContent.textContent()));
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent.textContent()));
+        }
 
+        private void setFile(){
+                // Delete previous records, send new.
+                try {
+                        Files.deleteIfExists(Paths.get(String.format("%s lex analysis.txt", this.filename)));
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+                this.file = new File(String.format("%s lex analysis.txt", this.filename));
         }
 
         private void saveRecordToFile(File file, String text, Object ... args){
@@ -105,10 +114,10 @@ public class ApplicationController {
                                 amountOfTopWords ++;
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
-                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.", 
-                                   String.valueOf(amountOfTopWords));
+                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.",
+                                String.valueOf(amountOfTopWords));
                         saveRecordToFile(file, "\n\t\tOnly %s word(s) occur(s) more than once.\n",
-                                         String.valueOf(amountOfTopWords));
+                                String.valueOf(amountOfTopWords));
                 }
         }
 
@@ -128,9 +137,9 @@ public class ApplicationController {
                         }
                 }catch(ArrayIndexOutOfBoundsException exception){
                         view.print("\n\t\tOnly %s word(s) meet(s) the requirements.",
-                                   String.valueOf(amountOfTopWords));
+                                String.valueOf(amountOfTopWords));
                         saveRecordToFile(file, "\n\t\tOnly %s word(s) meet(s) the requirements.\n",
-                                         String.valueOf(amountOfTopWords));
+                                String.valueOf(amountOfTopWords));
                 }
         }
 
@@ -150,4 +159,3 @@ public class ApplicationController {
 }
 
 
- 

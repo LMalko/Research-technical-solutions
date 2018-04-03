@@ -8,9 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-
-
 public class FileContentTest {
 
         private FileContent fileContent;
@@ -25,14 +22,9 @@ public class FileContentTest {
                 fileContent = null;
         }
 
-        @Test(expected = IOException.class)
-        public void createFileContentWithNotExistingFile() {
-                new FileContent("file");
-        }
-
         @Test
         public void getData() {
-                
+                assertFalse(fileContent.getData().isEmpty());
         }
 
         @Test

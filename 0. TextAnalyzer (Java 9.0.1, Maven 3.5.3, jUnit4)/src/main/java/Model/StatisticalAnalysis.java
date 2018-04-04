@@ -33,7 +33,7 @@ public class StatisticalAnalysis {
                 Map<String, Integer> dictionary = getMapStatistics();
                 Set<String> result = new LinkedHashSet<>();
                 for(String key: dictionary.keySet()){
-                        if(dictionary.get(key) > number){
+                        if(dictionary.get(key) > number && key.matches("[A-Za-z0-9]{1,}")){
                         result.add(String.format("%s - %d times", key, dictionary.get(key)));
                         }
                 }

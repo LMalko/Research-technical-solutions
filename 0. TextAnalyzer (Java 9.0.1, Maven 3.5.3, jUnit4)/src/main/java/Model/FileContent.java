@@ -63,7 +63,6 @@ public class FileContent implements IterableText{
                 } catch (IOException e) {
                         data = null;
                 }
-
                 return data;
         }
 

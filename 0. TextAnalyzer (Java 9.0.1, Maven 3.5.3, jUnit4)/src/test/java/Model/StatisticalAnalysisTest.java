@@ -29,7 +29,7 @@ public class StatisticalAnalysisTest {
 
         @Test
         public void occurMoreThan() {
-                assertTrue(charAnalysis.occurMoreThan(1).toArray()[0].toString().matches("[\\sa-zA-Z0-9]{1} - [0-9]{1,} times"));
+                assertTrue(charAnalysis.occurMoreThan(1).toArray()[0].toString().matches("[a-zA-Z0-9]{1} - [0-9]{1,} times"));
         }
 
         @Test

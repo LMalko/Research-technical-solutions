@@ -13,7 +13,7 @@ public class StatisticalAnalysis {
         public int getCount(){
                 int result = 0;
                 while(iterator.hasNext()){
-                        if(iterator.next() != null) {
+                        if(iterator.next().matches("[A-Za-z0-9]{1,}")) {
                                 result++;
                         }
                 }

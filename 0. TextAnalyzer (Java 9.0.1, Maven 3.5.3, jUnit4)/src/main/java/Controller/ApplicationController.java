@@ -158,11 +158,10 @@ public class ApplicationController {
                 saveRecordToFile(file, "\n\t06. Letters & digits in order of number of occurence count: \n");
                 String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
                 int rankingNUmber = 1;
+
                 for (int i = 0; i < orderedChars.length; i++) {
-                        if(orderedChars[i].matches("[a-z0-9]{1} - [0-9]{1,} times")){
-                                view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
-                                saveRecordToFile(file, "\t\t*%02d.  %s\n", rankingNUmber, orderedChars[i]);
-                        }
+                        view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
+                        saveRecordToFile(file, "\t\t*%02d.  %s\n", rankingNUmber, orderedChars[i]);
                 }
         }
 }

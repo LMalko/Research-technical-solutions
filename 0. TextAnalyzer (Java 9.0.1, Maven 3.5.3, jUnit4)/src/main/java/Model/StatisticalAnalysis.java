@@ -13,7 +13,7 @@ public class StatisticalAnalysis {
         public int getCount(){
                 int result = 0;
                 while(iterator.hasNext()){
-                        if(iterator.next().matches("[A-Za-z0-9]{1,}")) {
+                        if(iterator.next().matches("[A-Za-z0-9]+")) {
                                 result++;
                         }
                 }
@@ -29,23 +29,29 @@ public class StatisticalAnalysis {
                 return result.size();   
         }
 
-        public Set<String> occurMoreThan(Integer number){
+        public List<List> occurMoreThan(Integer number){
                 Map<String, Integer> dictionary = getMapStatistics();
-                Set<String> result = new LinkedHashSet<>();
+                List<List> result = new ArrayList<>();
                 for(String key: dictionary.keySet()){
-                        if(dictionary.get(key) > number && key.matches("[A-Za-z0-9]{1,}")){
-                        result.add(String.format("%s - %d times", key, dictionary.get(key)));
+                        if(dictionary.get(key) > number && key.matches("[A-Za-z0-9]+")){
+                                List<String> temp = new ArrayList<>();
+                                temp.add(key);
+                                temp.add(dictionary.get(key).toString());
+                                result.add(temp);
                         }
                 }
                 return result;
         }
 
-        public Set<String> wordsLenMoreThan4(){
+        public List<List> wordsLenMoreThan4(){
                 Map<String, Integer> dictionary = getMapStatistics();
-                Set<String> result = new LinkedHashSet<>();
+                List<List> result = new ArrayList<>();
                 for(String key: dictionary.keySet()){
                         if(key.length() > 4 && dictionary.get(key) > 1){
-                                result.add(String.format("%s - %d times", key, dictionary.get(key)));
+                                List<String> temp = new ArrayList<>();
+                                temp.add(key);
+                                temp.add(dictionary.get(key).toString());
+                                result.add(temp);
                         }
                 }
                 return result;

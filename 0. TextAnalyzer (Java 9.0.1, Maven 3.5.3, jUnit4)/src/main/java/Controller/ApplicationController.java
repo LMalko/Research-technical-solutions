@@ -15,6 +15,7 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class ApplicationController {
 
@@ -114,15 +115,15 @@ public class ApplicationController {
                 view.print("\t04. TOP30 words occuring more than once:\n");
                 saveRecordToFile(file, "\t04. TOP30 words occuring more than once:\n\n");
 
-                String[] topWords = analysisWord.occurMoreThan(1).toArray(new String[0]);
+                List<List> topWords = analysisWord.occurMoreThan(1);
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
-                                view.print("\t\t*%02d.  %s", i + 1, topWords[i]);
-                                saveRecordToFile(file, "\t\t*%02d.  %s\n", i + 1, topWords[i]);
+                                view.print("\t\t*%02d.  %s - %s times", i + 1, topWords.get(i).get(0), topWords.get(i).get(1));
+                                saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1, topWords.get(i).get(0), topWords.get(i).get(1));
                                 amountOfTopWords ++;
                         }
-                }catch(ArrayIndexOutOfBoundsException exception){
+                }catch(IndexOutOfBoundsException exception){
                         view.print("\n\t\tOnly %s word(s) occur(s) more than once.",
                                 String.valueOf(amountOfTopWords));
                         saveRecordToFile(file, "\n\t\tOnly %s word(s) occur(s) more than once.\n",
@@ -136,15 +137,17 @@ public class ApplicationController {
                 view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n\n");
                 saveRecordToFile(file, "\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
 
-                String[] topWordsMoreThan4 = analysisWord.wordsLenMoreThan4().toArray(new String[0]);
+                List<List> topWordsMoreThan4 = analysisWord.wordsLenMoreThan4();
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
-                                view.print("\t\t*%02d.  %s", i + 1, topWordsMoreThan4[i]);
-                                saveRecordToFile(file, "\t\t*%02d.  %s\n", i + 1, topWordsMoreThan4[i]);
+                                view.print("\t\t*%02d.  %s - %s times", i + 1,
+                                                   topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
+                                saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1,
+                                                              topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
                                 amountOfTopWords ++;
                         }
-                }catch(ArrayIndexOutOfBoundsException exception){
+                }catch(IndexOutOfBoundsException exception){
                         view.print("\n\t\tOnly %s word(s) meet(s) the requirements.",
                                 String.valueOf(amountOfTopWords));
                         saveRecordToFile(file, "\n\t\tOnly %s word(s) meet(s) the requirements.\n",
@@ -156,12 +159,12 @@ public class ApplicationController {
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
                 saveRecordToFile(file, "\n\t06. Letters & digits in order of number of occurence count: \n");
-                String[] orderedChars = analysisChar.occurMoreThan(1).toArray(new String[0]);
+                List<List> orderedChars = analysisChar.occurMoreThan(1);
                 int rankingNUmber = 1;
 
-                for (int i = 0; i < orderedChars.length; i++) {
-                        view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars[i]);
-                        saveRecordToFile(file, "\t\t*%02d.  %s\n", rankingNUmber, orderedChars[i]);
+                for (int i = 0; i < orderedChars.size(); i++) {
+                        view.print("\t\t*%02d.  %s", rankingNUmber++, orderedChars.get(i).get(0), orderedChars.get(i).get(1));
+                        saveRecordToFile(file, "\t\t*%02d.  %s\n", rankingNUmber, orderedChars.get(i).get(0), orderedChars.get(i).get(1));
                 }
         }
 }

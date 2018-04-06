@@ -80,8 +80,8 @@ public class ApplicationController {
                 long timeDelta = timeEnd - timeStart;
                 double elapsedSeconds = timeDelta / 1000.0;
 
-                view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
-                view.print("\n\tThis lexical analysis has been saved to a file in the same directory.");
+                view.print("\n\n\tAnalysis took %f seconds to complete.\n\tThis lexical analysis has been " +
+                                  "saved to a file in the same directory.", elapsedSeconds);
                 saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }

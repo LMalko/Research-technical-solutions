@@ -25,10 +25,10 @@ public class ApplicationController {
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
 
-        public static final String ANSI_RED = "\u001B[31m";
-        public static final String ANSI_GREEN = "\u001B[32m";
-        public static final String ANSI_CYAN = "\u001B[36m";
-        public static final String ANSI_PURPLE = "\u001B[35m";
+        private static final String ANSI_RED = "\u001B[31m";
+        private static final String ANSI_GREEN = "\u001B[32m";
+        private static final String ANSI_CYAN = "\u001B[36m";
+        private static final String ANSI_PURPLE = "\u001B[35m";
 
         private View view = new View();
 
@@ -87,8 +87,9 @@ public class ApplicationController {
                 long timeDelta = timeEnd - timeStart;
                 double elapsedSeconds = timeDelta / 1000.0;
 
-                view.print("\n\n\t%sAnalysis took %f seconds to complete.", ANSI_GREEN, elapsedSeconds);
-                view.print("\n\t%sThis lexical analysis has been saved to a file in the same directory.", ANSI_PURPLE);
+                view.print("\n\n\t%sAnalysis took %f seconds to complete.\n\t%sThis lexical analysis has been saved" +
+                        " to a file in the same directory.", ANSI_GREEN, elapsedSeconds, ANSI_PURPLE);
+
                 saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }

@@ -176,9 +176,9 @@ public class ApplicationController {
                 int rankingNUmber = 1;
 
                 for (int i = 0; i < orderedChars.size(); i++) {
-                        view.print("\t\t*%02d.  %s - %s times", rankingNUmber++, orderedChars.get(i).get(0),
+                        view.print("\t\t*%02d.  %s - %s times", rankingNUmber, orderedChars.get(i).get(0),
                                            orderedChars.get(i).get(1));
-                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNUmber, orderedChars.get(i).get(0),
+                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNUmber++, orderedChars.get(i).get(0),
                                                       orderedChars.get(i).get(1));
                 }
         }

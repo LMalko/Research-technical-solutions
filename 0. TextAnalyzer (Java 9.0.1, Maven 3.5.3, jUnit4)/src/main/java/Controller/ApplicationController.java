@@ -80,8 +80,8 @@ public class ApplicationController {
                 long timeDelta = timeEnd - timeStart;
                 double elapsedSeconds = timeDelta / 1000.0;
 
-                view.print("\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
-                view.print("\n\tThis lexical analysis has been saved to a file in the same directory.");
+                view.print("\n\n\tAnalysis took %f seconds to complete.\n\tThis lexical analysis has been " +
+                                  "saved to a file in the same directory.", elapsedSeconds);
                 saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }
@@ -120,9 +120,9 @@ public class ApplicationController {
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s - %s times", i + 1,
-                                                  topWords.get(i).get(0), topWords.get(i).get(1));
+                                        topWords.get(i).get(0), topWords.get(i).get(1));
                                 saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1,
-                                                              topWords.get(i).get(0), topWords.get(i).get(1));
+                                        topWords.get(i).get(0), topWords.get(i).get(1));
                                 amountOfTopWords ++;
                         }
                 }catch(IndexOutOfBoundsException exception){
@@ -144,9 +144,9 @@ public class ApplicationController {
                 try {
                         for (int i = 0; i < 30; i++) {
                                 view.print("\t\t*%02d.  %s - %s times", i + 1,
-                                                   topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
+                                        topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
                                 saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1,
-                                                              topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
+                                        topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
                                 amountOfTopWords ++;
                         }
                 }catch(IndexOutOfBoundsException exception){
@@ -165,12 +165,14 @@ public class ApplicationController {
                 int rankingNUmber = 1;
 
                 for (int i = 0; i < orderedChars.size(); i++) {
-                        view.print("\t\t*%02d.  %s - %s times", rankingNUmber++, orderedChars.get(i).get(0),
-                                           orderedChars.get(i).get(1));
-                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNUmber, orderedChars.get(i).get(0),
-                                                      orderedChars.get(i).get(1));
+                        view.print("\t\t*%02d.  %s - %s times", rankingNUmber, orderedChars.get(i).get(0),
+                                orderedChars.get(i).get(1));
+                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNUmber++, orderedChars.get(i).get(0),
+                                orderedChars.get(i).get(1));
                 }
         }
 }
+
+
 
 

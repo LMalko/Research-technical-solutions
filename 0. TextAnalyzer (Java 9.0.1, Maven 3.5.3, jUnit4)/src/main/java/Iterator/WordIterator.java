@@ -15,7 +15,7 @@ public class WordIterator implements Iterator<String>{
         }
 
         private void stringToWordsCollection(String textContent){
-                words = textContent.replace("[^A-Za-z0-9]", "").split("\\s+");
+                words = textContent.replaceAll("[^A-Za-z0-9\\s]", "").split("\\s+");
         }
 
         @Override

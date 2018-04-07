@@ -13,7 +13,8 @@ public class StatisticalAnalysis {
         public int getCount(){
                 int result = 0;
                 while(iterator.hasNext()){
-                        if(iterator.next().matches("[A-Za-z0-9]+")) {
+                        String temp = iterator.next();
+                        if(temp.matches("[A-Za-z0-9]+")) {
                                 result++;
                         }
                 }
@@ -58,9 +59,15 @@ public class StatisticalAnalysis {
         }
 
         private Map<String, Integer> getMapStatistics(){
+                String tempString;
                 Map<String, Integer> dictionary = new HashMap<>();
                 while(iterator.hasNext()){
-                        String tempString = iterator.next().toLowerCase();
+                        String temp = iterator.next();
+                        if(temp.length() == 1){
+                                tempString = temp.toUpperCase();
+                        }else{
+                                tempString = temp.toLowerCase();
+                        }
                         if(dictionary.get(tempString) == null){
                                 dictionary.put(tempString, 1);
                         }else{

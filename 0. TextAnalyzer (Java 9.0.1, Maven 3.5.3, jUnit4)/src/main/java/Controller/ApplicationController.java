@@ -46,35 +46,14 @@ public class ApplicationController {
                 this.file = new File(String.format("%s lex analysis.txt", this.filename));
         }
 
-        private void saveRecordToFile(File file, String text, Object ... args){
-                try {
-                        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-                        writer.write(String.format(text, args));
-                        writer.close();
-                } catch (IOException e) {
-                        e.printStackTrace();
-                }
-        }
-
-        private String getDate(){
-                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-                Date date = new Date();
-                return dateFormat.format(date);
-        }
-
-        public void runAnalysis() {
+        public void startAnalysis() {
                 long timeStart = System.currentTimeMillis();
                 String date = getDate();
 
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
                 saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
 
-                displayAllChars();
-                displayAllWords();
-                displayDictionarySize();
-                displayTop30Words();
-                displayTop30WordsLongerThan4();
-                displayCharsInOrder();
+                runAnalysis();
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
@@ -85,6 +64,32 @@ public class ApplicationController {
                 saveRecordToFile(file, "\n\n\tAnalysis took %f seconds to complete.", elapsedSeconds);
 
         }
+
+        private String getDate(){
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                return dateFormat.format(date);
+        }
+
+        private void saveRecordToFile(File file, String text, Object ... args){
+                try {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
+                        writer.write(String.format(text, args));
+                        writer.close();
+                } catch (IOException e) {
+                        e.printStackTrace();
+                }
+        }
+
+        private void runAnalysis(){
+                displayAllChars();
+                displayAllWords();
+                displayDictionarySize();
+                displayTop30Words();
+                displayTop30WordsLongerThan4();
+                displayCharsInOrder();
+        }
+
         private void displayAllChars(){
                 analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
 

@@ -84,8 +84,7 @@ public class StatisticalAnalysis {
                 mapValues.sort(Collections.reverseOrder());
                 Collections.sort(mapKeys);
 
-                LinkedHashMap<String, Integer> sortedMap =
-                        new LinkedHashMap<>();
+                LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
 
                 for (Integer val : mapValues) {
                         Iterator<String> keyIt = mapKeys.iterator();

@@ -25,13 +25,13 @@ public class StatisticalAnalysisTest {
         @Test
         public void getCount() {
                 assertEquals(this.charAnalysis.getCount(), 955386);
-                assertEquals(this.wordAnalysis.getCount(), 219043);
+                assertEquals(this.wordAnalysis.getCount(), 219044);
 
         }
 
         @Test
         public void dictionarySize() {
-                assertEquals(this.wordAnalysis.dictionarySize(), 16959);
+                assertEquals(this.wordAnalysis.dictionarySize(), 16958);
         }
 
         @Test

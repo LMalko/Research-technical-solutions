@@ -18,6 +18,10 @@ public class CharIterator implements Iterator<String>{
                 chars = textContent.toCharArray();
         }
 
+        public void restartIterator(){
+                this.index = 0;
+        }
+
         @Override
         public boolean hasNext() {
                 return index < chars.length;

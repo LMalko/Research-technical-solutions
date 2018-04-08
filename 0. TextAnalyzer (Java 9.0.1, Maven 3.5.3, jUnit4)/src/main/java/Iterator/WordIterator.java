@@ -14,6 +14,10 @@ public class WordIterator implements Iterator<String>{
                 this.stringToWordsCollection(fileContent.getData());
         }
 
+        public void restartIterator(){
+                this.index = 0;
+        }
+
         private void stringToWordsCollection(String textContent){
                 words = textContent.replaceAll("[^A-Za-z0-9\\s]", "").split("\\s+");
         }

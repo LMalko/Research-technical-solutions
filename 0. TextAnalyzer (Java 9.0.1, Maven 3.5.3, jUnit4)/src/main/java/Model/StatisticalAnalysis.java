@@ -8,12 +8,14 @@ public class StatisticalAnalysis {
         private int allCount;
         private int alphaNumCount;
         private int charNoSpacesCount;
+        private int sentencesCount;
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
                 this.allCount = 0;
                 this.alphaNumCount = 0;
                 this.charNoSpacesCount = 0;
+                this.sentencesCount = 0;
                 runCount();
         }
 
@@ -40,6 +42,10 @@ public class StatisticalAnalysis {
 
         public int getAllCount() {
                 return allCount;
+        }
+
+        public int getSentencesCount() {
+                return sentencesCount;
         }
 
         public int dictionarySize(){

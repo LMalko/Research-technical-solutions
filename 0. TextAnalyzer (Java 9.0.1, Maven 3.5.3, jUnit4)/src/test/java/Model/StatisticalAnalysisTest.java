@@ -2,7 +2,6 @@ package Model;
 
 import Iterator.CharIterator;
 import Iterator.WordIterator;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -18,13 +17,6 @@ public class StatisticalAnalysisTest {
         private StatisticalAnalysis wordAnalysis = new StatisticalAnalysis(wordIterator);
         private StatisticalAnalysis charAnalysis = new StatisticalAnalysis(charIterator);
 
-
-        @Before
-        public void setUp() {
-                wordIterator.restartIterator();
-                charIterator.restartIterator();
-        }
-
         @Test
         public void getCount() {
                 assertEquals(this.charAnalysis.getAlphaNumCount(), 955386);
@@ -34,18 +26,18 @@ public class StatisticalAnalysisTest {
 
         @Test
         public void dictionarySize() {
-                assertEquals(this.wordAnalysis.dictionarySize(), 16958);
+                assertEquals(this.wordAnalysis.getDictionarySize(), 16958);
         }
 
         @Test
         public void occurMoreThan() {
-                assertTrue(this.charAnalysis.occurMoreThan(1).get(0).get(0).toString().matches("[a-zA-Z0-9]"));
-                assertTrue(this.wordAnalysis.occurMoreThan(7).get(0).get(1).toString().matches("[8-9]|[0-9]{2,}"));
+                assertTrue(this.charAnalysis.getOccureMoreThanOne().get(0).get(0).toString().matches("[a-zA-Z0-9]"));
+                assertTrue(this.wordAnalysis.getOccureMoreThanOne().get(0).get(1).toString().matches("[8-9]|[0-9]{2,}"));
         }
 
         @Test
         public void wordsLenMoreThan4() {
-                assertTrue(this.wordAnalysis.wordsLenMoreThan4().get(0).get(0).toString().matches("[a-zA-Z0-9]{4,}"));
-                assertEquals(this.charAnalysis.wordsLenMoreThan4(), new ArrayList<>());
+                assertTrue(this.wordAnalysis.getWordsMoreThanFour().get(0).get(0).toString().matches("[a-zA-Z0-9]{4,}"));
+                assertEquals(this.charAnalysis.getWordsMoreThanFour(), new ArrayList<>());
         }
 }

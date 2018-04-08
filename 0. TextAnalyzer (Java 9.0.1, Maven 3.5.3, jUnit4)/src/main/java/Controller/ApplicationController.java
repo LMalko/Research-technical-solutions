@@ -95,6 +95,8 @@ public class ApplicationController {
                 displayAllWordsCount();
                 displayDictionarySize();
                 displayAverageWordLength();
+                displaySentencesCount();
+                displayAverageSentenceLength();
                 displayTop30Words();
                 displayTop30WordsLongerThan4();
                 displayCharsInOrder();
@@ -139,11 +141,23 @@ public class ApplicationController {
                         Math.round((float)analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumCount()));
         }
 
+        private  void displaySentencesCount(){
+                view.print("\t07. Sentences count: %d", analysisChar.getSentencesCount());
+                saveRecordToFile(file, "\t07. Sentences count: %d\n", analysisChar.getSentencesCount());
+        }
+
+        private void displayAverageSentenceLength(){
+                view.print("\t08. Average sentence length: %d words",
+                        Math.round((float)analysisWord.getAlphaNumCount() / analysisChar.getSentencesCount()));
+                saveRecordToFile(file, "\t08. Average sentence length: %d words\n",
+                        Math.round((float)analysisWord.getAlphaNumCount() / analysisChar.getSentencesCount()));
+        }
+
         private void displayTop30Words(){
                 wordIterator.restartIterator();
 
-                view.print("\t07. TOP30 words occuring more than once:\n");
-                saveRecordToFile(file, "\t07. TOP30 words occuring more than once:\n\n");
+                view.print("\t09. TOP30 words occuring more than once:\n");
+                saveRecordToFile(file, "\t09. TOP30 words occuring more than once:\n\n");
 
                 List<List> topWords = analysisWord.occurMoreThan(1);
                 int amountOfTopWords = 0;
@@ -166,8 +180,8 @@ public class ApplicationController {
         private void displayTop30WordsLongerThan4(){
                 wordIterator.restartIterator();
 
-                view.print("\n\t08. TOP30 words occuring more than once & longer than 4 letters:\n\n");
-                saveRecordToFile(file, "\n\t08. TOP30 words occuring more than once & longer than 4 letters:\n");
+                view.print("\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n\n");
+                saveRecordToFile(file, "\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n");
 
                 List<List> topWordsMoreThan4 = analysisWord.wordsLenMoreThan4();
                 int amountOfTopWords = 0;
@@ -189,8 +203,8 @@ public class ApplicationController {
 
         private void displayCharsInOrder(){
                 charIterator.restartIterator();
-                view.print("\n\t09. Letters & digits in order of number of occurence count: \n");
-                saveRecordToFile(file, "\n\t09. Letters & digits in order of number of occurence count: \n");
+                view.print("\n\t11. Letters & digits in order of number of occurence count: \n");
+                saveRecordToFile(file, "\n\t11. Letters & digits in order of number of occurence count: \n");
                 List<List> orderedChars = analysisChar.occurMoreThan(1);
                 int rankingNUmber = 1;
 

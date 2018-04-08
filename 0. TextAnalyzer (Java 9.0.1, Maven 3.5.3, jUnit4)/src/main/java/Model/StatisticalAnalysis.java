@@ -1,22 +1,33 @@
 package Model;
 
+import Interface.IterableElement;
+
 import java.util.*;
 
 public class StatisticalAnalysis {
 
-        private Iterator<String> iterator;
+        private IterableElement<String> iterator;
         private int allCount;
         private int alphaNumCount;
         private int charNoSpacesCount;
-        private int sentencesCount;
+        private int dictionarySize;
+        private int sentencesCount = 0;
+        private List<List> occurMoreThanOne;
+        private List<List> wordsMoreThanFour;
 
-        public StatisticalAnalysis(Iterator<String> iterator) {
+        public StatisticalAnalysis(IterableElement<String> iterator) {
                 this.iterator = iterator;
-                this.allCount = 0;
-                this.alphaNumCount = 0;
-                this.charNoSpacesCount = 0;
-                this.sentencesCount = 0;
+                runAnalysis();
+        }
+
+        private void runAnalysis(){
                 runCount();
+                iterator.restartIterator();
+                dictionarySize();
+                iterator.restartIterator();
+                occurMoreThanOne();
+                iterator.restartIterator();
+                wordsLenMoreThanFour();
         }
 
         private void runCount(){
@@ -48,30 +59,34 @@ public class StatisticalAnalysis {
                 return sentencesCount;
         }
 
-        public int dictionarySize(){
+        private void dictionarySize(){
                 Set<String> result = new HashSet<>();
                         while(iterator.hasNext()){
                                 result.add(iterator.next().toLowerCase());
                         }
                         
-                return result.size();   
+                dictionarySize = result.size();
         }
 
-        public List<List> occurMoreThan(Integer number){
+        public int getDictionarySize() {
+                return dictionarySize;
+        }
+
+        private void occurMoreThanOne(){
                 Map<String, Integer> dictionary = getMapStatistics();
                 List<List> result = new ArrayList<>();
                 for(String key: dictionary.keySet()){
-                        if(dictionary.get(key) > number && key.matches("[A-Za-z0-9]+")){
+                        if(dictionary.get(key) > 1 && key.matches("[A-Za-z0-9]+")){
                                 List<String> temp = new ArrayList<>();
                                 temp.add(key);
                                 temp.add(dictionary.get(key).toString());
                                 result.add(temp);
                         }
                 }
-                return result;
+                occurMoreThanOne = result;
         }
 
-        public List<List> wordsLenMoreThan4(){
+        private void wordsLenMoreThanFour(){
                 Map<String, Integer> dictionary = getMapStatistics();
                 List<List> result = new ArrayList<>();
                 for(String key: dictionary.keySet()){
@@ -82,7 +97,15 @@ public class StatisticalAnalysis {
                                 result.add(temp);
                         }
                 }
-                return result;
+                wordsMoreThanFour = result;
+        }
+
+        public List<List> getOccureMoreThanOne() {
+                return occurMoreThanOne;
+        }
+
+        public List<List> getWordsMoreThanFour() {
+                return wordsMoreThanFour;
         }
 
         private Map<String, Integer> getMapStatistics(){
@@ -110,16 +133,12 @@ public class StatisticalAnalysis {
                 List<Integer> mapValues = new ArrayList<>(passedMap.values());
                 mapValues.sort(Collections.reverseOrder());
                 Collections.sort(mapKeys);
-
                 LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
-
                 for (Integer val : mapValues) {
                         Iterator<String> keyIt = mapKeys.iterator();
-
                         while (keyIt.hasNext()) {
                                 String key = keyIt.next();
                                 Integer comp1 = passedMap.get(key);
-
                                 if (comp1.equals(val)) {
                                         keyIt.remove();
                                         sortedMap.put(key, val);

@@ -39,8 +39,6 @@ public class ApplicationController {
                 wordIterator = new WordIterator(fileContent);
                 charIterator = new CharIterator(fileContent);
 
-                analysisWord = new StatisticalAnalysis(wordIterator);
-                analysisChar = new StatisticalAnalysis(charIterator);
         }
 
         private void setOutputFile(){
@@ -60,6 +58,7 @@ public class ApplicationController {
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
                 saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
 
+                runAnalysis();
                 displayAnalysis();
 
                 long timeEnd = System.currentTimeMillis();
@@ -88,6 +87,11 @@ public class ApplicationController {
                 }
         }
 
+        private void runAnalysis(){
+                analysisWord = new StatisticalAnalysis(wordIterator);
+                analysisChar = new StatisticalAnalysis(charIterator);
+        }
+
         private void displayAnalysis(){
                 displayCharsCount();
                 displayCharsNoSpaceCount();
@@ -113,22 +117,19 @@ public class ApplicationController {
         }
 
         private void displayAlphaNumCharsCount(){
-                charIterator.restartIterator();
 
                 view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumCount());
                 saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumCount());
         }
 
         private void displayAllWordsCount(){
-                wordIterator.restartIterator();
 
                 view.print("\t04. Words count: %d", analysisWord.getAlphaNumCount());
                 saveRecordToFile(file,"\t04. Words count: %d\n", analysisWord.getAlphaNumCount());
         }
 
         private void displayDictionarySize(){
-                wordIterator.restartIterator();
-                int dictionarySize = analysisWord.dictionarySize();
+                int dictionarySize = analysisWord.getDictionarySize();
 
                 view.print("\t05. Author's Dictionary (distinct words count): %d", dictionarySize);
                 saveRecordToFile(file, "\t05. Author's Dictionary (distinct words count): %d\n", dictionarySize);
@@ -154,12 +155,10 @@ public class ApplicationController {
         }
 
         private void displayTop30Words(){
-                wordIterator.restartIterator();
-
                 view.print("\t09. TOP30 words occuring more than once:\n");
                 saveRecordToFile(file, "\t09. TOP30 words occuring more than once:\n\n");
 
-                List<List> topWords = analysisWord.occurMoreThan(1);
+                List<List> topWords = analysisWord.getOccureMoreThanOne();
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
@@ -178,12 +177,10 @@ public class ApplicationController {
         }
 
         private void displayTop30WordsLongerThan4(){
-                wordIterator.restartIterator();
-
                 view.print("\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n\n");
                 saveRecordToFile(file, "\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n");
 
-                List<List> topWordsMoreThan4 = analysisWord.wordsLenMoreThan4();
+                List<List> topWordsMoreThan4 = analysisWord.getWordsMoreThanFour();
                 int amountOfTopWords = 0;
                 try {
                         for (int i = 0; i < 30; i++) {
@@ -202,10 +199,9 @@ public class ApplicationController {
         }
 
         private void displayCharsInOrder(){
-                charIterator.restartIterator();
                 view.print("\n\t11. Letters & digits in order of number of occurence count: \n");
                 saveRecordToFile(file, "\n\t11. Letters & digits in order of number of occurence count: \n");
-                List<List> orderedChars = analysisChar.occurMoreThan(1);
+                List<List> orderedChars = analysisChar.getOccureMoreThanOne();
                 int rankingNUmber = 1;
 
                 for (int i = 0; i < orderedChars.size(); i++) {

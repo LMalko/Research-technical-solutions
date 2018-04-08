@@ -1,5 +1,6 @@
 package Model;
 
+import Interface.IterableElement;
 import Interface.IterableText;
 import Iterator.CharIterator;
 import Iterator.WordIterator;
@@ -7,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.*;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class FileContent implements IterableText{
@@ -26,12 +26,12 @@ public class FileContent implements IterableText{
         }
 
         @Override
-        public Iterator<String> charIterator() {
+        public IterableElement<String> charIterator() {
                 return new CharIterator(this);
         }
 
         @Override
-        public Iterator<String> wordIterator() {
+        public IterableElement<String> wordIterator() {
                 return new WordIterator(this);
         }
 

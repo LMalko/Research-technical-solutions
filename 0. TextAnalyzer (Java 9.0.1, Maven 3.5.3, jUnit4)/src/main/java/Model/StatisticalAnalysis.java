@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.*;
+import java.util.regex.Pattern;
 
 public class StatisticalAnalysis {
 
@@ -12,32 +13,52 @@ public class StatisticalAnalysis {
         private List<List> occurMoreThanOne;
         private List<List> wordsMoreThanFour;
         private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements3xDictionary = new LinkedHashMap<>();
         private Set<String> authorsDict = new HashSet<>();
+        private String previous = "";
+        private String beforePrevious = "";
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
                 runAnalysis();
+                occurMoreThanOne();
+                wordsLenMoreThanFour();
+                setSentencesCount();
         }
 
         private void runAnalysis(){
+                int flag = 0;
                 while(iterator.hasNext()){
                         String temp = iterator.next();
                         authorsDict.add(temp.toLowerCase());
-                        addElementToMap(temp);
+                        addElementToMap(temp, elementsDictionary);
                         allElementsCount++;
-                        if(temp.matches("[^\\s]+")) {
-                                charNoSpacesCount++;
-                        }
-                        if(temp.matches("[A-Za-z0-9]+")) {
-                                alphaNumCount++;
+
+                        if(temp.matches("[^\\s]+")) charNoSpacesCount++;
+                        if(temp.matches("[A-Za-z0-9]+")) alphaNumCount++;
+
+                        if(flag == 0){
+                                flag++;
+                                previous = temp;
+                        }else if(flag == 1){
+                                flag++;
+                                addElementToMap(previous + temp, elements2xDictionary);
+                                beforePrevious = previous;
+                                previous = temp;
+                        }else{
+                                addElementToMap(String.format("%s %s", previous, temp), elements2xDictionary);
+                                addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
+                                beforePrevious = previous;
+                                previous = temp;
                         }
                 }
-                sortMapByValues(elementsDictionary);
-                occurMoreThanOne();
-                wordsLenMoreThanFour();
+                elementsDictionary = sortMapByValues(elementsDictionary);
+                elements2xDictionary = sortMapByValues(elements2xDictionary);
+                elements3xDictionary = sortMapByValues(elements3xDictionary);
         }
 
-        private void addElementToMap(String nextElement){
+        private void addElementToMap(String nextElement, LinkedHashMap<String, Integer> map){
                 String tempString;
 
                 if(nextElement.length() == 1){
@@ -45,15 +66,15 @@ public class StatisticalAnalysis {
                 }else{
                         tempString = nextElement.toLowerCase();
                 }
-                if(elementsDictionary.get(tempString) == null){
-                        elementsDictionary.put(tempString, 1);
+                if(map.get(tempString) == null){
+                        map.put(tempString, 1);
                 }else{
-                        int tempInt = elementsDictionary.get(tempString) + 1;
-                        elementsDictionary.put(tempString, tempInt);
+                        int tempInt = map.get(tempString) + 1;
+                        map.put(tempString, tempInt);
                 }
         }
 
-        private void sortMapByValues(Map<String, Integer> passedMap) {
+        private LinkedHashMap<String, Integer> sortMapByValues(Map<String, Integer> passedMap) {
                 List<String> mapKeys = new ArrayList<>(passedMap.keySet());
                 List<Integer> mapValues = new ArrayList<>(passedMap.values());
                 mapValues.sort(Collections.reverseOrder());
@@ -71,7 +92,7 @@ public class StatisticalAnalysis {
                                 }
                         }
                 }
-                elementsDictionary = sortedMap;
+                return sortedMap;
         }
 
         private void occurMoreThanOne(){
@@ -114,6 +135,14 @@ public class StatisticalAnalysis {
                 return allElementsCount;
         }
 
+        private void setSentencesCount(){
+                for(String key: elements2xDictionary.keySet()) {
+                        if (key.matches("[.?!] [^?!.]")) {
+                                sentencesCount += elements2xDictionary.get(key);
+                        }
+                }
+        }
+
         public int getSentencesCount() {
                 return sentencesCount;
         }
@@ -128,5 +157,13 @@ public class StatisticalAnalysis {
 
         public List<List> getWordsMoreThanFour() {
                 return wordsMoreThanFour;
+        }
+
+        public LinkedHashMap<String, Integer> getElements2xDictionary() {
+                return elements2xDictionary;
+        }
+
+        public LinkedHashMap<String, Integer> getElements3xDictionary() {
+                return elements3xDictionary;
         }
 }

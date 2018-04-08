@@ -7,11 +7,13 @@ public class StatisticalAnalysis {
         private Iterator<String> iterator;
         private int allCount;
         private int alphaNumCount;
+        private int charNoSpacesCount;
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
                 this.allCount = 0;
                 this.alphaNumCount = 0;
+                this.charNoSpacesCount = 0;
                 runCount();
         }
 
@@ -19,10 +21,17 @@ public class StatisticalAnalysis {
                 while(iterator.hasNext()){
                         String temp = iterator.next();
                         allCount++;
+                        if(temp.matches("[^\\s]+")) {
+                                charNoSpacesCount++;
+                        }
                         if(temp.matches("[A-Za-z0-9]+")) {
                                 alphaNumCount++;
                         }
                 }
+        }
+
+        public int getCharNoSpacesCount() {
+                return charNoSpacesCount;
         }
 
         public int getAlphaNumCount() {

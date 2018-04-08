@@ -89,12 +89,18 @@ public class ApplicationController {
         }
 
         private void runAnalysis(){
+                displayAllChars();
                 displayAlphaNumericChars();
                 displayAllWords();
                 displayDictionarySize();
                 displayTop30Words();
                 displayTop30WordsLongerThan4();
                 displayCharsInOrder();
+        }
+
+        private void displayAllChars(){
+                view.print("\t01. All character count: %d", analysisChar.getAllCharactersCount());
+                saveRecordToFile(file, "\t01. All character count: %d\n", analysisChar.getAllCharactersCount());
         }
 
         private void displayAlphaNumericChars(){

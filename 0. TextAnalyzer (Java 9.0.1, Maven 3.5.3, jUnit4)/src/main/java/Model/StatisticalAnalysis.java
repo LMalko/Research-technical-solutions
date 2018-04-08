@@ -5,20 +5,47 @@ import java.util.*;
 public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
+        private int allCount;
+        private int alphaNumCount;
+        private int charNoSpacesCount;
+        private int sentencesCount;
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
+                this.allCount = 0;
+                this.alphaNumCount = 0;
+                this.charNoSpacesCount = 0;
+                this.sentencesCount = 0;
+                runCount();
         }
 
-        public int getCount(){
-                int result = 0;
+        private void runCount(){
                 while(iterator.hasNext()){
                         String temp = iterator.next();
+                        allCount++;
+                        if(temp.matches("[^\\s]+")) {
+                                charNoSpacesCount++;
+                        }
                         if(temp.matches("[A-Za-z0-9]+")) {
-                                result++;
+                                alphaNumCount++;
                         }
                 }
-                return result;
+        }
+
+        public int getCharNoSpacesCount() {
+                return charNoSpacesCount;
+        }
+
+        public int getAlphaNumCount() {
+                return alphaNumCount;
+        }
+
+        public int getAllCount() {
+                return allCount;
+        }
+
+        public int getSentencesCount() {
+                return sentencesCount;
         }
 
         public int dictionarySize(){

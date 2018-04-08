@@ -5,7 +5,7 @@ import java.util.*;
 public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
-        private int allCount;
+        private int allElementsCount;
         private int alphaNumCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
@@ -23,8 +23,8 @@ public class StatisticalAnalysis {
                 while(iterator.hasNext()){
                         String temp = iterator.next();
                         authorsDict.add(temp.toLowerCase());
-                        getMapStatistics(temp);
-                        allCount++;
+                        addElementToMap(temp);
+                        allElementsCount++;
                         if(temp.matches("[^\\s]+")) {
                                 charNoSpacesCount++;
                         }
@@ -37,63 +37,7 @@ public class StatisticalAnalysis {
                 wordsLenMoreThanFour();
         }
 
-        public int getCharNoSpacesCount() {
-                return charNoSpacesCount;
-        }
-
-        public int getAlphaNumCount() {
-                return alphaNumCount;
-        }
-
-        public int getAllCount() {
-                return allCount;
-        }
-
-        public int getSentencesCount() {
-                return sentencesCount;
-        }
-
-        public int getDictionarySize() {
-                return authorsDict.size();
-        }
-
-        private void occurMoreThanOne(){
-
-                List<List> result = new ArrayList<>();
-                for(String key: elementsDictionary.keySet()){
-                        if(elementsDictionary.get(key) > 1 && key.matches("[A-Za-z0-9]+")){
-                                List<String> temp = new ArrayList<>();
-                                temp.add(key);
-                                temp.add(elementsDictionary.get(key).toString());
-                                result.add(temp);
-                        }
-                }
-                occurMoreThanOne = result;
-        }
-
-        private void wordsLenMoreThanFour(){
-
-                List<List> result = new ArrayList<>();
-                for(String key: elementsDictionary.keySet()){
-                        if(key.length() > 4 && elementsDictionary.get(key) > 1){
-                                List<String> temp = new ArrayList<>();
-                                temp.add(key);
-                                temp.add(elementsDictionary.get(key).toString());
-                                result.add(temp);
-                        }
-                }
-                wordsMoreThanFour = result;
-        }
-
-        public List<List> getOccureMoreThanOne() {
-                return occurMoreThanOne;
-        }
-
-        public List<List> getWordsMoreThanFour() {
-                return wordsMoreThanFour;
-        }
-
-        private void getMapStatistics(String nextElement){
+        private void addElementToMap(String nextElement){
                 String tempString;
 
                 if(nextElement.length() == 1){
@@ -128,5 +72,61 @@ public class StatisticalAnalysis {
                         }
                 }
                 elementsDictionary = sortedMap;
+        }
+
+        private void occurMoreThanOne(){
+
+                List<List> result = new ArrayList<>();
+                for(String key: elementsDictionary.keySet()){
+                        if(elementsDictionary.get(key) > 1 && key.matches("[A-Za-z0-9]+")){
+                                List<String> temp = new ArrayList<>();
+                                temp.add(key);
+                                temp.add(elementsDictionary.get(key).toString());
+                                result.add(temp);
+                        }
+                }
+                occurMoreThanOne = result;
+        }
+
+        private void wordsLenMoreThanFour(){
+
+                List<List> result = new ArrayList<>();
+                for(String key: elementsDictionary.keySet()){
+                        if(key.length() > 4 && elementsDictionary.get(key) > 1){
+                                List<String> temp = new ArrayList<>();
+                                temp.add(key);
+                                temp.add(elementsDictionary.get(key).toString());
+                                result.add(temp);
+                        }
+                }
+                wordsMoreThanFour = result;
+        }
+
+        public int getCharNoSpacesCount() {
+                return charNoSpacesCount;
+        }
+
+        public int getAlphaNumCount() {
+                return alphaNumCount;
+        }
+
+        public int getAllCount() {
+                return allElementsCount;
+        }
+
+        public int getSentencesCount() {
+                return sentencesCount;
+        }
+
+        public int getDictionarySize() {
+                return authorsDict.size();
+        }
+
+        public List<List> getOccureMoreThanOne() {
+                return occurMoreThanOne;
+        }
+
+        public List<List> getWordsMoreThanFour() {
+                return wordsMoreThanFour;
         }
 }

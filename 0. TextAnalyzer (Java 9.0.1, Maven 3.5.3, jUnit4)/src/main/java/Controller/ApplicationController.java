@@ -92,7 +92,7 @@ public class ApplicationController {
                 displayCharsCount();
                 displayCharsNoSpaceCount();
                 displayAlphaNumCharsCount();
-                displayAllWords();
+                displayAllWordsCount();
                 displayDictionarySize();
                 displayTop30Words();
                 displayTop30WordsLongerThan4();
@@ -116,7 +116,7 @@ public class ApplicationController {
                 saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumCount());
         }
 
-        private void displayAllWords(){
+        private void displayAllWordsCount(){
                 wordIterator.restartIterator();
 
                 view.print("\t04. Words count: %d", analysisWord.getAlphaNumCount());

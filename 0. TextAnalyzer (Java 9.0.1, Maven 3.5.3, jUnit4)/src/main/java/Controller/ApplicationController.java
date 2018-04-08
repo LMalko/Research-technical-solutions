@@ -89,7 +89,7 @@ public class ApplicationController {
         }
 
         private void runAnalysis(){
-                displayAllChars();
+                displayAlphaNumericChars();
                 displayAllWords();
                 displayDictionarySize();
                 displayTop30Words();
@@ -97,7 +97,7 @@ public class ApplicationController {
                 displayCharsInOrder();
         }
 
-        private void displayAllChars(){
+        private void displayAlphaNumericChars(){
                 charIterator.restartIterator();
 
                 int count = analysisChar.getCount();

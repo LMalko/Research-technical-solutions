@@ -12,20 +12,23 @@ import static org.junit.Assert.*;
 
 public class StatisticalAnalysisTest {
 
-        private StatisticalAnalysis charAnalysis, wordAnalysis;
+        private WordIterator wordIterator = new WordIterator(new FileContent("testText.txt"));
+        private CharIterator charIterator = new CharIterator(new FileContent("testText.txt"));
+
+        private StatisticalAnalysis wordAnalysis = new StatisticalAnalysis(wordIterator);
+        private StatisticalAnalysis charAnalysis = new StatisticalAnalysis(charIterator);
+
 
         @Before
         public void setUp() {
-                this.charAnalysis = new StatisticalAnalysis(
-                        new CharIterator(new FileContent("testText.txt")));
-                this.wordAnalysis = new StatisticalAnalysis(
-                        new WordIterator(new FileContent("testText.txt")));
+                wordIterator.restartIterator();
+                charIterator.restartIterator();
         }
 
         @Test
         public void getCount() {
-                assertEquals(this.charAnalysis.getCount(), 955386);
-                assertEquals(this.wordAnalysis.getCount(), 219044);
+                assertEquals(this.charAnalysis.getAlphaNumCount(), 955386);
+                assertEquals(this.wordAnalysis.getAlphaNumCount(), 219044);
 
         }
 

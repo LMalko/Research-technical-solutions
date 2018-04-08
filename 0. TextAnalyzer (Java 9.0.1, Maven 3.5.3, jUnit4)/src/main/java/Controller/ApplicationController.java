@@ -19,21 +19,28 @@ import java.util.List;
 
 public class ApplicationController {
 
+        private File file;
         private String filename;
-        private FileContent fileContent;
         private View view = new View();
+
+        private WordIterator wordIterator;
+        private CharIterator charIterator;
+
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
-        private File file;
+
 
         public ApplicationController(String filename) {
                 this.filename = filename;
 
-                fileContent = new FileContent(this.filename);
+                FileContent fileContent = new FileContent(this.filename);
                 setOutputFile();
 
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
+                wordIterator = new WordIterator(fileContent);
+                charIterator = new CharIterator(fileContent);
+
+                analysisWord = new StatisticalAnalysis(wordIterator);
+                analysisChar = new StatisticalAnalysis(charIterator);
         }
 
         private void setOutputFile(){
@@ -91,7 +98,7 @@ public class ApplicationController {
         }
 
         private void displayAllChars(){
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
+                charIterator.restartIterator();
 
                 int count = analysisChar.getCount();
                 view.print("\t01. Alphanumeric character count: %d", count);
@@ -99,7 +106,7 @@ public class ApplicationController {
         }
 
         private void displayAllWords(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
+                wordIterator.restartIterator();
 
                 int count = analysisWord.getCount();
                 view.print("\t02. Words count: %d", count);
@@ -107,7 +114,7 @@ public class ApplicationController {
         }
 
         private void displayDictionarySize(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
+                wordIterator.restartIterator();
                 int dictionarySize = analysisWord.dictionarySize();
 
                 view.print("\t03. Author's Dictionary (distinct words count): %d", dictionarySize);
@@ -115,7 +122,7 @@ public class ApplicationController {
         }
 
         private void displayTop30Words(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
+                wordIterator.restartIterator();
 
                 view.print("\t04. TOP30 words occuring more than once:\n");
                 saveRecordToFile(file, "\t04. TOP30 words occuring more than once:\n\n");
@@ -139,7 +146,7 @@ public class ApplicationController {
         }
 
         private void displayTop30WordsLongerThan4(){
-                analysisWord = new StatisticalAnalysis(new WordIterator(fileContent));
+                wordIterator.restartIterator();
 
                 view.print("\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n\n");
                 saveRecordToFile(file, "\n\t05. TOP30 words occuring more than once & longer than 4 letters:\n");
@@ -163,7 +170,7 @@ public class ApplicationController {
         }
 
         private void displayCharsInOrder(){
-                analysisChar = new StatisticalAnalysis(new CharIterator(fileContent));
+                charIterator.restartIterator();
                 view.print("\n\t06. Letters & digits in order of number of occurence count: \n");
                 saveRecordToFile(file, "\n\t06. Letters & digits in order of number of occurence count: \n");
                 List<List> orderedChars = analysisChar.occurMoreThan(1);

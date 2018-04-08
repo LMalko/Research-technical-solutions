@@ -99,24 +99,22 @@ public class ApplicationController {
         }
 
         private void displayAllChars(){
-                view.print("\t01. All character count: %d", analysisChar.getAllCharactersCount());
-                saveRecordToFile(file, "\t01. All character count: %d\n", analysisChar.getAllCharactersCount());
+                view.print("\t01. All character count: %d", analysisChar.getAllCount());
+                saveRecordToFile(file, "\t01. All character count: %d\n", analysisChar.getAllCount());
         }
 
         private void displayAlphaNumericChars(){
                 charIterator.restartIterator();
 
-                int count = analysisChar.getCount();
-                view.print("\t02. Alphanumeric character count: %d", count);
-                saveRecordToFile(file, "\t02. Alphanumeric character count: %d\n", count);
+                view.print("\t02. Alphanumeric character count: %d", analysisChar.getAlphaNumCount());
+                saveRecordToFile(file, "\t02. Alphanumeric character count: %d\n", analysisChar.getAlphaNumCount());
         }
 
         private void displayAllWords(){
                 wordIterator.restartIterator();
 
-                int count = analysisWord.getCount();
-                view.print("\t03. Words count: %d", count);
-                saveRecordToFile(file,"\t03. Words count: %d\n", count);
+                view.print("\t03. Words count: %d", analysisWord.getAlphaNumCount());
+                saveRecordToFile(file,"\t03. Words count: %d\n", analysisWord.getAlphaNumCount());
         }
 
         private void displayDictionarySize(){

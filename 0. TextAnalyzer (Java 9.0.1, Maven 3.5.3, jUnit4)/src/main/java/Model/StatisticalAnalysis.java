@@ -5,20 +5,27 @@ import java.util.*;
 public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
+        private int allCharactersCount;
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
+                this.allCharactersCount = 0;
         }
 
         public int getCount(){
                 int result = 0;
                 while(iterator.hasNext()){
                         String temp = iterator.next();
+                        allCharactersCount++;
                         if(temp.matches("[A-Za-z0-9]+")) {
                                 result++;
                         }
                 }
                 return result;
+        }
+
+        public int getAllCharactersCount() {
+                return allCharactersCount;
         }
 
         public int dictionarySize(){

@@ -1,11 +1,9 @@
 package Interface;
 
-import java.util.Iterator;
-
 public interface IterableText {
 
-        Iterator<String> charIterator();
+        IterableElement<String> charIterator();
 
-        Iterator<String> wordIterator();
+        IterableElement<String> wordIterator();
 
 }

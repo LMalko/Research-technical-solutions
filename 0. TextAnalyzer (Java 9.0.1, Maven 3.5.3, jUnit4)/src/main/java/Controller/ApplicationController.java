@@ -60,7 +60,7 @@ public class ApplicationController {
                 view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
                 saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
 
-                runAnalysis();
+                displayAnalysis();
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
@@ -88,7 +88,7 @@ public class ApplicationController {
                 }
         }
 
-        private void runAnalysis(){
+        private void displayAnalysis(){
                 displayCharsCount();
                 displayCharsNoSpaceCount();
                 displayAlphaNumCharsCount();

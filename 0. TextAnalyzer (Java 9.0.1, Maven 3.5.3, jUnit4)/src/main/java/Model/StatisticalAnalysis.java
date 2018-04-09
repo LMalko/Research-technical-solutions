@@ -123,6 +123,14 @@ public class StatisticalAnalysis {
                 wordsMoreThanFour = result;
         }
 
+        private void setSentencesCount(){
+                for(String key: elements2xDictionary.keySet()) {
+                        if (key.matches("[.?!] [^?!.]")) {
+                                sentencesCount += elements2xDictionary.get(key);
+                        }
+                }
+        }
+
         public int getCharNoSpacesCount() {
                 return charNoSpacesCount;
         }
@@ -133,14 +141,6 @@ public class StatisticalAnalysis {
 
         public int getAllCount() {
                 return allElementsCount;
-        }
-
-        private void setSentencesCount(){
-                for(String key: elements2xDictionary.keySet()) {
-                        if (key.matches("[.?!] [^?!.]")) {
-                                sentencesCount += elements2xDictionary.get(key);
-                        }
-                }
         }
 
         public int getSentencesCount() {

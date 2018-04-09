@@ -1,0 +1,171 @@
+
+
+DOCUMENT testText.txt LEXICAL ANALYSIS [2018/04/09 02:00:36]: 
+
+	01. All character: 19430
+	02. All character (no spaces): 15902
+	03. Alphanumeric character count: 15085
+	04. Words count: 3513
+	05. Author's Dictionary (distinct words count): 1100
+	06. Average word length: 5
+	07. Sentences count: 263
+	08. Average sentence length: 13 words
+	09. TOP30 words occuring more than once:
+
+		*01.  the - 161 times
+		*02.  and - 132 times
+		*03.  he - 105 times
+		*04.  to - 96 times
+		*05.  I - 70 times
+		*06.  of - 70 times
+		*07.  in - 63 times
+		*08.  you - 62 times
+		*09.  A - 56 times
+		*10.  his - 52 times
+		*11.  it - 49 times
+		*12.  that - 48 times
+		*13.  was - 48 times
+		*14.  but - 30 times
+		*15.  had - 30 times
+		*16.  with - 30 times
+		*17.  not - 29 times
+		*18.  father - 28 times
+		*19.  for - 27 times
+		*20.  me - 27 times
+		*21.  is - 26 times
+		*22.  at - 25 times
+		*23.  him - 24 times
+		*24.  have - 22 times
+		*25.  so - 22 times
+		*26.  no - 21 times
+		*27.  on - 20 times
+		*28.  all - 19 times
+		*29.  be - 19 times
+		*30.  von - 18 times
+
+	10. TOP30 words occuring more than once & longer than 4 letters:
+		*01.  father - 28 times
+		*02.  fyodor - 16 times
+		*03.  pavlovitch - 16 times
+		*04.  superior - 14 times
+		*05.  himself - 12 times
+		*06.  there - 12 times
+		*07.  about - 10 times
+		*08.  again - 10 times
+		*09.  miusov - 10 times
+		*10.  could - 9 times
+		*11.  monastery - 9 times
+		*12.  fathers - 8 times
+		*13.  which - 8 times
+		*14.  alexandrovitch - 7 times
+		*15.  alyosha - 7 times
+		*16.  cried - 7 times
+		*17.  moment - 7 times
+		*18.  pyotr - 7 times
+		*19.  table - 7 times
+		*20.  would - 7 times
+		*21.  cannot - 6 times
+		*22.  elders - 6 times
+		*23.  maximov - 6 times
+		*24.  rakitin - 6 times
+		*25.  aloud - 5 times
+		*26.  might - 5 times
+		*27.  nothing - 5 times
+		*28.  played - 5 times
+		*29.  quite - 5 times
+		*30.  though - 5 times
+
+	11. Letters & digits in order of number of occurence count: 
+		*01.  E - 1796 times
+		*02.  T - 1331 times
+		*03.  O - 1265 times
+		*04.  A - 1212 times
+		*05.  I - 1055 times
+		*06.  N - 1033 times
+		*07.  H - 991 times
+		*08.  S - 888 times
+		*09.  R - 790 times
+		*10.  L - 671 times
+		*11.  D - 648 times
+		*12.  U - 446 times
+		*13.  M - 410 times
+		*14.  Y - 387 times
+		*15.  W - 341 times
+		*16.  F - 336 times
+		*17.  C - 298 times
+		*18.  G - 290 times
+		*19.  P - 256 times
+		*20.  B - 233 times
+		*21.  V - 232 times
+		*22.  K - 106 times
+		*23.  X - 33 times
+		*24.  Q - 14 times
+		*25.  Z - 13 times
+		*26.  J - 6 times
+
+	12. Keyword density 2x top list: 
+
+		*01.  in the - 23 times
+		*02.  to the - 19 times
+		*03.  he was - 17 times
+		*04.  fyodor pavlovitch - 16 times
+		*05.  i am - 16 times
+		*06.  von sohn - 16 times
+		*07.  the father - 13 times
+		*08.  father superior - 12 times
+		*09.  of the - 12 times
+		*10.  he had - 10 times
+		*11.  it was - 10 times
+		*12.  i will - 9 times
+		*13.  it is - 9 times
+		*14.  that he - 9 times
+		*15.  and he - 8 times
+		*16.  on the - 8 times
+		*17.  and so - 7 times
+		*18.  he felt - 7 times
+		*19.  pyotr alexandrovitch - 7 times
+		*20.  at the - 6 times
+		*21.  but i - 6 times
+		*22.  could not - 6 times
+		*23.  from the - 6 times
+		*24.  he could - 6 times
+		*25.  in a - 6 times
+		*26.  in his - 6 times
+		*27.  do you - 5 times
+		*28.  of his - 5 times
+		*29.  the elders - 5 times
+
+	13. Keyword density 3x top list: 
+
+		*01.  the father superior - 9 times
+		*02.  he could not - 5 times
+		*03.  the father superiors - 4 times
+		*04.  and he had - 3 times
+		*05.  cried fyodor pavlovitch - 3 times
+		*06.  he was so - 3 times
+		*07.  i want to - 3 times
+		*08.  it is impossible - 3 times
+		*09.  my son alexey - 3 times
+		*10.  that fyodor pavlovitch - 3 times
+		*11.  why do you - 3 times
+		*12.  and at once - 2 times
+		*13.  and so on - 2 times
+		*14.  as a thing - 2 times
+		*15.  at our feet - 2 times
+		*16.  at that moment - 2 times
+		*17.  at the moment - 2 times
+		*18.  away from the - 2 times
+		*19.  but he was - 2 times
+		*20.  but i am - 2 times
+		*21.  carried away by - 2 times
+		*22.  father iosif father - 2 times
+		*23.  father zossimas cell - 2 times
+		*24.  fathers this is - 2 times
+		*25.  from the dead - 2 times
+		*26.  great part in - 2 times
+		*27.  have begun to - 2 times
+		*28.  he felt that - 2 times
+		*29.  he had been - 2 times
+
+
+	Analysis took 0 minutes 1 seconds to complete.

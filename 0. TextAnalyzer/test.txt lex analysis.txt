@@ -1,0 +1,169 @@
+
+
+DOCUMENT test.txt LEXICAL ANALYSIS [2018/04/09 01:25:01]: 
+
+	01. All character: 7844
+	02. All character (no spaces): 6389
+	03. Alphanumeric character count: 6068
+	04. Words count: 1453
+	05. Author's Dictionary (distinct words count): 512
+	06. Average word length: 4
+	07. Sentences count: 272
+	08. Average sentence length: 3 words
+	09. TOP30 words occuring more than once:
+
+		*01.  the - 79 times
+		*02.  and - 58 times
+		*03.  to - 39 times
+		*04.  rabbit - 33 times
+		*05.  fox - 30 times
+		*06.  he - 28 times
+		*07.  sly - 26 times
+		*08.  A - 25 times
+		*09.  of - 22 times
+		*10.  in - 19 times
+		*11.  his - 18 times
+		*12.  with - 17 times
+		*13.  as - 15 times
+		*14.  little - 15 times
+		*15.  mrs - 14 times
+		*16.  for - 13 times
+		*17.  mr - 13 times
+		*18.  on - 13 times
+		*19.  had - 12 times
+		*20.  rabs - 11 times
+		*21.  hedgehog - 10 times
+		*22.  they - 10 times
+		*23.  you - 10 times
+		*24.  at - 9 times
+		*25.  her - 9 times
+		*26.  home - 9 times
+		*27.  old - 9 times
+		*28.  so - 9 times
+		*29.  them - 9 times
+		*30.  be - 8 times
+
+	10. TOP30 words occuring more than once & longer than 4 letters:
+		*01.  rabbit - 33 times
+		*02.  little - 15 times
+		*03.  hedgehog - 10 times
+		*04.  family - 7 times
+		*05.  mother - 7 times
+		*06.  their - 7 times
+		*07.  sniff - 6 times
+		*08.  thought - 6 times
+		*09.  after - 5 times
+		*10.  cried - 5 times
+		*11.  dinner - 5 times
+		*12.  quickly - 5 times
+		*13.  where - 5 times
+		*14.  across - 4 times
+		*15.  field - 4 times
+		*16.  going - 4 times
+		*17.  grasshoppers - 4 times
+		*18.  morning - 4 times
+		*19.  never - 4 times
+		*20.  quills - 4 times
+		*21.  replied - 4 times
+		*22.  there - 4 times
+		*23.  again - 3 times
+		*24.  before - 3 times
+		*25.  began - 3 times
+		*26.  brook - 3 times
+		*27.  greedy - 3 times
+		*28.  herself - 3 times
+		*29.  hounds - 3 times
+		*30.  house - 3 times
+
+	11. Letters & digits in order of number of occurence count: 
+		*01.  E - 698 times
+		*02.  T - 508 times
+		*03.  O - 486 times
+		*04.  A - 454 times
+		*05.  H - 420 times
+		*06.  I - 399 times
+		*07.  R - 387 times
+		*08.  N - 357 times
+		*09.  S - 343 times
+		*10.  D - 304 times
+		*11.  L - 277 times
+		*12.  G - 186 times
+		*13.  M - 152 times
+		*14.  F - 151 times
+		*15.  B - 150 times
+		*16.  W - 142 times
+		*17.  Y - 141 times
+		*18.  U - 136 times
+		*19.  C - 115 times
+		*20.  P - 109 times
+		*21.  K - 55 times
+		*22.  V - 41 times
+		*23.  X - 35 times
+		*24.  Q - 13 times
+		*25.  J - 7 times
+		*26.  Z - 2 times
+
+	12. Keyword density 2x top list: 
+		*01.  sly fox - 26 times
+		*02.  mr rabbit - 13 times
+		*03.  little rabs - 11 times
+		*04.  mrs hedgehog - 9 times
+		*05.  in the - 7 times
+		*06.  papa rabbit - 7 times
+		*07.  of the - 6 times
+		*08.  the little - 6 times
+		*09.  as he - 5 times
+		*10.  mama rabbit - 5 times
+		*11.  old sly - 5 times
+		*12.  rabbit and - 5 times
+		*13.  rabbit family - 5 times
+		*14.  the sack - 5 times
+		*15.  to be - 5 times
+		*16.  and the - 4 times
+		*17.  at the - 4 times
+		*18.  on the - 4 times
+		*19.  sniff sniff - 4 times
+		*20.  the rabbit - 4 times
+		*21.  across the - 3 times
+		*22.  and as - 3 times
+		*23.  down the - 3 times
+		*24.  good morning - 3 times
+		*25.  had been - 3 times
+		*26.  he said - 3 times
+		*27.  mrs rabbit - 3 times
+		*28.  my mother - 3 times
+		*29.  on his - 3 times
+
+	13. Keyword density 3x top list: 
+		*01.  the little rabs - 6 times
+		*02.  old sly fox - 5 times
+		*03.  the rabbit family - 4 times
+		*04.  across the brook - 2 times
+		*05.  and family were - 2 times
+		*06.  as he was - 2 times
+		*07.  at the thought - 2 times
+		*08.  by sly fox - 2 times
+		*09.  dinner with me - 2 times
+		*10.  down the road - 2 times
+		*11.  field of grasshoppers - 2 times
+		*12.  for the little - 2 times
+		*13.  fox mr rabbit - 2 times
+		*14.  fox with a - 2 times
+		*15.  in this sack - 2 times
+		*16.  little rabs and - 2 times
+		*17.  mother will bake - 2 times
+		*18.  mr rabbit and - 2 times
+		*19.  our little rabs - 2 times
+		*20.  out of the - 2 times
+		*21.  out the quills - 2 times
+		*22.  papa rabbit had - 2 times
+		*23.  rabbit and family - 2 times
+		*24.  said sly fox - 2 times
+		*25.  she thought to - 2 times
+		*26.  sly fox as - 2 times
+		*27.  sly fox mr - 2 times
+		*28.  sly fox was - 2 times
+		*29.  sly fox we - 2 times
+
+
+	Analysis took 0 minutes 1 seconds to complete.

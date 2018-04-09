@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class StatisticalAnalysis {
 
@@ -22,12 +21,12 @@ public class StatisticalAnalysis {
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
                 runAnalysis();
-                occurMoreThanOne();
-                wordsLenMoreThanFour();
                 setSentencesCount();
                 elementsDictionary = sortMapByValues(elementsDictionary);
                 elements2xDictionary = sortMapByValues(elements2xDictionary);
                 elements3xDictionary = sortMapByValues(elements3xDictionary);
+                occurMoreThanOne();
+                wordsLenMoreThanFour();
         }
 
         private void runAnalysis(){

@@ -25,6 +25,9 @@ public class StatisticalAnalysis {
                 occurMoreThanOne();
                 wordsLenMoreThanFour();
                 setSentencesCount();
+                elementsDictionary = sortMapByValues(elementsDictionary);
+                elements2xDictionary = sortMapByValues(elements2xDictionary);
+                elements3xDictionary = sortMapByValues(elements3xDictionary);
         }
 
         private void runAnalysis(){
@@ -34,7 +37,6 @@ public class StatisticalAnalysis {
                         authorsDict.add(temp.toLowerCase());
                         addElementToMap(temp, elementsDictionary);
                         allElementsCount++;
-
                         if(temp.matches("[^\\s]+")) charNoSpacesCount++;
                         if(temp.matches("[A-Za-z0-9]+")) alphaNumCount++;
 
@@ -53,9 +55,6 @@ public class StatisticalAnalysis {
                                 previous = temp;
                         }
                 }
-                elementsDictionary = sortMapByValues(elementsDictionary);
-                elements2xDictionary = sortMapByValues(elements2xDictionary);
-                elements3xDictionary = sortMapByValues(elements3xDictionary);
         }
 
         private void addElementToMap(String nextElement, LinkedHashMap<String, Integer> map){

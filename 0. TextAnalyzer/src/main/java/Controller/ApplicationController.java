@@ -102,6 +102,9 @@ public class ApplicationController {
                 displayAverageWordLength();
                 displaySentencesCount();
                 displayAverageSentenceLength();
+                displayReadingTime();
+                displaySpeakingTime();
+                displayWritingTime();
                 displayTop30Words();
                 displayTop30WordsLongerThan4();
                 displayCharsInOrder();
@@ -161,9 +164,33 @@ public class ApplicationController {
                 saveRecordToFile(file, "\t08. Average sentence length: %d words\n",result);
         }
 
+        private void displayReadingTime(){
+                view.print("\t09. Reading time based on average speed 275 words per minute: %s",
+                        analysisWord.getReadingTime());
+                saveRecordToFile(file,
+                        "\t09. Reading time based on average speed 275 words per minute: %s\n",
+                        analysisWord.getReadingTime());
+        }
+
+        private void displaySpeakingTime(){
+                view.print("\t10. Speaking time based on average speed 180 words per minute: %s",
+                        analysisWord.getSpeakingTime());
+                saveRecordToFile(file,
+                        "\t10. Speaking time based on average speed 180 words per minute: %s\n",
+                        analysisWord.getSpeakingTime());
+        }
+
+        private void displayWritingTime(){
+                view.print("\t11. Hand-writing time based on average speed 68 letters per minute: %s",
+                        analysisChar.getWritingTime());
+                saveRecordToFile(file,
+                        "\t11. Hand-writing time based on average speed 68 letters per minute: %s\n",
+                        analysisChar.getWritingTime());
+        }
+
         private void displayTop30Words() {
-                view.print("\t09. TOP30 words occuring more than once:\n");
-                saveRecordToFile(file, "\t09. TOP30 words occuring more than once:\n\n");
+                view.print("\t12. TOP30 words occuring more than once:\n");
+                saveRecordToFile(file, "\t12. TOP30 words occuring more than once:\n\n");
 
                 List<List> topWords = analysisWord.getOccureMoreThanOne();
                 int amountOfTopWords = 0;
@@ -184,8 +211,8 @@ public class ApplicationController {
         }
 
         private void displayTop30WordsLongerThan4() {
-                view.print("\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n\n");
-                saveRecordToFile(file, "\n\t10. TOP30 words occuring more than once & longer than 4 letters:\n");
+                view.print("\n\t13. TOP30 words occuring more than once & longer than 4 letters:\n\n");
+                saveRecordToFile(file, "\n\t13. TOP30 words occuring more than once & longer than 4 letters:\n");
 
                 List<List> topWordsMoreThan4 = analysisWord.getWordsMoreThanFour();
                 int amountOfTopWords = 0;
@@ -206,8 +233,8 @@ public class ApplicationController {
         }
 
         private void displayCharsInOrder() {
-                view.print("\n\t11. Letters & digits in order of number of occurence count: \n");
-                saveRecordToFile(file, "\n\t11. Letters & digits in order of number of occurence count: \n");
+                view.print("\n\t14. Letters & digits in order of number of occurence count: \n");
+                saveRecordToFile(file, "\n\t14. Letters & digits in order of number of occurence count: \n");
                 List<List> orderedChars = analysisChar.getOccureMoreThanOne();
                 int rankingNumber = 1;
 
@@ -220,8 +247,8 @@ public class ApplicationController {
         }
 
         private void displayTopKeyword2x() {
-                view.print("\n\t12. Keyword density 2x top list: \n\n");
-                saveRecordToFile(file, "\n\t12. Keyword density 2x top list: \n\n");
+                view.print("\n\t15. Keyword density 2x top list: \n\n");
+                saveRecordToFile(file, "\n\t15. Keyword density 2x top list: \n\n");
                 Map<String, Integer> orderedElements = analysisWord.getElements2xDictionary();
                 int rankingNumber = 1;
 
@@ -237,8 +264,8 @@ public class ApplicationController {
         }
 
         private void displayTopKeyword3x() {
-                view.print("\n\t13. Keyword density 3x top list: \n\n");
-                saveRecordToFile(file, "\n\t13. Keyword density 3x top list: \n\n");
+                view.print("\n\t14. Keyword density 3x top list: \n\n");
+                saveRecordToFile(file, "\n\t14. Keyword density 3x top list: \n\n");
                 Map<String, Integer> orderedElements = analysisWord.getElements3xDictionary();
                 int rankingNumber = 1;
 

@@ -11,15 +11,18 @@ public class StatisticalAnalysis {
         private int sentencesCount = 0;
         private List<List> occurMoreThanOne;
         private List<List> wordsMoreThanFour;
-        private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
-        private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
-        private LinkedHashMap<String, Integer> elements3xDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elementsDictionary;
+        private LinkedHashMap<String, Integer> elements2xDictionary;
+        private LinkedHashMap<String, Integer> elements3xDictionary;
         private Set<String> authorsDict = new HashSet<>();
         private String previous = "";
         private String beforePrevious = "";
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
+                elementsDictionary = new LinkedHashMap<>();
+                elements2xDictionary = new LinkedHashMap<>();
+                elements3xDictionary = new LinkedHashMap<>();
                 runAnalysis();
                 setSentencesCount();
                 elementsDictionary = sortMapByValues(elementsDictionary);
@@ -163,5 +166,36 @@ public class StatisticalAnalysis {
 
         public LinkedHashMap<String, Integer> getElements3xDictionary() {
                 return elements3xDictionary;
+        }
+
+        public String getReadingTime(){
+                int days = this.getAllCount() / 396_000;
+                int hours = this.getAllCount() / 16_500;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
+                int minutes = this.getAllCount() / 275;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
+                int seconds = (int)((float)this.getAllCount() % 275 / 275 * 60);
+                return String.format("%d minute(s) %d second(s)", minutes, seconds);
+
+        }
+
+        public String getSpeakingTime() {
+                int days = this.getAllCount() / 259_200;
+                int hours = this.getAllCount() / 10_800;
+                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % 24); }
+                int minutes = this.getAllCount() / 180;
+                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
+                int seconds = (int) ((float) this.getAllCount() % 180 / 180 * 60);
+                return String.format("%d minute(s) %d second(s)", minutes, seconds);
+        }
+
+        public String getWritingTime(){
+                int days = this.getAllCount() / 97_920;
+                int hours = this.getAllCount() / 4_080;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
+                int minutes = this.getAllCount() / 68;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
+                int seconds = (int)((float)this.getAllCount() % 68 / 68 * 60);
+                return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 }

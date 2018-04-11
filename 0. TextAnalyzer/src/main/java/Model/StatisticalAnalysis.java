@@ -1,8 +1,5 @@
 package Model;
 
-import Iterator.CharIterator;
-import Iterator.WordIterator;
-
 import java.util.*;
 
 
@@ -13,28 +10,18 @@ public class StatisticalAnalysis {
         private int alphaNumElementsCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
-        private List<List> occurMoreThanOne;
-        private List<List> wordsMoreThanFour;
-        private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
-        private LinkedHashMap<String, Integer> elements2xDictionary;
-        private LinkedHashMap<String, Integer> elements3xDictionary;
-        private Set<String> authorsDict = new HashSet<>();
         private String previous = "";
         private String beforePrevious = "";
+        private List<List> occurMoreThanOne;
+        private List<List> wordsMoreThanFour;
+        private Set<String> authorsDict = new HashSet<>();
+        private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements3xDictionary = new LinkedHashMap<>();
 
-        public StatisticalAnalysis(CharIterator iterator) {
+        public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
-                runAnalysis(false);
-                elementsDictionary = sortMapByValues(elementsDictionary);
-                occurMoreThanOne();
-                wordsLenMoreThanFour();
-        }
-
-        public StatisticalAnalysis(WordIterator iterator) {
-                this.iterator = iterator;
-                elements2xDictionary = new LinkedHashMap<>();
-                elements3xDictionary = new LinkedHashMap<>();
-                runAnalysis(true);
+                runAnalysis();
                 setSentencesCount();
                 elementsDictionary = sortMapByValues(elementsDictionary);
                 elements2xDictionary = sortMapByValues(elements2xDictionary);
@@ -43,25 +30,24 @@ public class StatisticalAnalysis {
                 wordsLenMoreThanFour();
         }
 
-        private void runAnalysis(boolean isWords){
+        private void runAnalysis(boolean){
                 int flag = 0;
                 while(iterator.hasNext()){
                         String temp = iterator.next();
-                        analyzeElement(temp, flag, isWords);
+                        analyzeElement(temp, flag);
                         if(flag < 2){
                                 flag++;
                         }
                 }
         }
 
-        private void analyzeElement(String temp, int flag, boolean isWords){
+        private void analyzeElement(String temp, int flag){
                 authorsDict.add(temp.toLowerCase());
                 addElementToMap(temp, elementsDictionary);
                 allElementsCount++;
                 if(temp.matches("[^\\s]+")) charNoSpacesCount++;
                 if(temp.matches("[A-Za-z0-9]+")) alphaNumElementsCount++;
 
-                if(isWords) {
                         if (flag == 0) {
                                 previous = temp;
                         } else if (flag == 1) {
@@ -73,7 +59,6 @@ public class StatisticalAnalysis {
                                 addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
                                 beforePrevious = previous;
                                 previous = temp;
-                        }
                 }
         }
 

@@ -63,7 +63,7 @@ public class ApplicationController {
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
-                double milisecondsInOneSecond = 1_000.0f;
+                int milisecondsInOneSecond = 1_000;
                 int secondsInMinute = 60;
                 double elapsedSeconds = timeDelta / milisecondsInOneSecond;
 

@@ -179,15 +179,23 @@ public class StatisticalAnalysis {
 
         }
 
-        public String getSpeakingTime(){
+        public String getSpeakingTime() {
                 int days = this.getAllCount() / 259_200;
                 int hours = this.getAllCount() / 10_800;
-                if(days > 0){ return String.format("%d days %d hours", days, hours % 24); }
+                if (days > 0) { return String.format("%d days %d hours", days, hours % 24); }
                 int minutes = this.getAllCount() / 180;
-                if(hours > 0){ return String.format("%d hours %d minutes", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllCount() % 180 / 180 * 60);
+                if (hours > 0) { return String.format("%d hours %d minutes", hours, minutes % 60); }
+                int seconds = (int) ((float) this.getAllCount() % 180 / 180 * 60);
                 return String.format("%d minutes %d seconds", minutes, seconds);
         }
 
-
+        public String getWritingTime(){
+                int days = this.getAllCount() / 97_920;
+                int hours = this.getAllCount() / 4_080;
+                if(days > 0){ return String.format("%d days %d hours", days, hours % 24); }
+                int minutes = this.getAllCount() / 68;
+                if(hours > 0){ return String.format("%d hours %d minutes", hours, minutes % 60); }
+                int seconds = (int)((float)this.getAllCount() % 68 / 68 * 60);
+                return String.format("%d minutes %d seconds", minutes, seconds);
+        }
 }

@@ -30,7 +30,7 @@ public class StatisticalAnalysis {
                 wordsLenMoreThanFour();
         }
 
-        private void runAnalysis(boolean){
+        private void runAnalysis(){
                 int flag = 0;
                 while(iterator.hasNext()){
                         String temp = iterator.next();
@@ -48,17 +48,17 @@ public class StatisticalAnalysis {
                 if(temp.matches("[^\\s]+")) charNoSpacesCount++;
                 if(temp.matches("[A-Za-z0-9]+")) alphaNumElementsCount++;
 
-                        if (flag == 0) {
-                                previous = temp;
-                        } else if (flag == 1) {
-                                addElementToMap(previous + temp, elements2xDictionary);
-                                beforePrevious = previous;
-                                previous = temp;
-                        } else {
-                                addElementToMap(String.format("%s %s", previous, temp), elements2xDictionary);
-                                addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
-                                beforePrevious = previous;
-                                previous = temp;
+                if (flag == 0) {
+                        previous = temp;
+                } else if (flag == 1) {
+                        addElementToMap(previous + temp, elements2xDictionary);
+                        beforePrevious = previous;
+                        previous = temp;
+                } else {
+                        addElementToMap(String.format("%s %s", previous, temp), elements2xDictionary);
+                        addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
+                        beforePrevious = previous;
+                        previous = temp;
                 }
         }
 

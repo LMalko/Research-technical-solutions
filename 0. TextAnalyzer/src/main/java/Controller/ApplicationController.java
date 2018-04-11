@@ -63,12 +63,15 @@ public class ApplicationController {
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
-                double elapsedSeconds = timeDelta / 1000.0;
+                final int milisecondsInOneSecond = 1_000;
+                final int secondsInMinute = 60;
+                double elapsedSeconds = timeDelta / milisecondsInOneSecond;
 
                 view.print("\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.\n\tThis lexical analysis has been " +
-                        "saved to a file in the same directory.", elapsedSeconds / 60, elapsedSeconds % 60);
+                        "saved to a file in the same directory.",
+                        elapsedSeconds / secondsInMinute, elapsedSeconds % secondsInMinute);
                 saveRecordToFile(file, "\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.",
-                        elapsedSeconds / 60, elapsedSeconds % 60);
+                        elapsedSeconds / secondsInMinute, elapsedSeconds % secondsInMinute);
 
         }
 
@@ -113,8 +116,8 @@ public class ApplicationController {
         }
 
         private void displayCharsCount() {
-                view.print("\t01. All character count: %d", analysisChar.getAllCount());
-                saveRecordToFile(file, "\t01. All character: %d\n", analysisChar.getAllCount());
+                view.print("\t01. All character count: %d", analysisChar.getAllElementsCount());
+                saveRecordToFile(file, "\t01. All character: %d\n", analysisChar.getAllElementsCount());
         }
 
         private void displayCharsNoSpaceCount() {
@@ -124,14 +127,14 @@ public class ApplicationController {
 
         private void displayAlphaNumCharsCount() {
 
-                view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumCount());
-                saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumCount());
+                view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumElementsCount());
+                saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumElementsCount());
         }
 
         private void displayAllWordsCount() {
 
-                view.print("\t04. Words count: %d", analysisWord.getAlphaNumCount());
-                saveRecordToFile(file, "\t04. Words count: %d\n", analysisWord.getAlphaNumCount());
+                view.print("\t04. Words count: %d", analysisWord.getAlphaNumElementsCount());
+                saveRecordToFile(file, "\t04. Words count: %d\n", analysisWord.getAlphaNumElementsCount());
         }
 
         private void displayDictionarySize() {
@@ -143,9 +146,9 @@ public class ApplicationController {
 
         private void displayAverageWordLength() {
                 view.print("\t06. Average word length: %d",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumCount()));
+                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
                 saveRecordToFile(file, "\t06. Average word length: %d\n",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumCount()));
+                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
         }
 
         private void displaySentencesCount() {
@@ -156,9 +159,9 @@ public class ApplicationController {
         private void displayAverageSentenceLength() {
                 int result;
                 try {
-                        result = Math.round(analysisWord.getAlphaNumCount() / analysisChar.getSentencesCount());
+                        result = Math.round(analysisWord.getAlphaNumElementsCount() / analysisChar.getSentencesCount());
                 }catch(ArithmeticException e){
-                        result = analysisChar.getAllCount();
+                        result = analysisChar.getAllElementsCount();
                 }
                 view.print("\t08. Average sentence length: %d words", result);
                 saveRecordToFile(file, "\t08. Average sentence length: %d words\n",result);
@@ -264,8 +267,8 @@ public class ApplicationController {
         }
 
         private void displayTopKeyword3x() {
-                view.print("\n\t14. Keyword density 3x top list: \n\n");
-                saveRecordToFile(file, "\n\t14. Keyword density 3x top list: \n\n");
+                view.print("\n\t16. Keyword density 3x top list: \n\n");
+                saveRecordToFile(file, "\n\t16. Keyword density 3x top list: \n\n");
                 Map<String, Integer> orderedElements = analysisWord.getElements3xDictionary();
                 int rankingNumber = 1;
 

@@ -2,27 +2,29 @@ package Model;
 
 import java.util.*;
 
+
 public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
         private int allElementsCount;
-        private int alphaNumCount;
+        private int alphaNumElementsCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
-        private List<List> occurMoreThanOne;
-        private List<List> wordsMoreThanFour;
-        private LinkedHashMap<String, Integer> elementsDictionary;
-        private LinkedHashMap<String, Integer> elements2xDictionary;
-        private LinkedHashMap<String, Integer> elements3xDictionary;
-        private Set<String> authorsDict = new HashSet<>();
+        private final int secondsInMinute = 60;
+        private final int minutesInHour = 60;
+        private final int hoursInDay = 24;
         private String previous = "";
         private String beforePrevious = "";
+        private String regexAlphaNumeric = "[A-Za-z0-9]+";
+        private List<List> occurMoreThanOne;
+        private List<List> wordsMoreThanFour;
+        private Set<String> authorsDict = new HashSet<>();
+        private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elements3xDictionary = new LinkedHashMap<>();
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
-                elementsDictionary = new LinkedHashMap<>();
-                elements2xDictionary = new LinkedHashMap<>();
-                elements3xDictionary = new LinkedHashMap<>();
                 runAnalysis();
                 setSentencesCount();
                 elementsDictionary = sortMapByValues(elementsDictionary);
@@ -36,26 +38,31 @@ public class StatisticalAnalysis {
                 int flag = 0;
                 while(iterator.hasNext()){
                         String temp = iterator.next();
-                        authorsDict.add(temp.toLowerCase());
-                        addElementToMap(temp, elementsDictionary);
-                        allElementsCount++;
-                        if(temp.matches("[^\\s]+")) charNoSpacesCount++;
-                        if(temp.matches("[A-Za-z0-9]+")) alphaNumCount++;
-
-                        if(flag == 0){
+                        analyzeElement(temp, flag);
+                        if(flag < 2){
                                 flag++;
-                                previous = temp;
-                        }else if(flag == 1){
-                                flag++;
-                                addElementToMap(previous + temp, elements2xDictionary);
-                                beforePrevious = previous;
-                                previous = temp;
-                        }else{
-                                addElementToMap(String.format("%s %s", previous, temp), elements2xDictionary);
-                                addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
-                                beforePrevious = previous;
-                                previous = temp;
                         }
+                }
+        }
+
+        private void analyzeElement(String temp, int flag){
+                authorsDict.add(temp.toLowerCase());
+                addElementToMap(temp, elementsDictionary);
+                allElementsCount++;
+                String regexNotSpaces = "[^\\s]+";
+                if(temp.matches(regexNotSpaces)) charNoSpacesCount++;
+                if(temp.matches(regexAlphaNumeric)) alphaNumElementsCount++;
+
+                if (flag == 0) { previous = temp; }
+                else if (flag == 1) {
+                        addElementToMap(previous + temp, elements2xDictionary);
+                        beforePrevious = previous;
+                        previous = temp;
+                } else {
+                        addElementToMap(String.format("%s %s", previous, temp), elements2xDictionary);
+                        addElementToMap(String.format("%s %s %s", beforePrevious, previous, temp), elements3xDictionary);
+                        beforePrevious = previous;
+                        previous = temp;
                 }
         }
 
@@ -100,7 +107,7 @@ public class StatisticalAnalysis {
 
                 List<List> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
-                        if(elementsDictionary.get(key) > 1 && key.matches("[A-Za-z0-9]+")){
+                        if(elementsDictionary.get(key) > 1 && key.matches(regexAlphaNumeric)){
                                 List<String> temp = new ArrayList<>();
                                 temp.add(key);
                                 temp.add(elementsDictionary.get(key).toString());
@@ -125,8 +132,9 @@ public class StatisticalAnalysis {
         }
 
         private void setSentencesCount(){
+                String regexSentenceEnd = "[.?!] [^?!.]";
                 for(String key: elements2xDictionary.keySet()) {
-                        if (key.matches("[.?!] [^?!.]")) {
+                        if (key.matches(regexSentenceEnd)) {
                                 sentencesCount += elements2xDictionary.get(key);
                         }
                 }
@@ -136,11 +144,11 @@ public class StatisticalAnalysis {
                 return charNoSpacesCount;
         }
 
-        public int getAlphaNumCount() {
-                return alphaNumCount;
+        public int getAlphaNumElementsCount() {
+                return alphaNumElementsCount;
         }
 
-        public int getAllCount() {
+        public int getAllElementsCount() {
                 return allElementsCount;
         }
 
@@ -169,33 +177,42 @@ public class StatisticalAnalysis {
         }
 
         public String getReadingTime(){
-                int days = this.getAllCount() / 396_000;
-                int hours = this.getAllCount() / 16_500;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 275;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllCount() % 275 / 275 * 60);
+                final int wordsPerMinute = 275;
+                final int wordsPerHour = 16_500;
+                final int wordsPerDay = 396_000;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
 
         }
 
         public String getSpeakingTime() {
-                int days = this.getAllCount() / 259_200;
-                int hours = this.getAllCount() / 10_800;
-                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 180;
-                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int) ((float) this.getAllCount() % 180 / 180 * 60);
+                final int wordsPerMinute = 180;
+                final int wordsPerHour = 10_800;
+                final int wordsPerDay = 259_200;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int) ((float) this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 
         public String getWritingTime(){
-                int days = this.getAllCount() / 97_920;
-                int hours = this.getAllCount() / 4_080;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 68;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllCount() % 68 / 68 * 60);
+                final int wordsPerMinute = 68;
+                final int wordsPerHour = 4_080;
+                final int wordsPerDay = 97_920;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 }

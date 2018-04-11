@@ -172,6 +172,14 @@ public class ApplicationController {
                         analysisWord.getReadingTime());
         }
 
+        private void displaySpeakingTime(){
+                view.print("\t10. Speaking time based on average speed 180 words per minute: %s",
+                        analysisWord.getSpeakingTime());
+                saveRecordToFile(file,
+                        "\t10. Speaking time based on average speed 180 words per minute: %s\n",
+                        analysisWord.getSpeakingTime());
+        }
+
 
 
         private void displayTop30Words() {

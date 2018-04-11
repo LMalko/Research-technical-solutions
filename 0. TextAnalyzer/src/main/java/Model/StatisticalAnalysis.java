@@ -11,9 +11,9 @@ public class StatisticalAnalysis {
         private int sentencesCount = 0;
         private List<List> occurMoreThanOne;
         private List<List> wordsMoreThanFour;
-        private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
-        private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
-        private LinkedHashMap<String, Integer> elements3xDictionary = new LinkedHashMap<>();
+        private LinkedHashMap<String, Integer> elementsDictionary;
+        private LinkedHashMap<String, Integer> elements2xDictionary;
+        private LinkedHashMap<String, Integer> elements3xDictionary;
         private Set<String> authorsDict = new HashSet<>();
         private String previous = "";
         private String beforePrevious = "";

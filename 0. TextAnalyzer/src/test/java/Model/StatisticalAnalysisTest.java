@@ -19,8 +19,8 @@ public class StatisticalAnalysisTest {
 
         @Test
         public void getCount() {
-                assertEquals(this.charAnalysis.getAlphaNumCount(), 15085);
-                assertEquals(this.wordAnalysis.getAlphaNumCount(), 3513);
+                assertEquals(this.charAnalysis.getAlphaNumElementsCount(), 15085);
+                assertEquals(this.wordAnalysis.getAlphaNumElementsCount(), 3513);
 
         }
 

@@ -113,8 +113,8 @@ public class ApplicationController {
         }
 
         private void displayCharsCount() {
-                view.print("\t01. All character count: %d", analysisChar.getAllCount());
-                saveRecordToFile(file, "\t01. All character: %d\n", analysisChar.getAllCount());
+                view.print("\t01. All character count: %d", analysisChar.getAllElementsCount());
+                saveRecordToFile(file, "\t01. All character: %d\n", analysisChar.getAllElementsCount());
         }
 
         private void displayCharsNoSpaceCount() {
@@ -158,7 +158,7 @@ public class ApplicationController {
                 try {
                         result = Math.round(analysisWord.getAlphaNumCount() / analysisChar.getSentencesCount());
                 }catch(ArithmeticException e){
-                        result = analysisChar.getAllCount();
+                        result = analysisChar.getAllElementsCount();
                 }
                 view.print("\t08. Average sentence length: %d words", result);
                 saveRecordToFile(file, "\t08. Average sentence length: %d words\n",result);

@@ -140,7 +140,7 @@ public class StatisticalAnalysis {
                 return alphaNumCount;
         }
 
-        public int getAllCount() {
+        public int getAllElementsCount() {
                 return allElementsCount;
         }
 
@@ -169,33 +169,33 @@ public class StatisticalAnalysis {
         }
 
         public String getReadingTime(){
-                int days = this.getAllCount() / 396_000;
-                int hours = this.getAllCount() / 16_500;
+                int days = this.getAllElementsCount() / 396_000;
+                int hours = this.getAllElementsCount() / 16_500;
                 if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 275;
+                int minutes = this.getAllElementsCount() / 275;
                 if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllCount() % 275 / 275 * 60);
+                int seconds = (int)((float)this.getAllElementsCount() % 275 / 275 * 60);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
 
         }
 
         public String getSpeakingTime() {
-                int days = this.getAllCount() / 259_200;
-                int hours = this.getAllCount() / 10_800;
+                int days = this.getAllElementsCount() / 259_200;
+                int hours = this.getAllElementsCount() / 10_800;
                 if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 180;
+                int minutes = this.getAllElementsCount() / 180;
                 if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int) ((float) this.getAllCount() % 180 / 180 * 60);
+                int seconds = (int) ((float) this.getAllElementsCount() % 180 / 180 * 60);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 
         public String getWritingTime(){
-                int days = this.getAllCount() / 97_920;
-                int hours = this.getAllCount() / 4_080;
+                int days = this.getAllElementsCount() / 97_920;
+                int hours = this.getAllElementsCount() / 4_080;
                 if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllCount() / 68;
+                int minutes = this.getAllElementsCount() / 68;
                 if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllCount() % 68 / 68 * 60);
+                int seconds = (int)((float)this.getAllElementsCount() % 68 / 68 * 60);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 }

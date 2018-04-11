@@ -20,6 +20,9 @@ public class StatisticalAnalysis {
 
         public StatisticalAnalysis(Iterator<String> iterator) {
                 this.iterator = iterator;
+                elementsDictionary = new LinkedHashMap<>();
+                elements2xDictionary = new LinkedHashMap<>();
+                elements3xDictionary = new LinkedHashMap<>();
                 runAnalysis();
                 setSentencesCount();
                 elementsDictionary = sortMapByValues(elementsDictionary);
@@ -164,4 +167,6 @@ public class StatisticalAnalysis {
         public LinkedHashMap<String, Integer> getElements3xDictionary() {
                 return elements3xDictionary;
         }
+
+
 }

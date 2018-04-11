@@ -19,14 +19,19 @@ public class StatisticalAnalysisTest {
 
         @Test
         public void getCount() {
-                assertEquals(this.charAnalysis.getAlphaNumElementsCount(), 15085);
-                assertEquals(this.wordAnalysis.getAlphaNumElementsCount(), 3513);
+                assertEquals(this.charAnalysis.getAlphaNumElementsCount(), 64790);
+                assertEquals(this.wordAnalysis.getAlphaNumElementsCount(), 14610);
 
         }
 
         @Test
         public void dictionarySize() {
-                assertEquals(this.wordAnalysis.getDictionarySize(), 1100);
+                assertEquals(this.wordAnalysis.getDictionarySize(), 3366);
+        }
+
+        @Test
+        public void getSentencesCount() {
+                assertEquals(this.charAnalysis.getSentencesCount(), 834);
         }
 
         @Test

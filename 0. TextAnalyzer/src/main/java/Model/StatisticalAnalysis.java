@@ -6,7 +6,7 @@ public class StatisticalAnalysis {
 
         private Iterator<String> iterator;
         private int allElementsCount;
-        private int alphaNumCount;
+        private int alphaNumElementsCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
         private List<List> occurMoreThanOne;
@@ -40,7 +40,7 @@ public class StatisticalAnalysis {
                         addElementToMap(temp, elementsDictionary);
                         allElementsCount++;
                         if(temp.matches("[^\\s]+")) charNoSpacesCount++;
-                        if(temp.matches("[A-Za-z0-9]+")) alphaNumCount++;
+                        if(temp.matches("[A-Za-z0-9]+")) alphaNumElementsCount++;
 
                         if(flag == 0){
                                 flag++;
@@ -136,8 +136,8 @@ public class StatisticalAnalysis {
                 return charNoSpacesCount;
         }
 
-        public int getAlphaNumCount() {
-                return alphaNumCount;
+        public int getAlphaNumElementsCount() {
+                return alphaNumElementsCount;
         }
 
         public int getAllElementsCount() {

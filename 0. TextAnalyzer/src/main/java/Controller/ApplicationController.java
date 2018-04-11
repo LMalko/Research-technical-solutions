@@ -124,14 +124,14 @@ public class ApplicationController {
 
         private void displayAlphaNumCharsCount() {
 
-                view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumCount());
-                saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumCount());
+                view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumElementsCount());
+                saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumElementsCount());
         }
 
         private void displayAllWordsCount() {
 
-                view.print("\t04. Words count: %d", analysisWord.getAlphaNumCount());
-                saveRecordToFile(file, "\t04. Words count: %d\n", analysisWord.getAlphaNumCount());
+                view.print("\t04. Words count: %d", analysisWord.getAlphaNumElementsCount());
+                saveRecordToFile(file, "\t04. Words count: %d\n", analysisWord.getAlphaNumElementsCount());
         }
 
         private void displayDictionarySize() {
@@ -143,9 +143,9 @@ public class ApplicationController {
 
         private void displayAverageWordLength() {
                 view.print("\t06. Average word length: %d",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumCount()));
+                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
                 saveRecordToFile(file, "\t06. Average word length: %d\n",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumCount()));
+                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
         }
 
         private void displaySentencesCount() {
@@ -156,7 +156,7 @@ public class ApplicationController {
         private void displayAverageSentenceLength() {
                 int result;
                 try {
-                        result = Math.round(analysisWord.getAlphaNumCount() / analysisChar.getSentencesCount());
+                        result = Math.round(analysisWord.getAlphaNumElementsCount() / analysisChar.getSentencesCount());
                 }catch(ArithmeticException e){
                         result = analysisChar.getAllElementsCount();
                 }

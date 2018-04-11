@@ -10,9 +10,12 @@ public class StatisticalAnalysis {
         private int alphaNumElementsCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
+        private final int secondsInMinute = 60;
+        private final int minutesInHour = 60;
+        private final int hoursInDay = 24;
         private String previous = "";
         private String beforePrevious = "";
-        String regexAlphaNumeric = "[A-Za-z0-9]+";
+        private String regexAlphaNumeric = "[A-Za-z0-9]+";
         private List<List> occurMoreThanOne;
         private List<List> wordsMoreThanFour;
         private Set<String> authorsDict = new HashSet<>();
@@ -174,33 +177,42 @@ public class StatisticalAnalysis {
         }
 
         public String getReadingTime(){
-                int days = this.getAllElementsCount() / 396_000;
-                int hours = this.getAllElementsCount() / 16_500;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllElementsCount() / 275;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllElementsCount() % 275 / 275 * 60);
+                final int wordsPerMinute = 275;
+                final int wordsPerHour = 16_500;
+                final int wordsPerDay = 396_000;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
 
         }
 
         public String getSpeakingTime() {
-                int days = this.getAllElementsCount() / 259_200;
-                int hours = this.getAllElementsCount() / 10_800;
-                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllElementsCount() / 180;
-                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int) ((float) this.getAllElementsCount() % 180 / 180 * 60);
+                final int wordsPerMinute = 180;
+                final int wordsPerHour = 10_800;
+                final int wordsPerDay = 259_200;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int) ((float) this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 
         public String getWritingTime(){
-                int days = this.getAllElementsCount() / 97_920;
-                int hours = this.getAllElementsCount() / 4_080;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % 24); }
-                int minutes = this.getAllElementsCount() / 68;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % 60); }
-                int seconds = (int)((float)this.getAllElementsCount() % 68 / 68 * 60);
+                final int wordsPerMinute = 68;
+                final int wordsPerHour = 4_080;
+                final int wordsPerDay = 97_920;
+                int days = this.getAllElementsCount() / wordsPerDay;
+                int hours = this.getAllElementsCount() / wordsPerHour;
+                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                int minutes = this.getAllElementsCount() / wordsPerMinute;
+                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
+                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 }

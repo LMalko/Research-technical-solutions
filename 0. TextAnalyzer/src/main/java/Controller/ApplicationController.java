@@ -63,8 +63,8 @@ public class ApplicationController {
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
-                int milisecondsInOneSecond = 1_000;
-                int secondsInMinute = 60;
+                final int milisecondsInOneSecond = 1_000;
+                final int secondsInMinute = 60;
                 double elapsedSeconds = timeDelta / milisecondsInOneSecond;
 
                 view.print("\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.\n\tThis lexical analysis has been " +

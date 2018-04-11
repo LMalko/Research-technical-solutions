@@ -180,7 +180,13 @@ public class ApplicationController {
                         analysisWord.getSpeakingTime());
         }
 
-
+        private void displayWritingTime(){
+                view.print("\t11. Hand-writing time based on average speed 68 letters per minute: %s",
+                        analysisChar.getWritingTime());
+                saveRecordToFile(file,
+                        "\t11. Hand-writing time based on average speed 68 letters per minute: %s\n",
+                        analysisChar.getWritingTime());
+        }
 
         private void displayTop30Words() {
                 view.print("\t12. TOP30 words occuring more than once:\n");

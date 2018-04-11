@@ -267,8 +267,8 @@ public class ApplicationController {
         }
 
         private void displayTopKeyword3x() {
-                view.print("\n\t14. Keyword density 3x top list: \n\n");
-                saveRecordToFile(file, "\n\t14. Keyword density 3x top list: \n\n");
+                view.print("\n\t16. Keyword density 3x top list: \n\n");
+                saveRecordToFile(file, "\n\t16. Keyword density 3x top list: \n\n");
                 Map<String, Integer> orderedElements = analysisWord.getElements3xDictionary();
                 int rankingNumber = 1;
 

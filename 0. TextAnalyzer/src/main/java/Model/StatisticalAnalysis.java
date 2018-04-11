@@ -168,5 +168,16 @@ public class StatisticalAnalysis {
                 return elements3xDictionary;
         }
 
+        public String getReadingTime(){
+                int days = this.getAllCount() / 396_000;
+                int hours = this.getAllCount() / 16_500;
+                if(days > 0){ return String.format("%d days %d hours", days, hours % 24); }
+                int minutes = this.getAllCount() / 275;
+                if(hours > 0){ return String.format("%d hours %d minutes", hours, minutes % 60); }
+                int seconds = (int)((float)this.getAllCount() % 275 / 275 * 60);
+                return String.format("%d minutes %d seconds", minutes, seconds);
+
+        }
+
 
 }

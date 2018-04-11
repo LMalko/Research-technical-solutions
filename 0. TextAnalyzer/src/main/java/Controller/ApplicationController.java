@@ -165,16 +165,14 @@ public class ApplicationController {
         }
 
         private void displayReadingTime(){
-
+                view.print("\t09. Reading time based on average speed 275 words per minute: %s",
+                        analysisWord.getReadingTime());
+                saveRecordToFile(file,
+                        "\t09. Reading time based on average speed 275 words per minute: %s\n",
+                        analysisWord.getReadingTime());
         }
 
-        private void displaySpeakingTime(){
 
-        }
-
-        private void displayWritingTime(){
-
-        }
 
         private void displayTop30Words() {
                 view.print("\t12. TOP30 words occuring more than once:\n");

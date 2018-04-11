@@ -12,6 +12,7 @@ public class StatisticalAnalysis {
         private int sentencesCount = 0;
         private String previous = "";
         private String beforePrevious = "";
+        String regexAlphaNumeric = "[A-Za-z0-9]+";
         private List<List> occurMoreThanOne;
         private List<List> wordsMoreThanFour;
         private Set<String> authorsDict = new HashSet<>();
@@ -45,12 +46,12 @@ public class StatisticalAnalysis {
                 authorsDict.add(temp.toLowerCase());
                 addElementToMap(temp, elementsDictionary);
                 allElementsCount++;
-                if(temp.matches("[^\\s]+")) charNoSpacesCount++;
-                if(temp.matches("[A-Za-z0-9]+")) alphaNumElementsCount++;
+                String regexNotSpaces = "[^\\s]+";
+                if(temp.matches(regexNotSpaces)) charNoSpacesCount++;
+                if(temp.matches(regexAlphaNumeric)) alphaNumElementsCount++;
 
-                if (flag == 0) {
-                        previous = temp;
-                } else if (flag == 1) {
+                if (flag == 0) { previous = temp; }
+                else if (flag == 1) {
                         addElementToMap(previous + temp, elements2xDictionary);
                         beforePrevious = previous;
                         previous = temp;
@@ -103,7 +104,7 @@ public class StatisticalAnalysis {
 
                 List<List> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
-                        if(elementsDictionary.get(key) > 1 && key.matches("[A-Za-z0-9]+")){
+                        if(elementsDictionary.get(key) > 1 && key.matches(regexAlphaNumeric)){
                                 List<String> temp = new ArrayList<>();
                                 temp.add(key);
                                 temp.add(elementsDictionary.get(key).toString());
@@ -128,8 +129,9 @@ public class StatisticalAnalysis {
         }
 
         private void setSentencesCount(){
+                String regexSentenceEnd = "[.?!] [^?!.]";
                 for(String key: elements2xDictionary.keySet()) {
-                        if (key.matches("[.?!] [^?!.]")) {
+                        if (key.matches(regexSentenceEnd)) {
                                 sentencesCount += elements2xDictionary.get(key);
                         }
                 }

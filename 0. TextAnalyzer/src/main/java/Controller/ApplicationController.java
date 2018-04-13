@@ -1,5 +1,7 @@
 package Controller;
 
+import Enum.TimeConvert;
+import Enum.WordsToTime;
 import Iterator.CharIterator;
 import Iterator.WordIterator;
 import Model.FileContent;
@@ -20,6 +22,8 @@ public class ApplicationController {
 
         private File file;
         private String filename;
+        boolean toPrint;
+        boolean toSaveToFile;
         private View view = new View();
 
         private WordIterator wordIterator;
@@ -27,10 +31,13 @@ public class ApplicationController {
 
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
+        private ArrayList<String> analysisResults = new ArrayList<>();
 
 
-        public ApplicationController(String filename) {
+        public ApplicationController(String filename, boolean toPrint, boolean toSaveToFile) {
                 this.filename = filename;
+                this.toPrint = toPrint;
+                this.toSaveToFile = toSaveToFile;
 
                 FileContent fileContent = new FileContent(this.filename);
                 setOutputFile();
@@ -53,26 +60,37 @@ public class ApplicationController {
         public void startAnalysis() {
                 long timeStart = System.currentTimeMillis();
                 String date = getDate();
+                view.print("It takes few minutes for longer texts.\n\n");
 
-                view.print("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\nIt might take few minutes for longer texts.\n\n",
-                        this.filename, date);
-                saveRecordToFile(file, "\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date);
-
+                analysisResults.add(String.format("\n\nDOCUMENT %s LEXICAL ANALYSIS [%s]: \n\n", this.filename, date));
                 runAnalysis();
-                displayAnalysis();
+                gatherAnalysis();
 
                 long timeEnd = System.currentTimeMillis();
                 long timeDelta = timeEnd - timeStart;
-                final int milisecondsInOneSecond = 1_000;
-                final int secondsInMinute = 60;
-                double elapsedSeconds = timeDelta / milisecondsInOneSecond;
+                double elapsedSeconds = timeDelta / TimeConvert.MILISEC_IN_SEC.getConvert();
 
-                view.print("\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.\n\tThis lexical analysis has been " +
-                        "saved to a file in the same directory.",
-                        elapsedSeconds / secondsInMinute, elapsedSeconds % secondsInMinute);
-                saveRecordToFile(file, "\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.",
-                        elapsedSeconds / secondsInMinute, elapsedSeconds % secondsInMinute);
+                analysisResults.add(String.format("\n\n\tAnalysis took %.0f minutes %.0f seconds to complete.\n\t",
+                        elapsedSeconds / TimeConvert.SECS_IN_MIN.getConvert(),
+                        elapsedSeconds % TimeConvert.SECS_IN_MIN.getConvert()));
+                analysisResults.add("This lexical analysis has been saved to a file in the same directory.");
 
+                resolveAnalysis();
+        }
+
+        private void resolveAnalysis(){
+                if(toPrint){
+                        for(String text: analysisResults){
+                                view.print(text);
+                        }
+                }
+                if(toSaveToFile){
+                        int noNeedToPrint = analysisResults.size() - 1;
+                        analysisResults.remove(noNeedToPrint);
+                        for(String text: analysisResults){
+                                saveRecordToFile(file, String.format("%s\n", text));
+                        }
+                }
         }
 
         private String getDate() {
@@ -81,10 +99,10 @@ public class ApplicationController {
                 return dateFormat.format(date);
         }
 
-        private void saveRecordToFile(File file, String text, Object... args) {
+        private void saveRecordToFile(File file, String text) {
                 try {
                         BufferedWriter writer = new BufferedWriter(new FileWriter(file, true));
-                        writer.write(String.format(text, args));
+                        writer.write(text);
                         writer.close();
                 } catch (IOException e) {
                         e.printStackTrace();
@@ -96,188 +114,119 @@ public class ApplicationController {
                 analysisChar = new StatisticalAnalysis(charIterator);
         }
 
-        private void displayAnalysis() {
-                displayCharsCount();
-                displayCharsNoSpaceCount();
-                displayAlphaNumCharsCount();
-                displayAllWordsCount();
-                displayDictionarySize();
-                displayAverageWordLength();
-                displaySentencesCount();
-                displayAverageSentenceLength();
-                displayReadingTime();
-                displaySpeakingTime();
-                displayWritingTime();
-                displayTop30Words();
-                displayTop30WordsLongerThan4();
-                displayCharsInOrder();
-                displayTopKeyword2x();
-                displayTopKeyword3x();
+        private void gatherAnalysis() {
+                gatherCharsCount();
+                gatherCharsNoSpaceCount();
+                gatherAlphaNumCharsCount();
+                gatherAllWordsCount();
+                gatherDictionarySize();
+                gatherAverageWordLength();
+                gatherSentencesCount();
+                gatherAverageSentenceLength();
+                gatherReadingTime();
+                gatherSpeakingTime();
+                gatherWritingTime();
+                gatherTopCollection("\t12. TOP30 words occuring more than once:\n",
+                                                    analysisWord.getOccureMoreThanOne(), 30);
+                gatherTopCollection("\n\t13. TOP30 words occuring more than once & longer than 4 letters:\n\n",
+                                                    analysisWord.getWordsMoreThanFour(), 30);
+                gatherTopCollection("\n\t14. Letters & digits in order of number of occurence count: \n",
+                                                    analysisChar.getOccureMoreThanOne(), 0);
+                gatherTopKeywordDensity("\n\t15. Keyword density 2x top list: \n\n",
+                        analysisWord.getElements2xDictionary(), 30);
+                gatherTopKeywordDensity("\n\t16. Keyword density 3x top list: \n\n",
+                        analysisWord.getElements3xDictionary(), 30);
         }
 
-        private void displayCharsCount() {
-                view.print("\t01. All character count: %d", analysisChar.getAllElementsCount());
-                saveRecordToFile(file, "\t01. All character: %d\n", analysisChar.getAllElementsCount());
+        private void gatherCharsCount() {
+                analysisResults.add(String.format("\t01. All character count: %d", analysisChar.getAllElementsCount()));
         }
 
-        private void displayCharsNoSpaceCount() {
-                view.print("\t02. All character count (no spaces): %d", analysisChar.getCharNoSpacesCount());
-                saveRecordToFile(file, "\t02. All character (no spaces): %d\n", analysisChar.getCharNoSpacesCount());
+        private void gatherCharsNoSpaceCount() {
+                analysisResults.add(String.format("\t02. All character count (no spaces): %d", analysisChar.getCharNoSpacesCount()));
         }
 
-        private void displayAlphaNumCharsCount() {
-
-                view.print("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumElementsCount());
-                saveRecordToFile(file, "\t03. Alphanumeric character count: %d\n", analysisChar.getAlphaNumElementsCount());
+        private void gatherAlphaNumCharsCount() {
+                analysisResults.add(String.format("\t03. Alphanumeric character count: %d", analysisChar.getAlphaNumElementsCount()));
         }
 
-        private void displayAllWordsCount() {
-
-                view.print("\t04. Words count: %d", analysisWord.getAlphaNumElementsCount());
-                saveRecordToFile(file, "\t04. Words count: %d\n", analysisWord.getAlphaNumElementsCount());
+        private void gatherAllWordsCount() {
+                analysisResults.add(String.format("\t04. Words count: %d", analysisWord.getAlphaNumElementsCount()));
         }
 
-        private void displayDictionarySize() {
+        private void gatherDictionarySize() {
                 int dictionarySize = analysisWord.getDictionarySize();
-
-                view.print("\t05. Author's Dictionary (distinct words count): %d", dictionarySize);
-                saveRecordToFile(file, "\t05. Author's Dictionary (distinct words count): %d\n", dictionarySize);
+                analysisResults.add(String.format("\t05. Author's Dictionary (distinct words count): %d", dictionarySize));
         }
 
-        private void displayAverageWordLength() {
-                view.print("\t06. Average word length: %d",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
-                saveRecordToFile(file, "\t06. Average word length: %d\n",
-                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount()));
+        private void gatherAverageWordLength() {
+                analysisResults.add(String.format("\t06. Average word length: %d",
+                        Math.round((float) analysisChar.getCharNoSpacesCount() / analysisWord.getAlphaNumElementsCount())));
         }
 
-        private void displaySentencesCount() {
-                view.print("\t07. Sentences count: %d", analysisChar.getSentencesCount());
-                saveRecordToFile(file, "\t07. Sentences count: %d\n", analysisChar.getSentencesCount());
+        private void gatherSentencesCount() {
+                analysisResults.add(String.format("\t07. Sentences count: %d", analysisChar.getSentencesCount()));
         }
 
-        private void displayAverageSentenceLength() {
+        private void gatherAverageSentenceLength() {
                 int result;
                 try {
                         result = Math.round(analysisWord.getAlphaNumElementsCount() / analysisChar.getSentencesCount());
                 }catch(ArithmeticException e){
                         result = analysisChar.getAllElementsCount();
                 }
-                view.print("\t08. Average sentence length: %d words", result);
-                saveRecordToFile(file, "\t08. Average sentence length: %d words\n",result);
+                analysisResults.add(String.format("\t08. Average sentence length: %d words", result));
         }
 
-        private void displayReadingTime(){
-                view.print("\t09. Reading time based on average speed 275 words per minute: %s",
-                        analysisWord.getReadingTime());
-                saveRecordToFile(file,
-                        "\t09. Reading time based on average speed 275 words per minute: %s\n",
-                        analysisWord.getReadingTime());
+        private void gatherReadingTime(){
+                analysisResults.add(String.format("\t09. Reading time based on average speed 275 words per minute: %s",
+                                analysisWord.getFormattedWordsToTime(WordsToTime.READ_PER_MIN.getConvert(),
+                                WordsToTime.READ_PER_HOUR.getConvert(),
+                                WordsToTime.READ_PER_DAY.getConvert())));
         }
 
-        private void displaySpeakingTime(){
-                view.print("\t10. Speaking time based on average speed 180 words per minute: %s",
-                        analysisWord.getSpeakingTime());
-                saveRecordToFile(file,
-                        "\t10. Speaking time based on average speed 180 words per minute: %s\n",
-                        analysisWord.getSpeakingTime());
+        private void gatherSpeakingTime(){
+                analysisResults.add(String.format("\t10. Speaking time based on average speed 180 words per minute: %s",
+                                analysisWord.getFormattedWordsToTime(WordsToTime.SPEAK_PER_MIN.getConvert(),
+                                WordsToTime.SPEAK_PER_HOUR.getConvert(),
+                                WordsToTime.SPEAK_PER_DAY.getConvert())));
         }
 
-        private void displayWritingTime(){
-                view.print("\t11. Hand-writing time based on average speed 68 letters per minute: %s",
-                        analysisChar.getWritingTime());
-                saveRecordToFile(file,
-                        "\t11. Hand-writing time based on average speed 68 letters per minute: %s\n",
-                        analysisChar.getWritingTime());
+        private void gatherWritingTime(){
+                analysisResults.add(String.format("\t11. Hand-writing time based on average speed 68 letters per minute: %s",
+                                analysisChar.getFormattedWordsToTime(WordsToTime.WRITE_PER_MIN.getConvert(),
+                                WordsToTime.WRITE_PER_HOUR.getConvert(),
+                                WordsToTime.WRITE_PER_DAY.getConvert())));
         }
 
-        private void displayTop30Words() {
-                view.print("\t12. TOP30 words occuring more than once:\n");
-                saveRecordToFile(file, "\t12. TOP30 words occuring more than once:\n\n");
+        private void gatherTopCollection(String header, List<HashMap> collection, int top) {
+                analysisResults.add(header);
+                int counter = 1;
 
-                List<List> topWords = analysisWord.getOccureMoreThanOne();
-                int amountOfTopWords = 0;
-                try {
-                        for (int i = 0; i < 30; i++) {
-                                view.print("\t\t*%02d.  %s - %s times", i + 1,
-                                        topWords.get(i).get(0), topWords.get(i).get(1));
-                                saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1,
-                                        topWords.get(i).get(0), topWords.get(i).get(1));
-                                amountOfTopWords++;
-                        }
-                } catch (IndexOutOfBoundsException exception) {
-                        view.print("\n\t\tOnly %s word(s) occur(s) more than once.",
-                                String.valueOf(amountOfTopWords));
-                        saveRecordToFile(file, "\n\t\tOnly %s word(s) occur(s) more than once.\n",
-                                String.valueOf(amountOfTopWords));
-                }
-        }
-
-        private void displayTop30WordsLongerThan4() {
-                view.print("\n\t13. TOP30 words occuring more than once & longer than 4 letters:\n\n");
-                saveRecordToFile(file, "\n\t13. TOP30 words occuring more than once & longer than 4 letters:\n");
-
-                List<List> topWordsMoreThan4 = analysisWord.getWordsMoreThanFour();
-                int amountOfTopWords = 0;
-                try {
-                        for (int i = 0; i < 30; i++) {
-                                view.print("\t\t*%02d.  %s - %s times", i + 1,
-                                        topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
-                                saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", i + 1,
-                                        topWordsMoreThan4.get(i).get(0), topWordsMoreThan4.get(i).get(1));
-                                amountOfTopWords++;
-                        }
-                } catch (IndexOutOfBoundsException exception) {
-                        view.print("\n\t\tOnly %s word(s) meet(s) the requirements.",
-                                String.valueOf(amountOfTopWords));
-                        saveRecordToFile(file, "\n\t\tOnly %s word(s) meet(s) the requirements.\n",
-                                String.valueOf(amountOfTopWords));
-                }
-        }
-
-        private void displayCharsInOrder() {
-                view.print("\n\t14. Letters & digits in order of number of occurence count: \n");
-                saveRecordToFile(file, "\n\t14. Letters & digits in order of number of occurence count: \n");
-                List<List> orderedChars = analysisChar.getOccureMoreThanOne();
-                int rankingNumber = 1;
-
-                for (int i = 0; i < orderedChars.size(); i++) {
-                        view.print("\t\t*%02d.  %s - %s times", rankingNumber, orderedChars.get(i).get(0),
-                                orderedChars.get(i).get(1));
-                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNumber++, orderedChars.get(i).get(0),
-                                orderedChars.get(i).get(1));
-                }
-        }
-
-        private void displayTopKeyword2x() {
-                view.print("\n\t15. Keyword density 2x top list: \n\n");
-                saveRecordToFile(file, "\n\t15. Keyword density 2x top list: \n\n");
-                Map<String, Integer> orderedElements = analysisWord.getElements2xDictionary();
-                int rankingNumber = 1;
-
-                for (String key : orderedElements.keySet()) {
-                        view.print("\t\t*%02d.  %s - %s times", rankingNumber, key,
-                                orderedElements.get(key));
-                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNumber++, key,
-                                orderedElements.get(key));
-                        if (rankingNumber == 30) {
-                                break;
+                a: for (HashMap pair : collection) {
+                        b: for (Object key : pair.keySet()) {
+                                analysisResults.add(String.format("\t\t*%02d.  %s - %s times", counter, key, pair.get(key)));
+                                counter++;
+                                if (counter > top && top != 0) {
+                                        break a;
+                                }
                         }
                 }
+                if (counter < top && top != 0) {
+                        analysisResults.add(String.format("\n\t\tOnly %s word(s) occur(s) more than once.",
+                                String.valueOf(counter - 1)));
+                }
         }
 
-        private void displayTopKeyword3x() {
-                view.print("\n\t16. Keyword density 3x top list: \n\n");
-                saveRecordToFile(file, "\n\t16. Keyword density 3x top list: \n\n");
-                Map<String, Integer> orderedElements = analysisWord.getElements3xDictionary();
+        private void gatherTopKeywordDensity(String header, Map<String, Integer> elements, int top) {
+                analysisResults.add(header);
+
                 int rankingNumber = 1;
 
-                for (String key : orderedElements.keySet()) {
-                        view.print("\t\t*%02d.  %s - %s times", rankingNumber, key,
-                                orderedElements.get(key));
-                        saveRecordToFile(file, "\t\t*%02d.  %s - %s times\n", rankingNumber++, key,
-                                orderedElements.get(key));
-                        if (rankingNumber == 30) {
+                for (String key : elements.keySet()) {
+                        analysisResults.add(String.format("\t\t*%02d.  %s - %s times", rankingNumber, key, elements.get(key)));
+                        rankingNumber++;
+                        if (rankingNumber > 30) {
                                 break;
                         }
                 }

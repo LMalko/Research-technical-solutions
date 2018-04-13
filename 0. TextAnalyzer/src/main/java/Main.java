@@ -7,7 +7,7 @@ public class Main {
                 int fileNamePosition = 0;
                 String filename = args[fileNamePosition];
 
-                ApplicationController appController = new ApplicationController(filename);
+                ApplicationController appController = new ApplicationController(filename, true, true);
 
                 appController.startAnalysis();
         }

@@ -1,10 +1,12 @@
 package Model;
 
+import Enum.RegexLib;
 import Interface.IterableText;
 import Iterator.CharIterator;
 import Iterator.WordIterator;
+
 import java.io.BufferedReader;
-import java.io.*;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Iterator;
@@ -41,7 +43,7 @@ public class FileContent implements IterableText{
                 FileReader fileReader;
                 BufferedReader bufferedReader;
                 String line;
-                String nextLine = "\n";
+                String nextLine = RegexLib.NEW_LINE.getRegex();
                 StringBuilder sb = new StringBuilder();
 
                 try {

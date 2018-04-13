@@ -1,5 +1,6 @@
 package Iterator;
 
+import Enum.RegexLib;
 import Model.FileContent;
 
 import java.util.Iterator;
@@ -15,8 +16,8 @@ public class WordIterator implements Iterator<String> {
         }
 
         private void stringToWordsCollection(String textContent){
-                String regexNonAlphaNumeric = "[^A-Za-z0-9\\s]";
-                String regexSpaces = "\\s+";
+                String regexNonAlphaNumeric = RegexLib.NOT_ALPHA_NUMERIC_OR_SPACE.getRegex();
+                String regexSpaces = RegexLib.SPACES.getRegex();
                 words = textContent.replaceAll(regexNonAlphaNumeric, "").split(regexSpaces);
         }
 

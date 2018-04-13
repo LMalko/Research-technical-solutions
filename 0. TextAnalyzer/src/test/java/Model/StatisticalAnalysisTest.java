@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class StatisticalAnalysisTest {
 
@@ -36,13 +36,13 @@ public class StatisticalAnalysisTest {
 
         @Test
         public void occurMoreThan() {
-                assertTrue(this.charAnalysis.getOccureMoreThanOne().get(0).get(0).toString().matches("[a-zA-Z0-9]"));
-                assertTrue(this.wordAnalysis.getOccureMoreThanOne().get(0).get(1).toString().matches("[8-9]|[0-9]{2,}"));
+                assertTrue(this.charAnalysis.getOccureMoreThanOne().get(0).keySet().toArray()[0].toString().matches("[a-zA-Z0-9]"));
+                assertTrue(this.wordAnalysis.getOccureMoreThanOne().get(0).values().toArray()[0].toString().matches("[8-9]|[0-9]{2,}"));
         }
 
         @Test
         public void wordsLenMoreThan4() {
-                assertTrue(this.wordAnalysis.getWordsMoreThanFour().get(0).get(0).toString().matches("[a-zA-Z0-9]{4,}"));
                 assertEquals(this.charAnalysis.getWordsMoreThanFour(), new ArrayList<>());
+                assertTrue(this.wordAnalysis.getWordsMoreThanFour().get(0).keySet().toArray()[0].toString().matches("[a-zA-Z0-9]{4,}"));
         }
 }

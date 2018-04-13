@@ -22,8 +22,8 @@ public class ApplicationController {
 
         private File file;
         private String filename;
-        boolean toPrint;
-        boolean toSaveToFile;
+        private boolean toPrint;
+        private boolean toSaveToFile;
         private View view = new View();
 
         private WordIterator wordIterator;

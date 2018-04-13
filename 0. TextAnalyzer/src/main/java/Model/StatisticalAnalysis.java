@@ -1,5 +1,7 @@
 package Model;
 
+import Enum.*;
+
 import java.util.*;
 
 
@@ -10,14 +12,11 @@ public class StatisticalAnalysis {
         private int alphaNumElementsCount;
         private int charNoSpacesCount;
         private int sentencesCount = 0;
-        private final int secondsInMinute = 60;
-        private final int minutesInHour = 60;
-        private final int hoursInDay = 24;
         private String previous = "";
         private String beforePrevious = "";
-        private String regexAlphaNumeric = "[A-Za-z0-9]+";
-        private List<List> occurMoreThanOne;
-        private List<List> wordsMoreThanFour;
+        private String regexAlphaNumeric = RegexLib.ALPHA_NUMERIC.getRegex();
+        private List<HashMap> occurMoreThanOne;
+        private List<HashMap> wordsMoreThanFour;
         private Set<String> authorsDict = new HashSet<>();
         private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
         private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
@@ -49,7 +48,7 @@ public class StatisticalAnalysis {
                 authorsDict.add(temp.toLowerCase());
                 addElementToMap(temp, elementsDictionary);
                 allElementsCount++;
-                String regexNotSpaces = "[^\\s]+";
+                String regexNotSpaces = RegexLib.NO_SPACES.getRegex();
                 if(temp.matches(regexNotSpaces)) charNoSpacesCount++;
                 if(temp.matches(regexAlphaNumeric)) alphaNumElementsCount++;
 
@@ -105,12 +104,11 @@ public class StatisticalAnalysis {
 
         private void occurMoreThanOne(){
 
-                List<List> result = new ArrayList<>();
+                List<HashMap> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
                         if(elementsDictionary.get(key) > 1 && key.matches(regexAlphaNumeric)){
-                                List<String> temp = new ArrayList<>();
-                                temp.add(key);
-                                temp.add(elementsDictionary.get(key).toString());
+                                HashMap temp = new HashMap();
+                                temp.put(key, elementsDictionary.get(key).toString());
                                 result.add(temp);
                         }
                 }
@@ -119,12 +117,11 @@ public class StatisticalAnalysis {
 
         private void wordsLenMoreThanFour(){
 
-                List<List> result = new ArrayList<>();
+                List<HashMap> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
                         if(key.length() > 4 && elementsDictionary.get(key) > 1){
-                                List<String> temp = new ArrayList<>();
-                                temp.add(key);
-                                temp.add(elementsDictionary.get(key).toString());
+                                HashMap temp = new HashMap();
+                                temp.put(key, elementsDictionary.get(key).toString());
                                 result.add(temp);
                         }
                 }
@@ -132,7 +129,7 @@ public class StatisticalAnalysis {
         }
 
         private void setSentencesCount(){
-                String regexSentenceEnd = "[.?!] [^?!.]";
+                String regexSentenceEnd = RegexLib.END_OF_SENTENCE.getRegex();;
                 for(String key: elements2xDictionary.keySet()) {
                         if (key.matches(regexSentenceEnd)) {
                                 sentencesCount += elements2xDictionary.get(key);
@@ -160,11 +157,11 @@ public class StatisticalAnalysis {
                 return authorsDict.size();
         }
 
-        public List<List> getOccureMoreThanOne() {
+        public List<HashMap> getOccureMoreThanOne() {
                 return occurMoreThanOne;
         }
 
-        public List<List> getWordsMoreThanFour() {
+        public List<HashMap> getWordsMoreThanFour() {
                 return wordsMoreThanFour;
         }
 
@@ -176,43 +173,21 @@ public class StatisticalAnalysis {
                 return elements3xDictionary;
         }
 
-        public String getReadingTime(){
-                final int wordsPerMinute = 275;
-                final int wordsPerHour = 16_500;
-                final int wordsPerDay = 396_000;
+        public String getFormattedWordsToTime(int wordsPerMinute, int wordsPerHour, int wordsPerDay){
                 int days = this.getAllElementsCount() / wordsPerDay;
                 int hours = this.getAllElementsCount() / wordsPerHour;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
-                int minutes = this.getAllElementsCount() / wordsPerMinute;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
-                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
-                return String.format("%d minute(s) %d second(s)", minutes, seconds);
 
-        }
-
-        public String getSpeakingTime() {
-                final int wordsPerMinute = 180;
-                final int wordsPerHour = 10_800;
-                final int wordsPerDay = 259_200;
-                int days = this.getAllElementsCount() / wordsPerDay;
-                int hours = this.getAllElementsCount() / wordsPerHour;
-                if (days > 0) { return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
+                if(days > 0){
+                        return String.format("%d day(s) %d hour(s)", days, hours % TimeConvert.HOURS_IN_DAY.getConvert());
+                }
                 int minutes = this.getAllElementsCount() / wordsPerMinute;
-                if (hours > 0) { return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
-                int seconds = (int) ((float) this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
-                return String.format("%d minute(s) %d second(s)", minutes, seconds);
-        }
 
-        public String getWritingTime(){
-                final int wordsPerMinute = 68;
-                final int wordsPerHour = 4_080;
-                final int wordsPerDay = 97_920;
-                int days = this.getAllElementsCount() / wordsPerDay;
-                int hours = this.getAllElementsCount() / wordsPerHour;
-                if(days > 0){ return String.format("%d day(s) %d hour(s)", days, hours % hoursInDay); }
-                int minutes = this.getAllElementsCount() / wordsPerMinute;
-                if(hours > 0){ return String.format("%d hour(s) %d minute(s)", hours, minutes % minutesInHour); }
-                int seconds = (int)((float)this.getAllElementsCount() % wordsPerMinute / wordsPerMinute * secondsInMinute);
+                if(hours > 0){
+                        return String.format("%d hour(s) %d minute(s)", hours, minutes % TimeConvert.MINS_IN_HOUR.getConvert());
+                }
+                int seconds = (int)((float)this.getAllElementsCount()
+                                        % wordsPerMinute / wordsPerMinute * TimeConvert.SECS_IN_MIN.getConvert());
+
                 return String.format("%d minute(s) %d second(s)", minutes, seconds);
         }
 }

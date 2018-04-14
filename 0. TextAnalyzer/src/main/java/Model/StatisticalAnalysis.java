@@ -15,8 +15,8 @@ public class StatisticalAnalysis {
         private String previous = "";
         private String beforePrevious = "";
         private String regexAlphaNumeric = RegexLib.ALPHA_NUMERIC.getRegex();
-        private List<HashMap> occurMoreThanOne;
-        private List<HashMap> wordsMoreThanFour;
+        private List<HashMap<String, Integer>> occurMoreThanOne;
+        private List<HashMap<String, Integer>> wordsMoreThanFour;
         private Set<String> authorsDict = new HashSet<>();
         private LinkedHashMap<String, Integer> elementsDictionary = new LinkedHashMap<>();
         private LinkedHashMap<String, Integer> elements2xDictionary = new LinkedHashMap<>();
@@ -104,7 +104,7 @@ public class StatisticalAnalysis {
 
         private void occurMoreThanOne(){
 
-                List<HashMap> result = new ArrayList<>();
+                List<HashMap<String, Integer>> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
                         if(elementsDictionary.get(key) > 1 && key.matches(regexAlphaNumeric)){
                                 HashMap temp = new HashMap();
@@ -117,7 +117,7 @@ public class StatisticalAnalysis {
 
         private void wordsLenMoreThanFour(){
 
-                List<HashMap> result = new ArrayList<>();
+                List<HashMap<String, Integer>> result = new ArrayList<>();
                 for(String key: elementsDictionary.keySet()){
                         if(key.length() > 4 && elementsDictionary.get(key) > 1){
                                 HashMap temp = new HashMap();
@@ -157,11 +157,11 @@ public class StatisticalAnalysis {
                 return authorsDict.size();
         }
 
-        public List<HashMap> getOccureMoreThanOne() {
+        public List<HashMap<String, Integer>> getOccureMoreThanOne() {
                 return occurMoreThanOne;
         }
 
-        public List<HashMap> getWordsMoreThanFour() {
+        public List<HashMap<String, Integer>> getWordsMoreThanFour() {
                 return wordsMoreThanFour;
         }
 

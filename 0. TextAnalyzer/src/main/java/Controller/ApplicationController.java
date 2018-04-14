@@ -199,7 +199,7 @@ public class ApplicationController {
                                 WordsToTime.WRITE_PER_DAY.getConvert())));
         }
 
-        private void gatherTopCollection(String header, List<HashMap> collection, int top) {
+        private void gatherTopCollection(String header, List<HashMap<String, Integer>> collection, int top) {
                 analysisResults.add(header);
                 int counter = 1;
 

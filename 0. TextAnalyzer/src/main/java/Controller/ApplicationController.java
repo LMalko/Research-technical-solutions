@@ -31,7 +31,7 @@ public class ApplicationController {
 
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
-        private ArrayList<String> analysisResults = new ArrayList<>();
+        private List<String> analysisResults = new ArrayList<>();
 
 
         public ApplicationController(String filename, boolean toPrint, boolean toSaveToFile) {
@@ -199,12 +199,12 @@ public class ApplicationController {
                                 WordsToTime.WRITE_PER_DAY.getConvert())));
         }
 
-        private void gatherTopCollection(String header, List<HashMap> collection, int top) {
+        private void gatherTopCollection(String header, List<HashMap<String, Integer>> collection, int top) {
                 analysisResults.add(header);
                 int counter = 1;
 
-                a: for (HashMap pair : collection) {
-                        b: for (Object key : pair.keySet()) {
+                a: for (HashMap<String, Integer> pair : collection) {
+                        b: for (String key : pair.keySet()) {
                                 analysisResults.add(String.format("\t\t*%02d.  %s - %s times", counter, key, pair.get(key)));
                                 counter++;
                                 if (counter > top && top != 0) {
@@ -226,7 +226,7 @@ public class ApplicationController {
                 for (String key : elements.keySet()) {
                         analysisResults.add(String.format("\t\t*%02d.  %s - %s times", rankingNumber, key, elements.get(key)));
                         rankingNumber++;
-                        if (rankingNumber > 30) {
+                        if (rankingNumber > top) {
                                 break;
                         }
                 }

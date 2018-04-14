@@ -203,8 +203,8 @@ public class ApplicationController {
                 analysisResults.add(header);
                 int counter = 1;
 
-                a: for (HashMap pair : collection) {
-                        b: for (Object key : pair.keySet()) {
+                a: for (HashMap<String, Integer> pair : collection) {
+                        b: for (String key : pair.keySet()) {
                                 analysisResults.add(String.format("\t\t*%02d.  %s - %s times", counter, key, pair.get(key)));
                                 counter++;
                                 if (counter > top && top != 0) {

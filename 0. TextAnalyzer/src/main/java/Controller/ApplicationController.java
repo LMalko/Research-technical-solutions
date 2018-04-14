@@ -31,7 +31,7 @@ public class ApplicationController {
 
         private StatisticalAnalysis analysisWord;
         private StatisticalAnalysis analysisChar;
-        private ArrayList<String> analysisResults = new ArrayList<>();
+        private List<String> analysisResults = new ArrayList<>();
 
 
         public ApplicationController(String filename, boolean toPrint, boolean toSaveToFile) {

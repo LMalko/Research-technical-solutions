@@ -226,7 +226,7 @@ public class ApplicationController {
                 for (String key : elements.keySet()) {
                         analysisResults.add(String.format("\t\t*%02d.  %s - %s times", rankingNumber, key, elements.get(key)));
                         rankingNumber++;
-                        if (rankingNumber > 30) {
+                        if (rankingNumber > top) {
                                 break;
                         }
                 }

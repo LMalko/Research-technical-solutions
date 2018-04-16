@@ -1,4 +1,4 @@
-# 0. TextAnalyzer (Java 9.0.1, Maven 3.5.3, jUnit4)
+# 01. TextAnalyzer (Java 9.0.1, Maven 3.5.3, jUnit4)
 
 Tool for lexical analysis of text data.
 

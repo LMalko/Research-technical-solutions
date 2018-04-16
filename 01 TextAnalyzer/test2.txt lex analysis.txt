@@ -1,0 +1,184 @@
+
+
+DOCUMENT test2.txt LEXICAL ANALYSIS [2018/04/12 19:05:07]: 
+
+	01. All character: 627420
+	02. All character (no spaces): 512137
+	03. Alphanumeric character count: 489550
+	04. Words count: 110664
+	05. Author's Dictionary (distinct words count): 13625
+	06. Average word length: 5
+	07. Sentences count: 5336
+	08. Average sentence length: 20 words
+	09. Reading time based on average speed 275 words per minute: 6 hour(s) 42 minute(s)
+	10. Speaking time based on average speed 180 words per minute: 10 hour(s) 14 minute(s)
+	11. Hand-writing time based on average speed 68 letters per minute: 6 day(s) 9 hour(s)
+	12. TOP30 words occuring more than once:
+
+		*01.  the - 7024 times
+		*02.  of - 3514 times
+		*03.  and - 3207 times
+		*04.  A - 2547 times
+		*05.  to - 2403 times
+		*06.  in - 2143 times
+		*07.  that - 1559 times
+		*08.  his - 1332 times
+		*09.  I - 1312 times
+		*10.  it - 1195 times
+		*11.  he - 1036 times
+		*12.  but - 914 times
+		*13.  with - 896 times
+		*14.  was - 876 times
+		*15.  as - 873 times
+		*16.  for - 824 times
+		*17.  all - 801 times
+		*18.  is - 799 times
+		*19.  at - 685 times
+		*20.  this - 661 times
+		*21.  not - 618 times
+		*22.  him - 563 times
+		*23.  by - 560 times
+		*24.  be - 556 times
+		*25.  from - 548 times
+		*26.  on - 542 times
+		*27.  so - 495 times
+		*28.  there - 477 times
+		*29.  whale - 471 times
+		*30.  you - 437 times
+
+	13. TOP30 words occuring more than once & longer than 4 letters:
+		*01.  there - 477 times
+		*02.  whale - 471 times
+		*03.  which - 324 times
+		*04.  their - 293 times
+		*05.  would - 244 times
+		*06.  though - 219 times
+		*07.  captain - 207 times
+		*08.  mobydick - 205 times
+		*09.  other - 203 times
+		*10.  these - 199 times
+		*11.  about - 184 times
+		*12.  whales - 182 times
+		*13.  those - 178 times
+		*14.  little - 167 times
+		*15.  queequeg - 162 times
+		*16.  great - 161 times
+		*17.  still - 150 times
+		*18.  seemed - 147 times
+		*19.  white - 147 times
+		*20.  before - 146 times
+		*21.  never - 136 times
+		*22.  could - 131 times
+		*23.  first - 131 times
+		*24.  himself - 130 times
+		*25.  after - 129 times
+		*26.  being - 123 times
+		*27.  three - 120 times
+		*28.  every - 119 times
+		*29.  again - 118 times
+		*30.  where - 114 times
+
+	14. Letters & digits in order of number of occurence count: 
+		*01.  E - 59628 times
+		*02.  T - 44864 times
+		*03.  A - 40023 times
+		*04.  O - 35883 times
+		*05.  I - 34026 times
+		*06.  N - 33748 times
+		*07.  S - 32524 times
+		*08.  H - 31748 times
+		*09.  R - 26642 times
+		*10.  L - 21685 times
+		*11.  D - 19274 times
+		*12.  U - 13724 times
+		*13.  M - 12333 times
+		*14.  C - 11802 times
+		*15.  W - 11320 times
+		*16.  G - 10708 times
+		*17.  F - 10678 times
+		*18.  P - 8959 times
+		*19.  Y - 8810 times
+		*20.  B - 8475 times
+		*21.  V - 4508 times
+		*22.  K - 4194 times
+		*23.  Q - 914 times
+		*24.  X - 665 times
+		*25.  J - 596 times
+		*26.  1 - 409 times
+		*27.  Z - 270 times
+		*28.  2 - 221 times
+		*29.  3 - 162 times
+		*30.  4 - 162 times
+		*31.  0 - 116 times
+		*32.  5 - 116 times
+		*33.  8 - 98 times
+		*34.  6 - 96 times
+		*35.  7 - 89 times
+		*36.  9 - 80 times
+
+	15. Keyword density 2x top list: 
+
+		*01.  of the - 959 times
+		*02.  in the - 594 times
+		*03.  to the - 347 times
+		*04.  of his - 196 times
+		*05.  from the - 188 times
+		*06.  to be - 188 times
+		*07.  of a - 179 times
+		*08.  and the - 177 times
+		*09.  on the - 176 times
+		*10.  it was - 167 times
+		*11.  at the - 166 times
+		*12.  for the - 151 times
+		*13.  with the - 148 times
+		*14.  with a - 141 times
+		*15.  in a - 138 times
+		*16.  by the - 130 times
+		*17.  in his - 128 times
+		*18.  it is - 127 times
+		*19.  the whale - 118 times
+		*20.  all the - 109 times
+		*21.  the ship - 109 times
+		*22.  upon the - 109 times
+		*23.  into the - 108 times
+		*24.  the sea - 98 times
+		*25.  as the - 95 times
+		*26.  like a - 90 times
+		*27.  sort of - 89 times
+		*28.  for a - 85 times
+		*29.  out of - 85 times
+
+	16. Keyword density 3x top list: 
+
+		*01.  the sperm whale - 39 times
+		*02.  the white whale - 38 times
+		*03.  of the whale - 37 times
+		*04.  a sort of - 33 times
+		*05.  one of the - 32 times
+		*06.  of the sea - 30 times
+		*07.  out of the - 29 times
+		*08.  part of the - 24 times
+		*09.  of the ship - 22 times
+		*10.  of the boat - 20 times
+		*11.  it is a - 18 times
+		*12.  of the sperm - 18 times
+		*13.  there was a - 18 times
+		*14.  it was a - 16 times
+		*15.  in order to - 15 times
+		*16.  it was the - 15 times
+		*17.  of the pequod - 15 times
+		*18.  to be the - 15 times
+		*19.  by no means - 14 times
+		*20.  it was not - 14 times
+		*21.  of the white - 14 times
+		*22.  the bottom of - 14 times
+		*23.  the townhos story - 14 times
+		*24.  but it was - 13 times
+		*25.  that he was - 13 times
+		*26.  the right whale - 13 times
+		*27.  there is no - 13 times
+		*28.  as if it - 12 times
+		*29.  at the time - 12 times
+
+
+	Analysis took 1 minutes 53 seconds to complete.

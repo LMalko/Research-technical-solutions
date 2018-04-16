@@ -1,0 +1,161 @@
+
+
+DOCUMENT test.txt LEXICAL ANALYSIS [2018/04/14 13:12:02]: 
+
+
+	01. All character count: 1334
+	02. All character count (no spaces): 1031
+	03. Alphanumeric character count: 1031
+	04. Words count: 268
+	05. Author's Dictionary (distinct words count): 141
+	06. Average word length: 4
+	07. Sentences count: 0
+	08. Average sentence length: 1334 words
+	09. Reading time based on average speed 275 words per minute: 0 minute(s) 58 second(s)
+	10. Speaking time based on average speed 180 words per minute: 1 minute(s) 29 second(s)
+	11. Hand-writing time based on average speed 68 letters per minute: 19 minute(s) 37 second(s)
+	12. TOP30 words occuring more than once:
+
+		*01.  the - 19 times
+		*02.  and - 13 times
+		*03.  it - 12 times
+		*04.  I - 10 times
+		*05.  had - 7 times
+		*06.  was - 7 times
+		*07.  A - 6 times
+		*08.  of - 6 times
+		*09.  is - 5 times
+		*10.  me - 5 times
+		*11.  no - 5 times
+		*12.  as - 4 times
+		*13.  been - 4 times
+		*14.  where - 4 times
+		*15.  but - 3 times
+		*16.  figure - 3 times
+		*17.  in - 3 times
+		*18.  music - 3 times
+		*19.  not - 3 times
+		*20.  old - 3 times
+		*21.  to - 3 times
+		*22.  brewery - 2 times
+		*23.  drew - 2 times
+		*24.  fence - 2 times
+		*25.  garden - 2 times
+		*26.  house - 2 times
+		*27.  hurt - 2 times
+		*28.  looking - 2 times
+		*29.  mist - 2 times
+		*30.  moon - 2 times
+
+	13. TOP30 words occuring more than once & longer than 4 letters:
+
+
+		*01.  where - 4 times
+		*02.  figure - 3 times
+		*03.  music - 3 times
+		*04.  brewery - 2 times
+		*05.  fence - 2 times
+		*06.  garden - 2 times
+		*07.  house - 2 times
+		*08.  looking - 2 times
+		*09.  nearer - 2 times
+		*10.  nonsense - 2 times
+
+		Only 10 word(s) occur(s) more than once.
+
+	14. Letters & digits in order of number of occurence count: 
+
+		*01.  E - 143 times
+		*02.  T - 96 times
+		*03.  A - 82 times
+		*04.  N - 82 times
+		*05.  O - 76 times
+		*06.  I - 70 times
+		*07.  S - 63 times
+		*08.  H - 58 times
+		*09.  R - 57 times
+		*10.  D - 53 times
+		*11.  W - 39 times
+		*12.  U - 31 times
+		*13.  L - 30 times
+		*14.  M - 27 times
+		*15.  G - 23 times
+		*16.  F - 21 times
+		*17.  C - 20 times
+		*18.  B - 17 times
+		*19.  Y - 13 times
+		*20.  V - 11 times
+		*21.  P - 10 times
+		*22.  K - 6 times
+
+	15. Keyword density 2x top list: 
+
+
+		*01.  had been - 4 times
+		*02.  and the - 3 times
+		*03.  and where - 3 times
+		*04.  as i - 3 times
+		*05.  of the - 3 times
+		*06.  the old - 3 times
+		*07.  where the - 3 times
+		*08.  and was - 2 times
+		*09.  been and - 2 times
+		*10.  but the - 2 times
+		*11.  drew nearer - 2 times
+		*12.  hurt me - 2 times
+		*13.  i drew - 2 times
+		*14.  i saw - 2 times
+		*15.  moon was - 2 times
+		*16.  music music - 2 times
+		*17.  the figure - 2 times
+		*18.  the moon - 2 times
+		*19.  was not - 2 times
+		*20.  what is - 2 times
+		*21.  a cold - 1 times
+		*22.  a gate - 1 times
+		*23.  a rough - 1 times
+		*24.  a solitary - 1 times
+		*25.  a test - 1 times
+		*26.  a woman - 1 times
+		*27.  about to - 1 times
+		*28.  advanced it - 1 times
+		*29.  afternoon and - 1 times
+		*30.  ajar i - 1 times
+
+	16. Keyword density 3x top list: 
+
+
+		*01.  and where the - 3 times
+		*02.  of the old - 3 times
+		*03.  and the moon - 2 times
+		*04.  as i drew - 2 times
+		*05.  been and where - 2 times
+		*06.  had been and - 2 times
+		*07.  i drew nearer - 2 times
+		*08.  the moon was - 2 times
+		*09.  a cold silvery - 1 times
+		*10.  a gate in - 1 times
+		*11.  a rough fence - 1 times
+		*12.  a solitary figure - 1 times
+		*13.  a test file - 1 times
+		*14.  a woman as - 1 times
+		*15.  about to turn - 1 times
+		*16.  advanced it had - 1 times
+		*17.  afternoon and the - 1 times
+		*18.  ajar i pushed - 1 times
+		*19.  along the desolate - 1 times
+		*20.  and i cried - 1 times
+		*21.  and let me - 1 times
+		*22.  and looking over - 1 times
+		*23.  and the evening - 1 times
+		*24.  and uttered my - 1 times
+		*25.  and was growing - 1 times
+		*26.  and was looking - 1 times
+		*27.  and went in - 1 times
+		*28.  anew and was - 1 times
+		*29.  as i advanced - 1 times
+		*30.  as if much - 1 times
+
+
+	Analysis took 0 minutes 0 seconds to complete.
+	

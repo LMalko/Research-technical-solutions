@@ -8,7 +8,7 @@ public class IntroController {
 
         private FileContent fileContent;
         private String data;
-        private View view;
+        private View view = new View();
 
         IntroController(String fileName){
                 this.fileContent = new FileContent(fileName);

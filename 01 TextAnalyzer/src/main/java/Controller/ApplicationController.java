@@ -199,26 +199,24 @@ public class ApplicationController {
                                 WordsToTime.WRITE_PER_DAY.getConvert())));
         }
 
-        private void gatherTopCollection(String header, List<HashMap<String, Integer>> collection, int top) {
+        private void gatherTopCollection(String header, List<HashMap<String, Integer>> collection, int limit) {
                 analysisResults.add(header);
                 int counter = 1;
 
-                a: for (HashMap<String, Integer> pair : collection) {
-                        b: for (String key : pair.keySet()) {
+                for (HashMap<String, Integer> pair : collection) {
+                        Set<String> currentKeys = pair.keySet();
+                        for(Iterator<String> keyIter = currentKeys.iterator(); keyIter.hasNext() && (counter < limit || limit == 0); counter++){
+                                String key = keyIter.next();
                                 analysisResults.add(String.format("\t\t*%02d.  %s - %s times", counter, key, pair.get(key)));
-                                counter++;
-                                if (counter > top && top != 0) {
-                                        break a;
-                                }
                         }
                 }
-                if (counter < top && top != 0) {
+                if (counter < limit && limit != 0) {
                         analysisResults.add(String.format("\n\t\tOnly %s word(s) occur(s) more than once.",
                                 String.valueOf(counter - 1)));
                 }
         }
 
-        private void gatherTopKeywordDensity(String header, Map<String, Integer> elements, int top) {
+        private void gatherTopKeywordDensity(String header, Map<String, Integer> elements, int limit) {
                 analysisResults.add(header);
 
                 int rankingNumber = 1;
@@ -226,7 +224,7 @@ public class ApplicationController {
                 for (String key : elements.keySet()) {
                         analysisResults.add(String.format("\t\t*%02d.  %s - %s times", rankingNumber, key, elements.get(key)));
                         rankingNumber++;
-                        if (rankingNumber > top) {
+                        if (rankingNumber > limit) {
                                 break;
                         }
                 }

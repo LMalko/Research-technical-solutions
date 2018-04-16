@@ -6,12 +6,11 @@ import java.util.concurrent.TimeUnit;
 
 public class IntroController {
 
-        private FileContent fileContent;
         private String data;
         private View view = new View();
 
         IntroController(String fileName){
-                this.fileContent = new FileContent(fileName);
+                FileContent fileContent = new FileContent(fileName);
                 this.data = fileContent.getData();
         }
 

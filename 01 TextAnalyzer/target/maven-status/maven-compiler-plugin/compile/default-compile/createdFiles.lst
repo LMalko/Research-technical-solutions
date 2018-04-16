@@ -1,0 +1,11 @@
+Main.class
+Controller\ApplicationController.class
+Enum\RegexLib.class
+View\View.class
+Model\FileContent.class
+Model\StatisticalAnalysis.class
+Enum\TimeConvert.class
+Enum\WordsToTime.class
+Iterator\WordIterator.class
+Interface\IterableText.class
+Iterator\CharIterator.class

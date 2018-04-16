@@ -1,6 +1,6 @@
 # 02. SpaceSimulation (Java 9.0.1, Maven 3.5.3, jUnit4)
 
-simulation involving picking correct Rocket objects and send a list of item to the destination.
+Simulation involving picking correct Rocket objects and send a list of item to the destination.
 
 To run app:
 

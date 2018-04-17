@@ -11,7 +11,7 @@ public class IntroController {
 
         IntroController(String fileName){
                 FileContent fileContent = new FileContent(fileName);
-                this.data = fileContent.getData();
+                this.data = fileContent.getDataToString();
         }
 
         public void displayFileContent(){

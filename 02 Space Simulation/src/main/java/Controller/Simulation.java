@@ -11,8 +11,8 @@ public class Simulation {
         private ArrayList<Item> phaseTwoContentCollection = new ArrayList<>();
 
         public Simulation(String phaseOneSource, String phaseTwoSource){
-                String[] phaseOneContent = new FileContent(phaseOneSource).getDataToArray();
-                String[] phaseTwoContent = new FileContent(phaseTwoSource).getDataToArray();
+                String[] phaseOneContent = new FileContent(phaseOneSource).getDataToCollection();
+                String[] phaseTwoContent = new FileContent(phaseTwoSource).getDataToCollection();
 
                 loadItemsFromString(phaseOneContent, phaseOneContentCollection);
                 loadItemsFromString(phaseTwoContent, phaseTwoContentCollection);

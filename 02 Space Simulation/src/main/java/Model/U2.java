@@ -8,12 +8,14 @@ public class U2 extends Rocket{
 
         @Override
         public boolean launch() {
-                return true;
+                double temp= Math.random();
+                return temp > calcChanceOfLaunchExplosion();
         }
 
         @Override
         public boolean land() {
-                return true;
+                double temp= Math.random();
+                return temp > calcChanceOfCrashLanding();
         }
 
         private double calcChanceOfLaunchExplosion(){

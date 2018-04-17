@@ -35,7 +35,7 @@ public class FileContent {
                 FileReader fileReader;
                 BufferedReader bufferedReader;
                 String line;
-                
+
                 try {
 
                         fileReader = new FileReader(new File(this.fileName));

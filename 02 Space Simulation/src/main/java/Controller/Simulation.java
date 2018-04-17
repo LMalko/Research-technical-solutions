@@ -25,16 +25,6 @@ public class Simulation {
                         contentCollection.add(new Item(itemName, Integer.valueOf(itemWeight)));
                 }
         }
-
-        public void prini(){
-                for(int i = 0; i < phaseOneContentCollection.size(); i++){
-                        System.out.println(phaseOneContentCollection.get(i));
-                }
-                for(int i = 0; i < phaseOneContentCollection.size(); i++){
-                        System.out.println(phaseOneContentCollection.get(i));
-                }
-        }
-
 }
 
 

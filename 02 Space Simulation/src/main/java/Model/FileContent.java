@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
 
 public class FileContent {
 
         private String fileName;
-        private String data;
+        private ArrayList<String> data;
 
 
         public FileContent(String fileName){
@@ -18,42 +18,37 @@ public class FileContent {
         }
 
         public String getDataToString() {
+                StringBuilder listString = new StringBuilder();
+
+                for (String string : data)
+                        listString.append(string).append("\n");
+
+                return listString.toString();
+        }
+
+        public ArrayList<String> getDataToCollection(){
                 return data;
         }
 
-        public String[] getDataToCollection(){
-                return data.split("\n");
-        }
-
-        private String textContent(){
-
-                String data;
+        private ArrayList<String> textContent(){
+                ArrayList<String> collection = new ArrayList<>();
                 FileReader fileReader;
                 BufferedReader bufferedReader;
                 String line;
-                String nextLine = "\n";
-                StringBuilder sb = new StringBuilder();
-
+                
                 try {
 
                         fileReader = new FileReader(new File(this.fileName));
                         bufferedReader = new BufferedReader(fileReader);
 
                         while((line = bufferedReader.readLine()) != null) {
-
                                 if(line.length() > 0) {
-                                        sb.append(line.trim());
-                                        sb.append(nextLine);
+                                        collection.add(line.trim());
                                 }
-                        }
-                        data = sb.toString();
-                        if(data.length() == 0) {
-                                throw new NoSuchElementException("No data.");
                         }
                 } catch (IOException e) {
                         data = null;
                 }
-                return data;
+                return collection;
         }
-
 }

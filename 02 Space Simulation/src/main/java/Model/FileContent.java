@@ -17,8 +17,12 @@ public class FileContent {
                 this.data = textContent();
         }
 
-        public String getData() {
+        public String getDataToString() {
                 return data;
+        }
+
+        public String[] getDataToArray(){
+                return data.split("\n");
         }
 
         private String textContent(){

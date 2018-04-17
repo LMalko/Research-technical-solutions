@@ -11,7 +11,7 @@ public class View {
         }
 
         public void print(char character){
-                System.out.println(character);
+                System.out.print(character);
         }
 
         public void clearScreen() {

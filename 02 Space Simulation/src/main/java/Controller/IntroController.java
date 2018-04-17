@@ -18,7 +18,7 @@ public class IntroController {
                 for(char character: this.data.toCharArray()) {
                         view.print(character);
                         try {
-                                long delay = 7;
+                                long delay = 3;
                                 TimeUnit.MILLISECONDS.sleep(delay);
                         } catch (InterruptedException e) {
                                 e.printStackTrace();

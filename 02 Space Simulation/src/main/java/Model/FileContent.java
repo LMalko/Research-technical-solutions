@@ -21,7 +21,7 @@ public class FileContent {
                 return data;
         }
 
-        public String[] getDataToArray(){
+        public String[] getDataToCollection(){
                 return data.split("\n");
         }
 

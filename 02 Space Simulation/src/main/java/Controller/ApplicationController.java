@@ -16,6 +16,5 @@ public class ApplicationController {
                 view.clearScreen();
                 introController.displayFileContent();
                 simulation = new Simulation("resources/Phase1.txt", "resources/Phase2.txt");
-
         }
 }

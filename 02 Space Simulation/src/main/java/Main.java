@@ -7,7 +7,11 @@ public class Main {
         public static void main(String[] args) {
 
                 ApplicationController appController = new ApplicationController(FILENAME);
-                appController.startApp();
+                try {
+                        appController.startApp();
+                } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                }
 
         }
 }

@@ -1,7 +1,14 @@
 
 The mission is to send a list of items (Habitats, bunkers, food supplies, and rovers) to Mars, and to pick the correct fleet of rockets.
 *
-2 rocket prototypes were designed and the simulation will decide which types to use.
+4 rocket prototypes were designed and the simulation will decide which types to use.
+*
+U-0
+Zero chance of crashing or explosion but very expensive and small cargo.
+*
+Rocket cost = $150 Million
+Rocket weight = 5 Tonnes
+Max weight (with cargo) = 7 Tonnes
 *
 U-1
 *
@@ -26,6 +33,14 @@ Max weight (with cargo) = 29 Tonnes
 Chance of launch explosion = 4% * (cargo carried / cargo limit)
 Chance of landing crash = 8% * (cargo carried / cargo limit)
 *
+U4-Prototype
+Rocket undergoing tests, good price, loads of space. High chances of crashing or explosion.
+*
+Rocket cost = $150 Million
+Rocket weight = 25 Tonnes
+Max weight (with cargo) = 40 Tonnes
+Chance of launch explosion = 25% * (cargo carried / cargo limit)
+Chance of landing crash = 15% * (cargo carried / cargo limit)
 **
 THE MISSION
 *

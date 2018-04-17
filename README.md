@@ -6,7 +6,7 @@ To run app:
 
 1. Navigate to directory.
 2. mvn clean package
-3. java -jar target/java -jar target/SpaceSimulation-1.0-SNAPSHOT.jar
+3. java -jar target/SpaceSimulation-1.0-SNAPSHOT.jar
 
 sources:
 - https://classroom.udacity.com

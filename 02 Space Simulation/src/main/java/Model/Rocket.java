@@ -16,6 +16,14 @@ public class Rocket implements Spaceship{
                 this.maxWeightWithCargoInTonnes = maxWeightWithCargoInTonnes;
         }
 
+        public int getMaxWeightWithCargoInTonnes() {
+                return maxWeightWithCargoInTonnes;
+        }
+
+        public int getCargoCarried() {
+                return cargoCarried;
+        }
+
         @Override
         public boolean launch() {
                 return true;

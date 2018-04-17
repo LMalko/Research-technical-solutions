@@ -16,13 +16,13 @@ public class U1 extends Rocket{
                 return true;
         }
 
-        private double calculateChanceOfExplosion(){
+        private double calcChanceOfLaunchExplosion(){
                 float launchExplosionCoefficient = 0.05f;
                 double chanceOfExplosion = launchExplosionCoefficient * (this.getCargoCarried() / this.getMaxWeightWithCargoInTonnes());
                 return Math.round(chanceOfExplosion * 100.0) / 100.0;
         }
 
-        private double calculateChanceOfCrashLanding(){
+        private double calcChanceOfCrashLanding(){
                 float crashLandingCoefficient = 0.01f;
                 double chanceOfCrash = crashLandingCoefficient * (this.getCargoCarried() / this.getMaxWeightWithCargoInTonnes());
                 return Math.round(chanceOfCrash * 100.0) / 100.0;

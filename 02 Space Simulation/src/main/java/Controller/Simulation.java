@@ -11,18 +11,27 @@ public class Simulation {
         private ArrayList<Item> phaseTwoContentCollection = new ArrayList<>();
 
         public Simulation(String phaseOneSource, String phaseTwoSource){
-                String[] phaseOneContent = new FileContent(phaseOneSource).getDataToCollection();
-                String[] phaseTwoContent = new FileContent(phaseTwoSource).getDataToCollection();
+                ArrayList<String> phaseOneContent = new FileContent(phaseOneSource).getDataToCollection();
+                ArrayList<String> phaseTwoContent = new FileContent(phaseTwoSource).getDataToCollection();
 
                 loadItemsFromString(phaseOneContent, phaseOneContentCollection);
                 loadItemsFromString(phaseTwoContent, phaseTwoContentCollection);
         }
 
-        private void loadItemsFromString(String[] source, ArrayList<Item> contentCollection){
-                for(int i =0; i < source.length; i++){
-                        String itemName = source[i].split("=")[0];
-                        String itemWeight = source[i].split("=")[1];
+        private void loadItemsFromString(ArrayList<String> source, ArrayList<Item> contentCollection){
+                for(int i =0; i < source.size(); i++){
+                        String itemName = source.get(i).split("=")[0];
+                        String itemWeight = source.get(i).split("=")[1];
                         contentCollection.add(new Item(itemName, Integer.valueOf(itemWeight)));
+                }
+        }
+
+        public void prini(){
+                for(int i = 0; i < phaseOneContentCollection.size(); i++){
+                        System.out.println(phaseOneContentCollection.get(i));
+                }
+                for(int i = 0; i < phaseOneContentCollection.size(); i++){
+                        System.out.println(phaseOneContentCollection.get(i));
                 }
         }
 

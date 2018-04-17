@@ -2,7 +2,7 @@ package Model;
 
 import Interface.Spaceship;
 
-public class Rocket implements Spaceship{
+public class Rocket implements Spaceship, Cloneable{
 
         private int costInMlnDollars;
         private int weighInTonnes;
@@ -10,7 +10,7 @@ public class Rocket implements Spaceship{
         private int cargoCarried;
 
         public Rocket(int costInMlnDollars, int weighInTonnes, int maxWeightWithCargoInTonnes) {
-                this.cargoCarried = 0;
+                this.cargoCarried = maxWeightWithCargoInTonnes;
                 this.costInMlnDollars = costInMlnDollars;
                 this.weighInTonnes = weighInTonnes;
                 this.maxWeightWithCargoInTonnes = maxWeightWithCargoInTonnes;
@@ -24,9 +24,18 @@ public class Rocket implements Spaceship{
                 return cargoCarried;
         }
 
+        public void setCargoCarried(int load){
+                this.cargoCarried = load;
+        }
+
         @Override
         public boolean launch() {
                 return true;
+        }
+
+        @Override
+        public Rocket clone() throws CloneNotSupportedException {
+                return (Rocket)super.clone();
         }
 
         @Override

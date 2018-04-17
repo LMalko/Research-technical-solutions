@@ -2,8 +2,8 @@ package Model;
 
 public class U2 extends Rocket{
 
-        public U2(int costInMlnDollars, int weighInTonnes, int maxWeightWithCargoInTonnes) {
-                super(costInMlnDollars, weighInTonnes, maxWeightWithCargoInTonnes);
+        public U2() {
+                super(120, 18, 29);
         }
 
         @Override

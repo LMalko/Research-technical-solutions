@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.FileContent;
+import Enum.RegexLib;
 import Model.Item;
 import Model.Rocket;
 import View.View;
@@ -24,8 +25,8 @@ class Simulation {
 
         private void loadItemsFromString(ArrayList<String> source, ArrayList<Item> contentCollection){
                 for (String aSource : source) {
-                        String itemName = aSource.split("=")[0];
-                        String itemWeight = aSource.split("=")[1];
+                        String itemName = aSource.split(RegexLib.EQUALS_SIGN.getRegex())[0];
+                        String itemWeight = aSource.split(RegexLib.EQUALS_SIGN.getRegex())[1];
                         contentCollection.add(new Item(itemName, Integer.valueOf(itemWeight)));
                 }
         }
@@ -53,7 +54,7 @@ class Simulation {
 
         public double getRocketsRequired(ArrayList<Rocket> loadedRockets) throws CloneNotSupportedException {
                 double rocketCounter = 1;
-                String rocketType = loadedRockets.get(0).getClass().toString().split("\\.")[1];
+                String rocketType = loadedRockets.get(0).getClass().toString().split(RegexLib.DOT.getRegex())[1];
                 for (int i = 0; i < loadedRockets.size(); i++, rocketCounter++) {
                         Rocket rocket = loadedRockets.get(i);
                         boolean isLaunch = rocket.launch();

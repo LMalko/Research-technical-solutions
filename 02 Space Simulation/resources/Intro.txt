@@ -4,11 +4,11 @@ The mission is to send a list of items (Habitats, bunkers, food supplies, and ro
 4 rocket prototypes were designed and the simulation will decide which types to use.
 *
 U-0
-Zero chance of crashing or explosion but very expensive and small cargo.
+Zero chance of crashing or explosion but expensive and small cargo.
 *
-Rocket cost = $150 Million
+Rocket cost = $86 Million
 Rocket weight = 5 Tonnes
-Max weight (with cargo) = 7 Tonnes
+Max weight (with cargo) = 14 Tonnes
 *
 U-1
 *
@@ -27,16 +27,16 @@ The U2 Rocket heavier than the U-1 but much safer and can carry a lot more cargo
  
 It has a greater chance of crashing while landing than while launching, but just like the U-1 both chances depend on the amount of cargo carried.
 *
-Rocket cost = $120 Million
-Rocket weight = 18 Tonnes
-Max weight (with cargo) = 29 Tonnes
+Rocket cost = $125 Million
+Rocket weight = 20 Tonnes
+Max weight (with cargo) = 24 Tonnes
 Chance of launch explosion = 4% * (cargo carried / cargo limit)
 Chance of landing crash = 8% * (cargo carried / cargo limit)
 *
 U4-Prototype
 Rocket undergoing tests, good price, loads of space. High chances of crashing or explosion.
 *
-Rocket cost = $150 Million
+Rocket cost = $151 Million
 Rocket weight = 25 Tonnes
 Max weight (with cargo) = 40 Tonnes
 Chance of launch explosion = 25% * (cargo carried / cargo limit)

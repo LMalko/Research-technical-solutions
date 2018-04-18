@@ -16,6 +16,10 @@ public class Rocket implements Spaceship, Cloneable{
                 this.maxWeightWithCargoInTonnes = maxWeightWithCargoInTonnes;
         }
 
+        public int getCostInMlnDollars() {
+                return costInMlnDollars;
+        }
+
         public int getMaxWeightWithCargoInTonnes() {
                 return maxWeightWithCargoInTonnes;
         }

@@ -3,6 +3,7 @@ package Controller;
 import Model.FileContent;
 import Model.Item;
 import Model.Rocket;
+import View.View;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ class Simulation {
 
         private ArrayList<Item> phaseOneContentCollection = new ArrayList<>();
         private ArrayList<Item> phaseTwoContentCollection = new ArrayList<>();
+        private View view = new View();
 
         Simulation(String phaseOneSource, String phaseTwoSource){
                 ArrayList<String> phaseOneContent = new FileContent(phaseOneSource).getDataToCollection();
@@ -47,6 +49,28 @@ class Simulation {
                         rocketList.add(temp);
                 }
                 return rocketList;
+        }
+
+        public double runSimulation(ArrayList<Rocket> loadedRockets) throws CloneNotSupportedException {
+                double totalCosts = 0;
+                int counter = 0;
+                for (Rocket rocket : loadedRockets) {
+                        boolean isLaunch = rocket.launch();
+                        if (!isLaunch) {
+                                loadedRockets.add(rocket.clone());
+                                view.print("Rocket %s nr. %f exploded during launch, prepare another one.", rocket.getClass(), counter);
+                        } else {
+                                boolean isLand = rocket.land();
+                                if (!isLand) {
+                                        loadedRockets.add(rocket.clone());
+                                        view.print("Rocket %s nr. %f crash landed, prepare another one.", rocket.getClass(), counter);
+                                }
+                        }
+                        counter++;
+                        totalCosts += rocket.getCostInMlnDollars();
+                }
+                view.print("%f %s rockets were necessary");
+                return totalCosts;
         }
 }
 

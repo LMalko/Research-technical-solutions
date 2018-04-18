@@ -1,5 +1,6 @@
 package Controller;
 
+import Enum.*;
 import Model.*;
 import View.View;
 
@@ -28,6 +29,15 @@ public class ApplicationController {
         private ArrayList<Rocket> U2groupPhaseTwo;
         private ArrayList<Rocket> U4groupPhaseTwo;
 
+        private double rocketsU0required1;
+        private double rocketsU1required1;
+        private double rocketsU2required1;
+        private double rocketsU4required1;
+        private double rocketsU0required2;
+        private double rocketsU1required2;
+        private double rocketsU2required2;
+        private double rocketsU4required2;
+
         public ApplicationController(String filename){
                 introController = new IntroController(filename);
         }
@@ -55,7 +65,6 @@ public class ApplicationController {
                 assignRocketGroupsPhaseOne();
                 view.delayPrint("\nPreparing rocket groups phase two .... \n" , 10);
                 assignRocketGroupsPhaseTwo();
-
         }
 
         private void assignRocketTypes(){
@@ -80,31 +89,40 @@ public class ApplicationController {
         }
 
         private void runSimulations() throws CloneNotSupportedException {
-                double rocketsU0required1 = simulation.getRocketsRequired(U0groupPhaseOne);
-                double rocketsU1required1 = simulation.getRocketsRequired(U1groupPhaseOne);
-                double rocketsU2required1 = simulation.getRocketsRequired(U2groupPhaseOne);
-                double rocketsU4required1 = simulation.getRocketsRequired(U4groupPhaseOne);
-                double rocketsU0required2 = simulation.getRocketsRequired(U0groupPhaseTwo);
-                double rocketsU1required2 = simulation.getRocketsRequired(U1groupPhaseTwo);
-                double rocketsU2required2 = simulation.getRocketsRequired(U2groupPhaseTwo);
-                double rocketsU4required2 = simulation.getRocketsRequired(U4groupPhaseTwo);
+                setRocketGroups();
 
-                double U0cost = (rocketsU0required1 + rocketsU0required2) * templateU0.getCostInMlnDollars() / 1_000_000;
-                double U1cost = (rocketsU1required1 + rocketsU1required2) * templateU1.getCostInMlnDollars() / 1_000_000;
-                double U2cost = (rocketsU2required1 + rocketsU2required2) * templateU2.getCostInMlnDollars() / 1_000_000;
-                double U4cost = (rocketsU4required1 + rocketsU4required2) * templateU4.getCostInMlnDollars() / 1_000_000;
+                double U0cost = (rocketsU0required1 + rocketsU0required2) *
+                        templateU0.getCostInMlnDollars() / MathLib.MILION.getExp();
+                double U1cost = (rocketsU1required1 + rocketsU1required2) *
+                        templateU1.getCostInMlnDollars() / MathLib.MILION.getExp();
+                double U2cost = (rocketsU2required1 + rocketsU2required2) *
+                        templateU2.getCostInMlnDollars() / MathLib.MILION.getExp();
+                double U4cost = (rocketsU4required1 + rocketsU4required2) *
+                        templateU4.getCostInMlnDollars() / MathLib.MILION.getExp();
 
                 view.delayPrint(String.format("\n\nResults:\nFor phase one we need %f rockets U0, %f U1, %f U2 or %f U4-Prototype." +
                         "\nFor phase two we need %f rockets U0, %f U1, %f U2 or %f U4-Prototype.\n\nSo total cost when using each" +
                         "type of rocket is: \n U0 - %f bln $,\n U1 - %f bln $,\n U2 - %f bln $,\n U4-Prototype - %f bln $", rocketsU0required1,
-                        rocketsU1required1, rocketsU2required1, rocketsU4required1, rocketsU0required2, rocketsU1required2, rocketsU2required2,
-                        rocketsU4required2, U0cost, U1cost, U2cost, U4cost),5);
+                        rocketsU1required1, rocketsU2required1, rocketsU4required1, rocketsU0required2,
+                        rocketsU1required2, rocketsU2required2, rocketsU4required2, U0cost, U1cost,
+                        U2cost, U4cost),5);
+        }
+
+        private void setRocketGroups() throws CloneNotSupportedException {
+                rocketsU0required1 = simulation.getRocketsRequired(U0groupPhaseOne);
+                rocketsU1required1 = simulation.getRocketsRequired(U1groupPhaseOne);
+                rocketsU2required1 = simulation.getRocketsRequired(U2groupPhaseOne);
+                rocketsU4required1 = simulation.getRocketsRequired(U4groupPhaseOne);
+                rocketsU0required2 = simulation.getRocketsRequired(U0groupPhaseTwo);
+                rocketsU1required2 = simulation.getRocketsRequired(U1groupPhaseTwo);
+                rocketsU2required2 = simulation.getRocketsRequired(U2groupPhaseTwo);
+                rocketsU4required2 = simulation.getRocketsRequired(U4groupPhaseTwo);
         }
 
         private void startAgain() throws CloneNotSupportedException {
                 view.print("\n\nStart again? Press y else quit.");
                 String userChoice = String.valueOf(scanner.nextLine()).toLowerCase();
-                if(userChoice.equals("y")){
+                if(userChoice.equals(RegexLib.Y_SIGN.getRegex())){
                         setSimulations();
                         runSimulations();
                         startAgain();

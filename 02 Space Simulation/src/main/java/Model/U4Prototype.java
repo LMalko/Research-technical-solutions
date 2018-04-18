@@ -3,7 +3,7 @@ package Model;
 public class U4Prototype extends Rocket{
 
         public U4Prototype() {
-                super(151, 25, 40);
+                super(151, 40);
         }
 
         @Override

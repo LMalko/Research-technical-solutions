@@ -3,7 +3,7 @@ package Model;
 public class U2 extends Rocket{
 
         public U2() {
-                super(125, 20, 24);
+                super(125, 24);
         }
 
         @Override

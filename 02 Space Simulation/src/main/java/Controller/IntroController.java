@@ -15,6 +15,6 @@ public class IntroController {
         }
 
         public void displayData(){
-                view.delayPrint(this.data);
+                view.delayPrint(this.data, 2);
         }
 }

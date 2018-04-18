@@ -21,11 +21,10 @@ public class View {
                 System.out.flush();
         }
 
-        public void delayPrint(String text){
+        public void delayPrint(String text, long delay){
                 for(char character: text.toCharArray()) {
                         print(character);
                         try {
-                                long delay = 2;
                                 TimeUnit.MILLISECONDS.sleep(delay);
                         } catch (InterruptedException e) {
                                 e.printStackTrace();

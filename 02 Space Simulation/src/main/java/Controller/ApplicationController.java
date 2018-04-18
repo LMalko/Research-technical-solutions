@@ -4,12 +4,14 @@ import Model.*;
 import View.View;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ApplicationController {
 
         private IntroController introController;
         private View view = new View();
         private Simulation simulation;
+        private Scanner scanner = new Scanner(System.in);
 
         private U0 templateU0;
         private U1 templateU1;
@@ -31,10 +33,20 @@ public class ApplicationController {
         }
 
         public void startApp() throws CloneNotSupportedException {
-                view.clearScreen();
-                introController.displayFileContent();
-                simulation = new Simulation("resources/Phase1.txt", "resources/Phase2.txt");
 
+                view.clearScreen();
+                introController.displayData();
+
+                scanner.nextLine();
+                setSimulations();
+                scanner.close();
+
+        }
+
+        private void setSimulations() throws CloneNotSupportedException {
+                view.clearScreen();
+                view.delayPrint("\nPreparing simulation .... \n" , 10);
+                simulation = new Simulation("resources/Phase1.txt", "resources/Phase2.txt");
                 assignRocketTypes();
                 assignRocketGroupsPhaseOne();
                 assignRocketGroupsPhaseTwo();

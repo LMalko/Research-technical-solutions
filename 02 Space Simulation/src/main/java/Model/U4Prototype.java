@@ -18,7 +18,7 @@ public class U4Prototype extends Rocket{
                 return temp > calcChanceOfCrashLanding();
         }
 
-        public double calcChanceOfLaunchExplosion(){
+        private double calcChanceOfLaunchExplosion(){
                 float launchExplosionCoefficient = 0.25f;
                 double chanceOfExplosion = launchExplosionCoefficient * (this.getCargoCarried() / this.getMaxWeightWithCargoInTonnes());
                 return Math.round(chanceOfExplosion * 100.0) / 100.0;

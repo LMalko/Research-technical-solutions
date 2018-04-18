@@ -5,10 +5,16 @@ import View.View;
 
 public class IntroController {
 
+        private String data;
+        private View view = new View();
+
         IntroController(String fileName){
                 FileContent fileContent = new FileContent(fileName);
-                String data = fileContent.getDataToString();
-                View view = new View();
-                view.delayPrint(data);
+                this.data = fileContent.getDataToString();
+
+        }
+
+        public void displayData(){
+                view.delayPrint(this.data);
         }
 }

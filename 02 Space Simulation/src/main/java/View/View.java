@@ -1,5 +1,7 @@
 package View;
 
+import java.util.concurrent.TimeUnit;
+
 public class View {
 
         public void print(String text, Object ... args){
@@ -10,12 +12,23 @@ public class View {
                 System.out.println(text);
         }
 
-        public void print(char character){
+        private void print(char character){
                 System.out.print(character);
         }
 
         public void clearScreen() {
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
+        }
+
+        public void delayPrint(String text, long delay){
+                for(char character: text.toCharArray()) {
+                        print(character);
+                        try {
+                                TimeUnit.MILLISECONDS.sleep(delay);
+                        } catch (InterruptedException e) {
+                                e.printStackTrace();
+                        }
+                }
         }
 }

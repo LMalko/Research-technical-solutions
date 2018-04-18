@@ -3,6 +3,7 @@ package Controller;
 import Model.FileContent;
 import Model.Item;
 import Model.Rocket;
+import View.View;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ class Simulation {
 
         private ArrayList<Item> phaseOneContentCollection = new ArrayList<>();
         private ArrayList<Item> phaseTwoContentCollection = new ArrayList<>();
+        private View view = new View();
 
         Simulation(String phaseOneSource, String phaseTwoSource){
                 ArrayList<String> phaseOneContent = new FileContent(phaseOneSource).getDataToCollection();
@@ -29,7 +31,7 @@ class Simulation {
         }
 
         public ArrayList<Rocket> loadRockets(int phase, Rocket rocket) throws CloneNotSupportedException {
-                if(phase != 1 && phase != 2){ throw new InvalidParameterException("Only phase 1 or 2 allowed."); };
+                if(phase != 1 && phase != 2){ throw new InvalidParameterException("Only phase 1 or 2 allowed."); }
 
                 int weightOfItems;
                 if(phase == 1){weightOfItems = phaseOneContentCollection.stream().mapToInt(Item::getWeight).sum();}
@@ -47,6 +49,27 @@ class Simulation {
                         rocketList.add(temp);
                 }
                 return rocketList;
+        }
+
+        public double getRocketsRequired(ArrayList<Rocket> loadedRockets) throws CloneNotSupportedException {
+                double rocketCounter = 1;
+                String rocketType = loadedRockets.get(0).getClass().toString().split("\\.")[1];
+                for (int i = 0; i < loadedRockets.size(); i++, rocketCounter++) {
+                        Rocket rocket = loadedRockets.get(i);
+                        boolean isLaunch = rocket.launch();
+                        if (!isLaunch) {
+                                loadedRockets.add(rocket.clone());
+                                view.print("Rocket %s nr. %f exploded during launch, prepare another one.", rocketType, rocketCounter);
+                        } else {
+                                boolean isLand = rocket.land();
+                                if (!isLand) {
+                                        loadedRockets.add(rocket.clone());
+                                        view.print("Rocket %s nr. %f crash landed, prepare another one.", rocketType, rocketCounter);
+                                }
+                        }
+                }
+                view.print("%f %s rockets were necessary", rocketCounter, rocketType);
+                return rocketCounter;
         }
 }
 

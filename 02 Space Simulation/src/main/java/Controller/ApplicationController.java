@@ -9,10 +9,10 @@ import java.util.Scanner;
 
 public class ApplicationController {
 
-        private IntroController introController;
         private View view = new View();
         private Simulation simulation;
         private Scanner scanner = new Scanner(System.in);
+        private String introFileName;
 
         private U0 templateU0;
         private U1 templateU1;
@@ -39,12 +39,12 @@ public class ApplicationController {
         private double rocketsU4required2;
 
         public ApplicationController(String filename){
-                introController = new IntroController(filename);
+                this.introFileName = filename;
         }
 
         public void startApp() throws CloneNotSupportedException {
-
                 view.clearScreen();
+                IntroController introController = new IntroController(this.introFileName);
                 introController.displayData();
 
                 scanner.nextLine();
@@ -58,7 +58,9 @@ public class ApplicationController {
         private void setSimulations() throws CloneNotSupportedException {
                 view.clearScreen();
                 view.delayPrint("\nPreparing simulation .... \n" , 10);
-                simulation = new Simulation("resources/Phase1.txt", "resources/Phase2.txt");
+                String phaseOneFilePath = "resources/Phase1.txt";
+                String phaseTwoFilePath = "resources/Phase2.txt";
+                simulation = new Simulation(phaseOneFilePath, phaseTwoFilePath);
                 view.delayPrint("\nPreparing rockets .... \n" , 10);
                 assignRocketTypes();
                 view.delayPrint("\nPreparing rocket groups phase one .... \n" , 10);

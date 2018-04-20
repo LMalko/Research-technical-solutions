@@ -17,9 +17,8 @@ public class SimulationTest {
 
         @Before
         public void setUp(){
-                ApplicationController appController = new ApplicationController("resources/Intro.txt");
+                ApplicationController appController = new ApplicationController();
                 simulation = new Simulation("resources/Phase1.txt", "resources/Phase2.txt");
-
         }
 
         @After

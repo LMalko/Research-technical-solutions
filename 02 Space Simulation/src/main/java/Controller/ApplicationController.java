@@ -12,7 +12,7 @@ public class ApplicationController {
         private View view = new View();
         private Simulation simulation;
         private Scanner scanner = new Scanner(System.in);
-        private String introFileName;
+        private static final String introFileName = "resources/Intro.txt";
 
         private U0 templateU0;
         private U1 templateU1;
@@ -38,21 +38,21 @@ public class ApplicationController {
         private double rocketsU2required2;
         private double rocketsU4required2;
 
-        public ApplicationController(String filename){
-                this.introFileName = filename;
-        }
 
-        public void startApp() throws CloneNotSupportedException {
+        public void startApp(){
                 view.clearScreen();
-                IntroController introController = new IntroController(this.introFileName);
+                IntroController introController = new IntroController(introFileName);
                 introController.displayData();
 
                 scanner.nextLine();
-                setSimulations();
-                runSimulations();
-                startAgain();
+                try {
+                        setSimulations();
+                        runSimulations();
+                        startAgain();
+                } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                }
                 scanner.close();
-
         }
 
         private void setSimulations() throws CloneNotSupportedException {

@@ -1,0 +1,101 @@
+id,customer_id,product_name,net_value,tax_rate
+1,8,Beer - Creemore,486.91,23
+2,16,Salmon - Canned,479.90,23
+3,14,"Wine - Cahors Ac 2000, Clos",424.86,23
+4,19,Cinnamon Buns Sticky,489.94,23
+5,3,Sprouts - Onion,6.43,23
+6,9,Coconut Milk - Unsweetened,41.05,23
+7,6,Currants,813.91,23
+8,3,Pork - Sausage Casing,209.14,23
+9,6,"Tray - Foam, Square 4 - S",382.48,23
+10,12,Energy Drink - Redbull 355ml,441.96,23
+11,4,Muffin Mix - Oatmeal,349.06,23
+12,7,Green Scrubbie Pad H.duty,384.66,23
+13,2,Barley - Pearl,137.03,23
+14,2,Bar Bran Honey Nut,281.67,23
+15,13,"Flour - Buckwheat, Dark",123.09,23
+16,14,"Bread - Pumpernickle, Rounds",443.34,23
+17,1,Smoked Paprika,562.70,23
+18,14,Pork Casing,719.73,23
+19,7,"Shrimp - Baby, Cold Water",897.17,23
+20,8,Pastry - Cherry Danish - Mini,866.94,8
+21,13,Wine - Chianti Classica Docg,724.18,23
+22,10,Juice - Orangina,365.24,23
+23,7,Wine - Mondavi Coastal Private,670.96,8
+24,15,Banana Turning,932.12,23
+25,6,Flavouring - Raspberry,697.21,23
+26,11,Onion - Dried,372.35,8
+27,17,Juice - Apple 284ml,192.64,23
+28,19,Wakami Seaweed,43.85,23
+29,12,Wine - Magnotta - Cab Franc,518.22,23
+30,18,"Veal - Insides, Grains",157.67,8
+31,16,Cheese - Parmesan Grated,729.93,23
+32,14,Container - Hngd Cll Blk 7x7x3,910.02,23
+33,20,Tequila Rose Cream Liquor,739.81,23
+34,18,Compound - Pear,840.45,23
+35,13,Chinese Foods - Plain Fried Rice,705.83,5
+36,11,Nut - Macadamia,329.33,23
+37,16,Orange Roughy 6/8 Oz,599.55,23
+38,19,Peas - Frozen,788.29,8
+39,8,Bagel - Plain,620.23,23
+40,8,Tray - 12in Rnd Blk,190.48,23
+41,16,Cranberries - Frozen,558.94,23
+42,2,Bread - Pita,746.41,5
+43,20,Oil - Cooking Spray,174.78,8
+44,2,Cheese - La Sauvagine,251.77,23
+45,7,Peas Snow,307.56,23
+46,3,Bar Bran Honey Nut,679.64,8
+47,7,"Loaf Pan - 2 Lb, Foil",458.35,5
+48,6,Rolled Oats,29.98,23
+49,16,Wine - Merlot Vina Carmen,192.17,23
+50,9,Muffin - Mix - Creme Brule 15l,884.36,23
+51,18,Garlic - Elephant,127.35,23
+52,7,Almonds Ground Blanched,613.01,23
+53,10,Wine - Periguita Fonseca,399.43,23
+54,2,Pheasants - Whole,944.68,5
+55,16,"Juice - Orange, 341 Ml",979.58,8
+56,4,Lotus Root,667.46,8
+57,9,Milk - Chocolate 250 Ml,942.66,23
+58,8,Beer - Upper Canada Light,315.86,23
+59,15,Tofu - Soft,354.35,23
+60,12,Tomato Puree,325.31,23
+61,19,"Coconut - Shredded, Sweet",690.68,23
+62,12,Bread - Wheat Baguette,729.07,8
+63,20,Cheese - Comtomme,659.96,23
+64,19,"Split Peas - Green, Dry",179.23,23
+65,10,Tequila Rose Cream Liquor,607.89,23
+66,5,Creme De Menth - White,425.79,8
+67,8,Sweet Pea Sprouts,68.32,8
+68,18,"Champagne - Brights, Dry",911.11,23
+69,1,Onions - Cippolini,619.68,23
+70,4,Puree - Blackcurrant,691.93,8
+71,19,Lamb - Ground,792.43,23
+72,5,Ketchup - Tomato,35.02,23
+73,20,Energy Drink - Redbull 355ml,848.74,23
+74,7,Appetizer - Smoked Salmon / Dill,688.90,23
+75,15,"Turkey - Breast, Bone - In",937.87,23
+76,16,Madeira,592.41,23
+77,4,"Juice - Grapefruit, 341 Ml",870.40,23
+78,13,Wine - Barolo Fontanafredda,150.12,8
+79,12,Cake - Lemon Chiffon,749.80,23
+80,13,Ham Black Forest,210.89,23
+81,8,"Mushrooms - Black, Dried",268.08,23
+82,4,"Dill - Primerba, Paste",34.48,23
+83,12,Pastry - Cheese Baked Scones,426.57,8
+84,20,Sambuca - Opal Nera,344.73,8
+85,6,Sea Urchin,711.57,23
+86,12,Langers - Ruby Red Grapfruit,511.68,23
+87,8,"Oil - Olive, Extra Virgin",493.85,23
+88,14,Raspberries - Frozen,379.04,23
+89,6,Haggis,400.92,23
+90,6,"Bread - Dark Rye, Loaf",502.41,8
+91,8,Beer - Blue Light,102.01,23
+92,2,Beets - Golden,294.29,23
+93,8,"Wine - Red, Cooking",688.60,23
+94,10,Wine - Rubyport,944.36,23
+95,10,Goulash Seasoning,40.88,23
+96,10,Yogurt - Assorted Pack,261.98,23
+97,17,Black Currants,910.88,8
+98,10,Squash - Acorn,704.96,23
+99,18,"Shrimp - Baby, Cold Water",683.02,23
+100,1,Sausage - Chorizo,790.49,23

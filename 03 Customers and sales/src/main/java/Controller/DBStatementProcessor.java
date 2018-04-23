@@ -17,7 +17,6 @@ public class DBStatementProcessor{
         }
 
         public void connectToDatabase() {
-
                 try {
                         // Register JDBC driver.
                         Class.forName("org.sqlite.JDBC");
@@ -30,13 +29,11 @@ public class DBStatementProcessor{
 
         public void executeQueryAgainstDatabase(String query){
                 try{
-
                         statement = connection.createStatement();
                         ResultSet result = statement.executeQuery(query);
                         printQueryResult(result);
 
                 }catch(Exception exception){
-
                         System.err.println(exception.getClass().getName() + ": " + exception.getMessage() );
                         System.out.println("\n\n\nQuery was NOT performed successfully");
 
@@ -52,16 +49,16 @@ public class DBStatementProcessor{
 
 
                         for (int row = 1; row <= columnCount; row++) {
-                                String columnName = metaData.getColumnName(row).toString();
+                                String columnName = metaData.getColumnName(row);
                                 columnNames.add(columnName);
                         }
 
                         while (result.next()) {
-                                String row = "";
+                                StringBuilder row = new StringBuilder();
 
-                                for (int i = 0; i < columnNames.size(); i++) {
-                                        row += columnNames.get(i) + ": " + result.getString(columnNames.get(i));
-                                        row += "  ";
+                                for (String columnName : columnNames) {
+                                        row.append(columnName).append(": ").append(result.getString(columnName));
+                                        row.append("  ");
                                 }
                                 System.out.println(row);
                         }
@@ -129,7 +126,7 @@ public class DBStatementProcessor{
 
 
                         for (int row = 1; row <= columnCount; row++){
-                                String columnName = metaData.getColumnName(row).toString();
+                                String columnName = metaData.getColumnName(row);
                                 columnNames.add(columnName);
                         }
 

@@ -1,19 +1,9 @@
 package View;
 
-import java.util.concurrent.TimeUnit;
-
-public class View {
-
-        public void print(String text, Object ... args){
-                System.out.println(String.format(text, args));
-        }
+public abstract class View {
 
         public void print(String text){
                 System.out.println(text);
-        }
-
-        private void print(char character){
-                System.out.print(character);
         }
 
         public void clearScreen() {
@@ -21,14 +11,4 @@ public class View {
                 System.out.flush();
         }
 
-        public void delayPrint(String text, long delay){
-                for(char character: text.toCharArray()) {
-                        print(character);
-                        try {
-                                TimeUnit.MILLISECONDS.sleep(delay);
-                        } catch (InterruptedException e) {
-                                e.printStackTrace();
-                        }
-                }
-        }
 }

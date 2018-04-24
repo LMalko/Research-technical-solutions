@@ -1,6 +1,6 @@
 # 03. Customers and sales (Java 9.0.1, Maven 3.5.3, jUnit4, JDBC, SQLite)
 
-Query shop database.
+Administer shop database.
 
 To run app:
 

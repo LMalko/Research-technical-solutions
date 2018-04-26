@@ -1,6 +1,5 @@
 package Controller;
 
-import DAO.GuestsDAO;
 import Model.Admin;
 import Model.User;
 import View.LoginView;
@@ -35,7 +34,7 @@ public class LoginController{
                                         return true;
                                 }
                         }
-                        view.displayText("Given user does not exists!");
+                        view.print("Given user does not exists!");
                         Thread.sleep(1000);
                 } catch (InterruptedException e){
                         Thread.currentThread().interrupt();
@@ -50,7 +49,7 @@ public class LoginController{
                                         return true;
                                 }
                         }
-                        view.displayText("Wrong password!");
+                        view.print("Wrong password!");
                         Thread.sleep(1000);
                 } catch (InterruptedException e){
                         Thread.currentThread().interrupt();
@@ -82,7 +81,10 @@ public class LoginController{
                         AdminController controller = new AdminController();
                         controller.startAdminPanel();
                 }
-                else if(userStatus.equals("guest")){
+                else if(userStatus.equals("cashier")){
+
+                }
+                else if(userStatus.equals("analyst")){
 
                 }
         }

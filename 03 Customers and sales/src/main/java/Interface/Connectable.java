@@ -1,6 +1,6 @@
 package Interface;
 
-import DAO.DBStatementProcessor;
+import Controller.DBStatementProcessor;
 
 public interface Connectable {
 

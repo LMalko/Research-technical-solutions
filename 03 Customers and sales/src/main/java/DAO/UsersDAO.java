@@ -1,6 +1,6 @@
 package DAO;
 
-import Controller.DBStatementProcessor;
+import Controller.DatabaseDAOConnection;
 import Model.Admin;
 import Model.Analyst;
 import Model.Cashier;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class UsersDAO {
 
         private static ArrayList<User> usersCollection = new ArrayList<User>();
-        private DBStatementProcessor databaseProcessor = new DBStatementProcessor("jdbc:sqlite:resources/shop.db");
+        private DBStatementProcessor dbStatementProcessor;
 
         private static final int idIndex = 0;
         private static final int nameIndex = 1;
@@ -19,10 +19,13 @@ public class UsersDAO {
         private static final int passwordIndex = 4;
         private static final int statusIndex = 5;
 
+        public UsersDAO(DatabaseDAOConnection databaseDAOConnection) {
+                this.dbStatementProcessor = databaseDAOConnection.getDBStatementProcessor();
+        }
+
         private void importUsersData() {
                 usersCollection.clear();
-                databaseProcessor.connectToDatabase();
-                ArrayList<ArrayList<String>> users = databaseProcessor.getArrayListFromQuery("SELECT * FROM users");
+                ArrayList<ArrayList<String>> users = dbStatementProcessor.getArrayListFromQuery("SELECT * FROM users");
                 for(int i =0; i < users.size(); i++) {
                         ArrayList<String> personData = users.get(i);
                         User person = createUserObject(personData);
@@ -56,7 +59,6 @@ public class UsersDAO {
         }
 
         public void addUserToDatabase(User user){
-                databaseProcessor.connectToDatabase();
                 String name = user.getName();
                 String surname = user.getSurname();
                 String login = user.getLogin();
@@ -73,7 +75,7 @@ public class UsersDAO {
                         "');";
 
                 usersCollection.add(user);
-                databaseProcessor.executeUpdateAgainstDatabase(query);
+                dbStatementProcessor.executeUpdateAgainstDatabase(query);
 
         }
 
@@ -89,7 +91,7 @@ public class UsersDAO {
                         "password = '" + password + "' ," +
                         "status = '" + status + "' ," +
                         "WHERE id = " + user.getId() + ";";
-                databaseProcessor.executeUpdateAgainstDatabase(query);
+                dbStatementProcessor.executeUpdateAgainstDatabase(query);
         }
 
         public ArrayList<User> getAllUsersByStatus(String userStatus){
@@ -101,9 +103,5 @@ public class UsersDAO {
                         }
                 }
                 return usersWithGivenStatus;
-        }
-
-        public void disconnectDatabase(){
-                databaseProcessor.closeDatabase();
         }
 }

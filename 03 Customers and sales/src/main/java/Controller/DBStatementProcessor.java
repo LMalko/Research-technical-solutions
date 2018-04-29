@@ -1,30 +1,18 @@
 package Controller;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class DBStatementProcessor{
 
-        private String filename;
-        private Connection connection = null;
+        private Connection connection;
         private Statement statement = null;
         private ResultSet result;
 
-        public DBStatementProcessor(String filename){
-                this.filename = filename;
-        }
-
-        public void connectToDatabase() {
-                try {
-                        // Register JDBC driver.
-                        Class.forName("org.sqlite.JDBC");
-                        // Open a connection to database.
-                        connection = DriverManager.getConnection(filename);
-                }catch ( Exception exception ) {
-                        System.err.println( exception.getClass().getName() + ": " + exception.getMessage() );
-                }
+        public DBStatementProcessor(Connection connection) {
+                this.connection = connection;
         }
 
         public void executeQueryAgainstDatabase(String query){
@@ -146,22 +134,5 @@ public class DBStatementProcessor{
                         System.out.println("\n\n\nOperation was NOT performed successfully");
                 }
                 return arrayResult;
-        }
-
-        public void closeDatabase(){
-                try{
-                        if (result != null){
-                                result.close();
-                        }
-                        if (statement != null){
-                                statement.close();
-                        }
-                        if (connection != null){
-                                connection.close();
-                        }
-                }catch(Exception exception){
-                        System.err.println(exception.getClass().getName() + ": " + exception.getMessage() );
-                        System.exit(0);
-                }
         }
 }

@@ -2,6 +2,8 @@ package Controller;
 
 import DAO.UsersDAO;
 import Model.Admin;
+import Model.Analyst;
+import Model.Cashier;
 import Model.User;
 import View.LoginView;
 
@@ -9,8 +11,10 @@ import java.util.ArrayList;
 
 public class LoginController{
 
+        private DatabaseDAOConnection databaseDAOConnection = new DatabaseDAOConnection("jdbc:sqlite:resources/shop.db");
+
         private LoginView view = new LoginView();
-        private UsersDAO dao = new UsersDAO();
+        private UsersDAO dao = new UsersDAO(databaseDAOConnection);
         private ArrayList<User> usersCollection = dao.getUsersCollection();
 
         public void login(){
@@ -71,13 +75,17 @@ public class LoginController{
                 if(userStatus.equals("admin")){
                         User user = new Admin(userLogin, userPassword, userStatus);
                         AdminController controller = new AdminController();
-                        controller.startAdminPanel();
+                        controller.startPanel();
                 }
                 else if(userStatus.equals("cashier")){
-
+                        User user = new Cashier(userLogin, userPassword, userStatus);
+                        CashierController controller = new CashierController();
+                        controller.startPanel();
                 }
                 else if(userStatus.equals("analyst")){
-
+                        User user = new Analyst(userLogin, userPassword, userStatus);
+                        AnalystController controller = new AnalystController();
+                        controller.startPanel();
                 }
         }
 }

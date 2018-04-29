@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.UsersDAO;
 import Model.Admin;
 import Model.User;
 import View.LoginView;
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 public class LoginController{
 
         private LoginView view = new LoginView();
-        private GuestsDAO dao = new GuestsDAO();
+        private UsersDAO dao = new UsersDAO();
         private ArrayList<User> usersCollection = dao.getUsersCollection();
 
         public void login(){
@@ -61,15 +62,6 @@ public class LoginController{
                 for (User user : usersCollection){
                         if (login.equals(user.getLogin()) && password.equals(user.getPassword())){
                                 return user.getStatus();
-                        }
-                }
-                return null;
-        }
-
-        private User getUserAccount(String userLogin, String userPassword){
-                for (User user : usersCollection) {
-                        if(userLogin.equals(user.getLogin()) && userPassword.equals(user.getPassword())){
-                                return user;
                         }
                 }
                 return null;

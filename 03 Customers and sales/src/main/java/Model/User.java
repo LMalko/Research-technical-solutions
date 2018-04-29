@@ -1,6 +1,6 @@
 package Model;
 
-public class User {
+public abstract class User {
         protected int id;
         protected String name;
         String surname;
@@ -11,7 +11,6 @@ public class User {
         User(String name, String surname, String password, String status){
                 this.name = name;
                 this.surname = surname;
-                this.login = name.toLowerCase() + "." + surname.toLowerCase() + "@shop.com";
                 this.password = password;
                 this.status = status;
         }
@@ -20,7 +19,6 @@ public class User {
                 this.id = id;
                 this.name = name;
                 this.surname = surname;
-                this.login = name.toLowerCase() + "." + surname.toLowerCase() + "@shop.com";
                 this.password = password;
                 this.status = status;
         }

@@ -9,13 +9,29 @@ import View.LoginView;
 
 import java.util.ArrayList;
 
-public class LoginController{
+public final class LoginController{
 
         private SQLiteConnection databaseDAOConnection = new SQLiteConnection("jdbc:sqlite:resources/shop.db");
 
         private LoginView view = new LoginView();
         private UsersDAO dao = new UsersDAO(databaseDAOConnection);
         private ArrayList<User> usersCollection = dao.getUsersCollection();
+
+        private static final LoginController LOGIN_INSTANCE = new LoginController();
+
+        private LoginController(){
+                if (LOGIN_INSTANCE != null) {
+                        throw new IllegalStateException("Already instantiated");
+                }
+        }
+
+        public static LoginController getInstance() {
+                return LOGIN_INSTANCE;
+        }
+
+        public Object clone() throws CloneNotSupportedException{
+                throw new CloneNotSupportedException("Cannot clone instance of this class");
+        }
 
         public void login(){
 

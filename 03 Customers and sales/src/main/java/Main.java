@@ -7,7 +7,6 @@ public class Main {
         }
 
         private static void startApp(){
-                LoginController loginProcedure = new LoginController();
-                loginProcedure.login();
+                LoginController.getInstance().login();
         }
 }

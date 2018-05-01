@@ -9,21 +9,14 @@ import java.sql.Statement;
 
 public class DatabaseDAOConnection implements Connectable{
 
-        private static String filename;
+        private String filename;
         private Connection connection = null;
         private Statement statement = null;
         private ResultSet result;
 
-        private static DatabaseDAOConnection ourInstance;
-
-
-        private DatabaseDAOConnection(String filename) {
-                ourInstance = new DatabaseDAOConnection(filename);
+        DatabaseDAOConnection(String filename) {
+                this.filename = filename;
                 connectToDatabase();
-        }
-
-        public static DatabaseDAOConnection getInstance() {
-                return ourInstance;
         }
 
         @Override

@@ -1,7 +1,7 @@
 package DAO;
 
 import Controller.DBStatementProcessor;
-import Controller.DatabaseDAOConnection;
+import Controller.SQLiteConnection;
 import Model.Admin;
 import Model.Analyst;
 import Model.Cashier;
@@ -20,7 +20,7 @@ public class UsersDAO {
         private static final int passwordIndex = 4;
         private static final int statusIndex = 5;
 
-        public UsersDAO(DatabaseDAOConnection databaseDAOConnection) {
+        public UsersDAO(SQLiteConnection databaseDAOConnection) {
                 this.dbStatementProcessor = databaseDAOConnection.getDBStatementProcessor();
         }
 

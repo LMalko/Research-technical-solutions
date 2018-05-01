@@ -1,29 +1,22 @@
 package Controller;
 
-import Interface.Connectable;
+import Interface.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class DatabaseDAOConnection implements Connectable{
+public class SQLiteConnection implements DatabaseConnection{
 
-        private static String filename;
+        private String filename;
         private Connection connection = null;
         private Statement statement = null;
         private ResultSet result;
 
-        private static DatabaseDAOConnection ourInstance;
-
-
-        private DatabaseDAOConnection(String filename) {
-                ourInstance = new DatabaseDAOConnection(filename);
+        SQLiteConnection(String filename) {
+                this.filename = filename;
                 connectToDatabase();
-        }
-
-        public static DatabaseDAOConnection getInstance() {
-                return ourInstance;
         }
 
         @Override

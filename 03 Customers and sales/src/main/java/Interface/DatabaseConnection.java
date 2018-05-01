@@ -2,7 +2,7 @@ package Interface;
 
 import Controller.DBStatementProcessor;
 
-public interface Connectable {
+public interface DatabaseConnection {
 
         void connectToDatabase();
         void closeDatabase();

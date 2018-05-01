@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class LoginController{
 
-        private DatabaseDAOConnection databaseDAOConnection = new DatabaseDAOConnection("jdbc:sqlite:resources/shop.db");
+        private SQLiteConnection databaseDAOConnection = new SQLiteConnection("jdbc:sqlite:resources/shop.db");
 
         private LoginView view = new LoginView();
         private UsersDAO dao = new UsersDAO(databaseDAOConnection);

@@ -7,8 +7,8 @@ public class Analyst extends User {
                 this.login = String.format("%s.%s@analyst.shop.com", name.toLowerCase(), surname.toLowerCase());
         }
 
-        public Analyst(int id, String name, String surname, String password) {
-                super(id, name, surname, password, "analyst");
+        public Analyst(int id, String name, String surname, String login, String password) {
+                super(id, name, surname, login, password, "analyst");
         }
 
 }

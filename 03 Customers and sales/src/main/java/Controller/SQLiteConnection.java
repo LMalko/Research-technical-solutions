@@ -1,6 +1,7 @@
 package Controller;
 
 import Interface.DatabaseConnection;
+import org.sqlite.JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -30,7 +31,7 @@ public class SQLiteConnection implements DatabaseConnection{
                         // Register JDBC driver.
                         Class.forName("org.sqlite.JDBC");
                         // Open a connection to database.
-                        connection = DriverManager.getConnection(filename);
+                        connection = DriverManager.getConnection(this.filename);
                 }catch ( Exception exception ) {
                         System.err.println( exception.getClass().getName() + ": " + exception.getMessage() );
                 }

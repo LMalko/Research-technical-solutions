@@ -11,12 +11,13 @@ import java.util.ArrayList;
 
 public class UsersDAO {
 
-        private static ArrayList<User> usersCollection = new ArrayList<User>();
+        private static ArrayList<User> usersCollection = new ArrayList<>();
         private DBStatementProcessor dbStatementProcessor;
 
         private static final int idIndex = 0;
         private static final int nameIndex = 1;
         private static final int surnameIndex = 2;
+        private static final int loginIndex = 3;
         private static final int passwordIndex = 4;
         private static final int statusIndex = 5;
 
@@ -26,10 +27,9 @@ public class UsersDAO {
 
         private void importUsersData() {
                 usersCollection.clear();
-                ArrayList<ArrayList<String>> users = dbStatementProcessor.getArrayListFromQuery("SELECT * FROM users");
-                for(int i =0; i < users.size(); i++) {
-                        ArrayList<String> personData = users.get(i);
-                        User person = createUserObject(personData);
+                ArrayList<ArrayList> users = dbStatementProcessor.getArrayListFromQuery("SELECT * FROM users");
+                for (ArrayList user : users) {
+                        User person = createUserObject(user);
                         usersCollection.add(person);
                 }
         }
@@ -43,18 +43,21 @@ public class UsersDAO {
                 int id = Integer.parseInt(personData.get(idIndex));
                 String name = personData.get(nameIndex);
                 String surname = personData.get(surnameIndex);
+                String login = personData.get(loginIndex);
                 String password = personData.get(passwordIndex);
                 String status = personData.get(statusIndex);
 
                 User person = null;
-                if(status.equals("admin")){
-                        person = new Admin(id, name, surname, password);
-                }
-                else if(status.equals("analyst")){
-                        person = new Analyst(id, name, surname, password);
-                }
-                else if(status.equals("cashier")){
-                        person = new Cashier(id, name, surname, password);
+                switch (status) {
+                        case "admin":
+                                person = new Admin(id, name, surname, login, password);
+                                break;
+                        case "analyst":
+                                person = new Analyst(id, name, surname, login, password);
+                                break;
+                        case "cashier":
+                                person = new Cashier(id, name, surname, login, password);
+                                break;
                 }
                 return person;
         }
@@ -97,7 +100,7 @@ public class UsersDAO {
 
         public ArrayList<User> getAllUsersByStatus(String userStatus){
                 importUsersData();
-                ArrayList<User> usersWithGivenStatus = new ArrayList<User>();
+                ArrayList<User> usersWithGivenStatus = new ArrayList<>();
                 for (User user : usersCollection){
                         if (user.getStatus().equals(userStatus)){
                                 usersWithGivenStatus.add(user);

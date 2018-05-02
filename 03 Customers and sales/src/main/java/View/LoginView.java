@@ -9,15 +9,18 @@ public class LoginView extends View{
 
         public String getPassword(){
                 Console console = System.console();
-                char passwordArray[] = console.readPassword("Enter password: ");
-                String password = String.valueOf(passwordArray);
-                return password;
+                try {
+                        char passwordArray[] = console.readPassword("Enter password: ");
+                        return String.valueOf(passwordArray);
+                }catch(NullPointerException exception){
+                        System.out.println("Enter password: ");
+                        return reader.nextLine();
+                }
         }
 
         public String getLogin(){
                 System.out.println("Enter login: ");
-                String login = reader.nextLine();
-                return login;
+                return reader.nextLine();
         }
 
         public void closeScanner(){

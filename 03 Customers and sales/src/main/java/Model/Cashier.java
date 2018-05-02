@@ -7,8 +7,8 @@ public class Cashier extends User{
                 this.login = String.format("%s.%s@cashier.shop.com", name.toLowerCase(), surname.toLowerCase());
         }
 
-        public Cashier(int id, String name, String surname, String password) {
-                super(id, name, surname, password, "cashier");
+        public Cashier(int id, String name, String surname, String login, String password) {
+                super(id, name, surname, login, password, "cashier");
         }
 
 }

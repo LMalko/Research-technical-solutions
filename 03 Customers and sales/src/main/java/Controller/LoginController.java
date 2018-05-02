@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 public final class LoginController{
 
-        private SQLiteConnection databaseDAOConnection = new SQLiteConnection("jdbc:sqlite:resources/shop.db");
+        private SQLiteConnection sqliteConnection = new SQLiteConnection("jdbc:sqlite:resources/shop.db");
 
         private LoginView view = new LoginView();
-        private UsersDAO dao = new UsersDAO(databaseDAOConnection);
+        private UsersDAO dao = new UsersDAO(sqliteConnection);
         private ArrayList<User> usersCollection = dao.getUsersCollection();
 
         private static final LoginController LOGIN_INSTANCE = new LoginController();
@@ -51,6 +51,8 @@ public final class LoginController{
         private boolean checkIfUserExists(String login){
                 try{
                         for (User user : usersCollection){
+                                System.out.println(user.getLogin());
+                                System.out.println(user.getPassword());
                                 if (login.equals(user.getLogin())){
                                         return true;
                                 }

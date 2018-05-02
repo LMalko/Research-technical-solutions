@@ -33,7 +33,7 @@ public class DBStatementProcessor{
                         // Group all column names from query result
                         ResultSetMetaData metaData = result.getMetaData();
                         int columnCount = metaData.getColumnCount();
-                        List<String> columnNames = new ArrayList<String>();
+                        List<String> columnNames = new ArrayList<>();
 
 
                         for (int row = 1; row <= columnCount; row++) {
@@ -98,9 +98,9 @@ public class DBStatementProcessor{
                 return receivedData;
         }
 
-        public ArrayList getArrayListFromQuery(String query){
+        public ArrayList<ArrayList> getArrayListFromQuery(String query){
 
-                ArrayList<ArrayList> arrayResult = new ArrayList<ArrayList>();
+                ArrayList<ArrayList> arrayResult = new ArrayList<>();
 
                 try{
 
@@ -110,7 +110,7 @@ public class DBStatementProcessor{
                         // Group all column names from query result
                         ResultSetMetaData metaData = result.getMetaData();
                         int columnCount = metaData.getColumnCount();
-                        List<String> columnNames = new ArrayList<String>();
+                        List<String> columnNames = new ArrayList<>();
 
 
                         for (int row = 1; row <= columnCount; row++){
@@ -120,7 +120,7 @@ public class DBStatementProcessor{
 
                         while(result.next()){
 
-                                ArrayList<String> rowResult = new ArrayList<String>();
+                                ArrayList<String> rowResult = new ArrayList<>();
 
                                 for (int i = 0; i < columnNames.size(); i++){
 

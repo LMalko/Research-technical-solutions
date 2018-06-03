@@ -1,0 +1,17 @@
+********************************************************************
+*			CASHIER					   *
+********************************************************************
+*								   *
+*1.  Create new product.					   *
+*2.  Create new product category.				   *
+*3.  Create new featured product category.			   *
+*4.  Add products to basket.					   *
+*5.  See all products in basket.				   *
+*6.  Remove product from basket.			           *
+*7.  Get list of available products.				   *
+*8.  Get list of available products by given category. 		   *
+*9.  Check availability of product.				   *
+*10. Checkout and pay.						   *
+*11. Display product categories					   *
+*0.  Quit.							   *
+********************************************************************

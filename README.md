@@ -6,7 +6,7 @@ To run app:
 
 1. Navigate to directory.
 2. mvn clean package
-3. java -jar target/CustomersAndSales-1.0-SNAPSHOT.jar
+3. java -jar target/customers-and-sales-1.0-SNAPSHOT.jar
 
 # 02. SpaceSimulation (Java 9.0.1, Maven 3.5.3, jUnit4)
 

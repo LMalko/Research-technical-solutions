@@ -13,5 +13,6 @@
 *9.  Check availability of product.				   *
 *10. Checkout and pay.						   *
 *11. Display product categories					   *
+*12. Create new customer.					   *
 *0.  Quit.							   *
 ********************************************************************

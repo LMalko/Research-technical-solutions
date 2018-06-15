@@ -1,0 +1,18 @@
+wklej to w poma:
+
+<properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
+
+
+`mvn package`.			tworzy jara
+mvn clean
+mvn compile			tylko kompiluje
+
+mvn install 			robi wszystko
+
+
+mvn archetype:generate	630 	39
+mvn help:describe -Dcmd=clean
+mvn help:describe -Dcmd=compile
